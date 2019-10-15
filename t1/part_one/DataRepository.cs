@@ -16,17 +16,25 @@ namespace part_one
         }
         public void AddKatalog(Katalog pozycja)
         {
-            if(storage.katalogDict[pozycja.Id] == null)
-            storage.katalogDict.Add(pozycja.Id, pozycja);
+            try
+            {
+                storage.katalogDict.Add(pozycja.Id, pozycja);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         public Katalog GetKatalog(int id)
         {
-            Katalog katalog = storage.katalogDict[id];
-            if (katalog == null)
+            try
             {
-                throw new Exception("Nie znaleziono katalogu o wskazanym id");
+                return storage.katalogDict[id];
             }
-            return katalog;
+            catch (KeyNotFoundException e)
+            {
+                return null;
+            }
         }
         public Dictionary<int, Katalog> GetAllKatalog()
         {
@@ -45,23 +53,29 @@ namespace part_one
         }
         public void DeleteKatalog(Katalog pozycja)
         {
-            if(storage.katalogDict[pozycja.Id] == null)
-            {
-                throw new Exception("Podany katalog nie istnieje");
-            }
             storage.katalogDict.Remove(pozycja.Id);
         }
         public void AddWykaz(Wykaz element)
         {
-            storage.wykazList.Add(element);
+            try
+            {
+                storage.wykazList.Add(element);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message));
+            }
         }
         public Wykaz GetWykaz(int id)
         {
-            if (id < storage.wykazList.Count && id >= 0)
+            try
             {
-                throw new Exception("Nie znaleziono wykazu o wskazanym id");
+                return storage.wykazList[id];
             }
-            return storage.wykazList[id];
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         public List<Wykaz> GetAllWykaz()
         {
@@ -73,14 +87,14 @@ namespace part_one
             {
                 storage.wykazList[id] = element;
             }
-            catch (System.Exception e)
+            catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public void DeleteWykaz(Wykaz element)
+        public bool DeleteWykaz(Wykaz element)
         {
-                storage.wykazList.Remove(element);
+                return storage.wykazList.Remove(element);
         }
     }
 }
