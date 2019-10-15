@@ -5,7 +5,10 @@ namespace part_one
         private int id;
         private string info;
 
-        public int Id => id;
+        public int Id {
+            get => id;
+            set => id = value;
+        }
         public string Info => info;
 
         public Katalog(int id, string info)
