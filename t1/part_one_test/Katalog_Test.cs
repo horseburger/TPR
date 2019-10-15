@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using t1;
+using part_one;
 
 namespace part_1_test
 {

@@ -4,12 +4,11 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{A02E8BA6-D4BD-4A33-808A-004C9ED23C8D}</ProjectGuid>
-        <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <ProjectGuid>{4B0B27DC-72A5-4465-94D4-A6B9C2982CD3}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>part_1_test</RootNamespace>
-        <AssemblyName>part_1_test</AssemblyName>
+        <RootNamespace>t1</RootNamespace>
+        <AssemblyName>part_one</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
@@ -37,20 +36,16 @@
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
-        <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
-            <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
-        </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Katalog_Test.cs" />
-        <Compile Include="Wykaz_Test.cs" />
+        <Compile Include="API.cs" />
+        <Compile Include="DataContext.cs" />
+        <Compile Include="DataRepository.cs" />
+        <Compile Include="Katalog.cs" />
+        <Compile Include="OpisStanu.cs" />
+        <Compile Include="Wykaz.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\part_1\part_1.csproj">
-        <Project>{4b0b27dc-72a5-4465-94d4-a6b9c2982cd3}</Project>
-        <Name>part_1</Name>
-      </ProjectReference>
+        <Compile Include="Zdarzenie.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

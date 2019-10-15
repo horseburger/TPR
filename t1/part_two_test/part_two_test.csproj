@@ -4,11 +4,12 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{4B0B27DC-72A5-4465-94D4-A6B9C2982CD3}</ProjectGuid>
+        <ProjectGuid>{AA1EEADF-1B61-400B-82D3-509F63652C6C}</ProjectGuid>
+        <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>t1</RootNamespace>
-        <AssemblyName>part_1</AssemblyName>
+        <RootNamespace>part_two_test</RootNamespace>
+        <AssemblyName>part_two_test</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
@@ -36,15 +37,23 @@
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
+        <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+            <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="DataContext.cs" />
-        <Compile Include="DataRepository.cs" />
-        <Compile Include="Katalog.cs" />
-        <Compile Include="OpisStanu.cs" />
-        <Compile Include="Wykaz.cs" />
+        <Compile Include="DI_Test.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Zdarzenie.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\part_one\part_one.csproj">
+        <Project>{4b0b27dc-72a5-4465-94d4-a6b9c2982cd3}</Project>
+        <Name>part_one</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\part_two\part_two.csproj">
+        <Project>{8fd63bd7-4537-4555-863f-4ff14cb7c6fe}</Project>
+        <Name>part_two</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

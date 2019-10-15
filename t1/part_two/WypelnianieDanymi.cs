@@ -1,11 +1,11 @@
 using System;
-using t1;
+using part_one;
 
 namespace part_two
 {
-    public class WypelnianieDanymi
+    public class WypelnianieDanymi : API
     {
-        static public void fillWithData(DataRepository repo)
+        public void fillWithData(DataRepository repo)
         {
             Wykaz w = new Wykaz("Kamilek", "Glik");
             Katalog k;

@@ -4,11 +4,12 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{8FD63BD7-4537-4555-863F-4FF14CB7C6FE}</ProjectGuid>
+        <ProjectGuid>{A02E8BA6-D4BD-4A33-808A-004C9ED23C8D}</ProjectGuid>
+        <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>part_two</RootNamespace>
-        <AssemblyName>part_two</AssemblyName>
+        <RootNamespace>part_1_test</RootNamespace>
+        <AssemblyName>part_one_test</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
@@ -36,10 +37,14 @@
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
+        <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+            <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Katalog_Test.cs" />
+        <Compile Include="Wykaz_Test.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="WypelnianieDanymi.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\part_one\part_one.csproj">

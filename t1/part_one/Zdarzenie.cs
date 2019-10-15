@@ -1,6 +1,6 @@
 using System;
 
-namespace t1
+namespace part_one
 {
     public class Zdarzenie
     {
