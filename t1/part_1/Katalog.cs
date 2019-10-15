@@ -8,9 +8,10 @@ namespace t1
         public int Id => id;
         public string Info => info;
 
-        public Katalog(string info)
+        public Katalog(int id, string info)
         {
             this.info = info;
+            this.id = id;
         }
     }
 }
