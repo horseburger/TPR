@@ -5,8 +5,13 @@ namespace part_one
         private int id;
         private string info;
 
-        public int Id {
-            get => id;
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
             set => id = value;
         }
         public string Info => info;
