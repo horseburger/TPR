@@ -1,6 +1,6 @@
 ﻿namespace part_one
 {
-    public interface API
+    public interface DataFiller
     {
         void fillWithData(DataRepository repo);
     }
