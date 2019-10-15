@@ -6,7 +6,7 @@ using part_two;
 namespace part_three_test
 {
     [TestFixture]
-    public class Tests
+    public class DataRepositoryTest
     {
         [Test]
         public void AddKatalogTest()

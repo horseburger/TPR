@@ -1,21 +1,18 @@
 ﻿<Properties StartupConfiguration="{A02E8BA6-D4BD-4A33-808A-004C9ED23C8D}|Unit Tests">
-  <MonoDevelop.Ide.ItemProperties.part__three__test FirstBuild="True" />
   <MonoDevelop.Ide.ItemProperties.part__one__test PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="part_three_test/Test.cs">
     <Files>
-      <File FileName="part_one/API.cs" Line="7" Column="2" />
       <File FileName="part_one/DataContext.cs" Line="9" Column="26" />
-      <File FileName="part_one/Katalog.cs" Line="10" Column="14" />
-      <File FileName="part_one/OpisStanu.cs" Line="1" Column="1" />
-      <File FileName="part_one/Wykaz.cs" Line="1" Column="1" />
-      <File FileName="part_one/Zdarzenie.cs" Line="1" Column="1" />
-      <File FileName="part_two/WypelnianieDanymi.cs" Line="2" Column="1" />
-      <File FileName="part_two_test/DI_Test.cs" Line="1" Column="1" />
-      <File FileName="part_one_test/Katalog_Test.cs" Line="1" Column="1" />
-      <File FileName="part_one_test/Wykaz_Test.cs" Line="6" Column="17" />
-      <File FileName="part_three_test/UnitTest1.cs" Line="10" Column="13" />
-      <File FileName="part_three_test/Test.cs" Line="15" Column="2" />
-      <File FileName="part_one/DataRepository.cs" Line="17" Column="31" NotebookId="1" />
+      <File FileName="part_one/Katalog.cs" />
+      <File FileName="part_one/OpisStanu.cs" />
+      <File FileName="part_one/Wykaz.cs" />
+      <File FileName="part_one/Zdarzenie.cs" />
+      <File FileName="part_two/WypelnianieDanymi.cs" />
+      <File FileName="part_two_test/DI_Test.cs" />
+      <File FileName="part_one_test/Katalog_Test.cs" />
+      <File FileName="part_one_test/Wykaz_Test.cs" />
+      <File FileName="part_three_test/Test.cs" Line="95" Column="58" />
+      <File FileName="part_one/DataRepository.cs" Line="54" Column="34" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,16 +21,11 @@
             <Node name="part_one" expanded="True" />
             <Node name="part_one_test" expanded="True" />
             <Node name="part_three_test" expanded="True">
-              <Node name="References" selected="True" />
+              <Node name="Test.cs" selected="True" />
             </Node>
             <Node name="part_two" expanded="True" />
             <Node name="part_two_test" expanded="True" />
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="t1" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
