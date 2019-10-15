@@ -63,7 +63,7 @@ namespace part_one
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message));
+                Console.WriteLine(e.Message);
             }
         }
         public Wykaz GetWykaz(int id)
@@ -76,6 +76,8 @@ namespace part_one
             {
                 Console.WriteLine(e.Message);
             }
+
+            return null;
         }
         public List<Wykaz> GetAllWykaz()
         {
