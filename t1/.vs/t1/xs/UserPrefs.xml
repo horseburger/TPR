@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{A02E8BA6-D4BD-4A33-808A-004C9ED23C8D}|Unit Tests">
+  <MonoDevelop.Ide.ItemProperties.part__one__test PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="part_two_test/DI_Test.cs">
+    <Files>
+      <File FileName="part_one/API.cs" Line="3" Column="32" />
+      <File FileName="part_one/DataRepository.cs" Line="1" Column="1" />
+      <File FileName="part_one/DataContext.cs" Line="1" Column="1" />
+      <File FileName="part_one/Katalog.cs" Line="1" Column="1" />
+      <File FileName="part_one/OpisStanu.cs" Line="1" Column="1" />
+      <File FileName="part_one/Wykaz.cs" Line="1" Column="1" />
+      <File FileName="part_one/Zdarzenie.cs" Line="1" Column="1" />
+      <File FileName="part_two/WypelnianieDanymi.cs" Line="1" Column="1" />
+      <File FileName="part_two_test/DI_Test.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="t1" expanded="True">
+            <Node name="part_one" expanded="True" />
+            <Node name="part_one_test" expanded="True" />
+            <Node name="part_two" expanded="True" />
+            <Node name="part_two_test" expanded="True">
+              <Node name="DI_Test.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="t1" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

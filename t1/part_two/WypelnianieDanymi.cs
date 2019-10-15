@@ -3,7 +3,7 @@ using part_one;
 
 namespace part_two
 {
-    public class WypelnianieDanymi : API
+    public class WypelnianieDanymi : DataFiller
     {
         public void fillWithData(DataRepository repo)
         {

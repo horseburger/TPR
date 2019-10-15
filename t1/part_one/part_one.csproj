@@ -38,7 +38,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="API.cs" />
+        <Compile Include="DataFiller.cs" />
         <Compile Include="DataContext.cs" />
         <Compile Include="DataRepository.cs" />
         <Compile Include="Katalog.cs" />

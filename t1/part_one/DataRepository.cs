@@ -3,11 +3,11 @@ namespace part_one
     public class DataRepository
     {
         private DataContext storage = new DataContext();
-        private API api;
+        private DataFiller api;
         public DataContext Storage => storage;
-        public API Api => api;
+        public DataFiller Api => api;
 
-        public DataRepository(API api)
+        public DataRepository(DataFiller api)
         {
             this.api = api;
         }
