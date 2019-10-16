@@ -80,9 +80,6 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="inputDataFiller.txt" />
-    </ItemGroup>
-    <ItemGroup>
       <ProjectReference Include="..\part_one\part_one.csproj">
         <Project>{4b0b27dc-72a5-4465-94d4-a6b9c2982cd3}</Project>
         <Name>part_one</Name>
@@ -90,6 +87,9 @@
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="inputDataFiller.json" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

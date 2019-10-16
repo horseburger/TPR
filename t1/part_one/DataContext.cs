@@ -6,10 +6,10 @@ namespace part_one
 {
     public class DataContext
     {
-        public List<Wykaz> wykazList { get; }
-        public Dictionary<int, Katalog> katalogDict { get; }
-        public ObservableCollection<Zdarzenie> zdarzenieCollection { get; }
-        public List<OpisStanu> statusInfoList { get; }
+        public List<Wykaz> wykazList { get; set; }
+        public Dictionary<int, Katalog> katalogDict { get; set;  }
+        public ObservableCollection<Zdarzenie> zdarzenieCollection { get; set;  }
+        public List<OpisStanu> statusInfoList { get; set;  }
 
         public DataContext()
         {
