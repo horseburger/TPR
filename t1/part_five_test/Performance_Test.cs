@@ -34,5 +34,23 @@ namespace part_five_test
             TestContext.WriteLine("Time / 10_000 / Linear: " + time.Milliseconds.ToString());
             Assert.That(time, Is.LessThanOrEqualTo(TimeSpan.FromSeconds(20)));
         }
+
+        [Test]
+        public void LogarithmicIncreaseInData_Test()
+        {
+            TestContext.WriteLine("Test for logarithmic increase in data:");
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 1; j < 2; j++)
+                {
+                    int scale = (int)(j * Math.Pow(2, i));
+                    DataRepository repo = new DataRepository(new DataFillerRandom(scale));
+                    TimeSpan time = Time((() => repo.Api.Fill(repo.Storage)));
+                    TestContext.WriteLine(scale + " elements / time: " + time);
+                }
+            }
+
+
+        }
     }
 }
