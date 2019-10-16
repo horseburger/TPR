@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NUnit.Framework;
 using part_one;
 using part_two;
@@ -93,6 +94,109 @@ namespace part_three_test
             dataRepository.AddWykaz(wykaz);
             dataRepository.DeleteWykaz(wykaz);
             Assert.AreEqual(0, dataRepository.GetAllWykaz().Count);
+        }
+        [Test]
+        public void AddZdarzenieTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            dataRepository.AddZdarzenie(new Zdarzenie(new Wykaz("Jan", "Kowalski"), System.DateTime.Now, new OpisStanu(new Katalog(0, "hello"), 3.99f)));
+            Assert.AreEqual(1, dataRepository.GetAllZdarzenie().Count);
+        }
+        [Test]
+        public void GetZdarzenieTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
+            Katalog katalog = new Katalog(1, "example");
+            OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
+            Zdarzenie zdarzenie = new Zdarzenie(wykaz, System.DateTime.Now, opisStanu);
+            dataRepository.AddZdarzenie(zdarzenie);
+            Assert.AreEqual(zdarzenie, dataRepository.GetZdarzenie(0));
+        }
+        [Test]
+        public void GetAllZdarzenieTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            ObservableCollection<Zdarzenie> zdarzenia = dataRepository.GetAllZdarzenie();
+            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
+            Katalog katalog = new Katalog(1, "example");
+            OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
+            Zdarzenie zdarzenie = new Zdarzenie(wykaz, System.DateTime.Now, opisStanu);
+            dataRepository.AddZdarzenie(zdarzenie);
+            Assert.AreEqual(zdarzenia, dataRepository.GetAllZdarzenie());
+        }
+        [Test]
+        public void UpdateZdarzenieTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
+            Katalog katalog = new Katalog(1, "example");
+            OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
+            Zdarzenie zdarzenie = new Zdarzenie(wykaz, System.DateTime.Now, opisStanu);
+            dataRepository.AddZdarzenie(zdarzenie);
+            Zdarzenie zdarzenie2 = new Zdarzenie(wykaz, System.DateTime.Now.AddMinutes(5), opisStanu);
+            dataRepository.UpdateZdarzenie(0, zdarzenie2);
+            Assert.AreEqual(zdarzenie2, dataRepository.GetZdarzenie(0));
+        }
+        [Test]
+        public void DeleteZdarzenieTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
+            Katalog katalog = new Katalog(1, "example");
+            OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
+            Zdarzenie zdarzenie = new Zdarzenie(wykaz, System.DateTime.Now, opisStanu);
+            dataRepository.AddZdarzenie(zdarzenie);
+            dataRepository.DeleteZdarzenie(zdarzenie);
+            Assert.AreEqual(0, dataRepository.GetAllZdarzenie().Count);
+        }
+        [Test]
+        public void AddOpisStanuTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            Katalog katalog = new Katalog(1, "example");
+            dataRepository.AddOpisStanu(new OpisStanu(katalog, 3.99f));
+            Assert.AreEqual(1, dataRepository.GetAllOpisStanu().Count);
+        }
+        [Test]
+        public void GetOpisStanuTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            Katalog katalog = new Katalog(1, "example");
+            OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
+            dataRepository.AddOpisStanu(opisStanu);
+            Assert.AreEqual(opisStanu, dataRepository.GetOpisStanu(0));
+        }
+        [Test]
+        public void GetAllOpisStanuTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            List<OpisStanu> lista = dataRepository.GetAllOpisStanu();
+            Katalog katalog = new Katalog(1, "example");
+            OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
+            dataRepository.AddOpisStanu(opisStanu);
+            Assert.AreEqual(lista, dataRepository.GetAllOpisStanu());
+        }
+        [Test]
+        public void UpdateOpisStanuTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            Katalog katalog = new Katalog(1, "example");
+            OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
+            dataRepository.AddOpisStanu(opisStanu);
+            OpisStanu opisStanu2 = new OpisStanu(katalog, 8.99f);
+            dataRepository.UpdateOpisStanu(0, opisStanu2);
+            Assert.AreEqual(opisStanu2, dataRepository.GetOpisStanu(0));
+        }
+        [Test]
+        public void DeleteOpisStanuTest()
+        {
+            DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
+            Katalog katalog = new Katalog(1, "example");
+            OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
+            dataRepository.AddOpisStanu(opisStanu);
+            dataRepository.DeleteOpisStanu(opisStanu);
+            Assert.AreEqual(0, dataRepository.GetAllOpisStanu().Count);
         }
     }
 }

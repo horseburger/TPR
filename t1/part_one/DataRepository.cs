@@ -58,7 +58,7 @@ namespace part_one
         {
             storage.katalogDict.Remove(pozycja.Id);
         }
-        public void AddWykaz(Zdarzenie element)
+        public void AddWykaz(Wykaz element)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public Zdarzenie GetWykaz(int id)
+        public Wykaz GetWykaz(int id)
         {
             try
             {
@@ -82,11 +82,11 @@ namespace part_one
 
             return null;
         }
-        public List<Zdarzenie> GetAllWykaz()
+        public List<Wykaz> GetAllWykaz()
         {
             return storage.wykazList;
         }
-        public void UpdateWykaz(int id, Zdarzenie element)
+        public void UpdateWykaz(int id, Wykaz element)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteWykaz(Zdarzenie element)
+        public bool DeleteWykaz(Wykaz element)
         {
                 return storage.wykazList.Remove(element);
         }
