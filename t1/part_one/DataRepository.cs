@@ -27,14 +27,16 @@ namespace part_one
         }
         public Katalog GetKatalog(int id)
         {
+            Katalog katalog = null;
             try
             {
-                return storage.katalogDict[id];
+                 katalog = storage.katalogDict[id];
             }
             catch (KeyNotFoundException e)
             {
-                return null;
+                Console.WriteLine(e.Message);
             }
+            return katalog;
         }
         public Dictionary<int, Katalog> GetAllKatalog()
         {
