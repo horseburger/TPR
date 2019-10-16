@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace part_one
 {
@@ -57,7 +58,7 @@ namespace part_one
         {
             storage.katalogDict.Remove(pozycja.Id);
         }
-        public void AddWykaz(Wykaz element)
+        public void AddWykaz(Zdarzenie element)
         {
             try
             {
@@ -68,7 +69,7 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public Wykaz GetWykaz(int id)
+        public Zdarzenie GetWykaz(int id)
         {
             try
             {
@@ -81,11 +82,11 @@ namespace part_one
 
             return null;
         }
-        public List<Wykaz> GetAllWykaz()
+        public List<Zdarzenie> GetAllWykaz()
         {
             return storage.wykazList;
         }
-        public void UpdateWykaz(int id, Wykaz element)
+        public void UpdateWykaz(int id, Zdarzenie element)
         {
             try
             {
@@ -96,9 +97,51 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteWykaz(Wykaz element)
+        public bool DeleteWykaz(Zdarzenie element)
         {
                 return storage.wykazList.Remove(element);
+        }
+        public void AddZdarzenie(Zdarzenie zdarzenie)
+        {
+            try
+            {
+                storage.zdarzenieCollection.Add(zdarzenie);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public Zdarzenie GetZdarzenie(int id)
+        {
+          try
+            {
+                return storage.zdarzenieCollection[id];
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return null;
+        }
+        public ObservableCollection<Zdarzenie> GetAllZdarzenie()
+        {
+            return storage.zdarzenieCollection;
+        }
+        public void UpdateZdarzenie(int id, Zdarzenie element)
+        {
+            try
+            {
+                storage.zdarzenieCollection[id] = element;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public bool DeleteZdarzenie(Zdarzenie element)
+        {
+            return storage.zdarzenieCollection.Remove(element);
         }
     }
 }
