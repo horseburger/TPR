@@ -1,7 +1,6 @@
 ﻿using System;
-using System.IO;
+using Newtonsoft.Json;
 using NUnit.Framework;
-using part_five;
 using part_one;
 using part_two;
 
@@ -15,8 +14,8 @@ namespace part_five_test
         {
             DataRepository repo = new DataRepository(new WypelnianieDanymi());
             repo.Api.Fill(repo.Storage);
-            var stream1 = new MemoryStream();
-            var ser = new 
+            string json = JsonConvert.SerializeObject(repo.Storage, Formatting.Indented);
+            System.IO.File.WriteAllText("/home/horseburger/FTIMS/TPR/workspace/inputDataFiller.json", json);
         }
     }
 }

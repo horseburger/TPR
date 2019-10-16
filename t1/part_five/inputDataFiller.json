@@ -1,0 +1,330 @@
+{
+  "wykazList": [
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    },
+    {
+      "Name": "Kamilek",
+      "Surname": "Glik"
+    }
+  ],
+  "katalogDict": {
+    "0": {
+      "Id": 0,
+      "Info": "ABC"
+    },
+    "1": {
+      "Id": 1,
+      "Info": "ABC"
+    },
+    "2": {
+      "Id": 2,
+      "Info": "ABC"
+    },
+    "3": {
+      "Id": 3,
+      "Info": "ABC"
+    },
+    "4": {
+      "Id": 4,
+      "Info": "ABC"
+    },
+    "5": {
+      "Id": 5,
+      "Info": "ABC"
+    },
+    "6": {
+      "Id": 6,
+      "Info": "ABC"
+    },
+    "7": {
+      "Id": 7,
+      "Info": "ABC"
+    },
+    "8": {
+      "Id": 8,
+      "Info": "ABC"
+    },
+    "9": {
+      "Id": 9,
+      "Info": "ABC"
+    }
+  },
+  "zdarzenieCollection": [
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.96395+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 0.0,
+        "Product": {
+          "Id": 0,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.987982+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 1.0,
+        "Product": {
+          "Id": 1,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.987986+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 2.0,
+        "Product": {
+          "Id": 2,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.988282+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 3.0,
+        "Product": {
+          "Id": 3,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.988286+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 4.0,
+        "Product": {
+          "Id": 4,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.988288+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 5.0,
+        "Product": {
+          "Id": 5,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.988292+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 6.0,
+        "Product": {
+          "Id": 6,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.988294+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 7.0,
+        "Product": {
+          "Id": 7,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.988295+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 8.0,
+        "Product": {
+          "Id": 8,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    },
+    {
+      "Who": {
+        "Name": "Kamilek",
+        "Surname": "Glik"
+      },
+      "BorrowDate": "2019-10-16T12:04:24.988296+02:00",
+      "ReturnDate": "0001-01-01T00:00:00",
+      "StatusInfo": {
+        "Price": 9.0,
+        "Product": {
+          "Id": 9,
+          "Info": "ABC"
+        },
+        "NumberInStock": 0
+      }
+    }
+  ],
+  "statusInfoList": [
+    {
+      "Price": 0.0,
+      "Product": {
+        "Id": 0,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 1.0,
+      "Product": {
+        "Id": 1,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 2.0,
+      "Product": {
+        "Id": 2,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 3.0,
+      "Product": {
+        "Id": 3,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 4.0,
+      "Product": {
+        "Id": 4,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 5.0,
+      "Product": {
+        "Id": 5,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 6.0,
+      "Product": {
+        "Id": 6,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 7.0,
+      "Product": {
+        "Id": 7,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 8.0,
+      "Product": {
+        "Id": 8,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    },
+    {
+      "Price": 9.0,
+      "Product": {
+        "Id": 9,
+        "Info": "ABC"
+      },
+      "NumberInStock": 0
+    }
+  ]
+}
