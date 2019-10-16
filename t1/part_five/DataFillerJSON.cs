@@ -1,4 +1,5 @@
-﻿using part_one;
+﻿using Newtonsoft.Json;
+using part_one;
 
 namespace part_five
 {
@@ -6,7 +7,8 @@ namespace part_five
     {
         public void Fill(DataContext context)
         {
-            
+            string json = System.IO.File.ReadAllText("./inputDataFiller.json");
+            context = JsonConvert.DeserializeObject<DataContext>(json);
         }
     }
 }

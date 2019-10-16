@@ -15,7 +15,7 @@ namespace part_five_test
             DataRepository repo = new DataRepository(new WypelnianieDanymi());
             repo.Api.Fill(repo.Storage);
             string json = JsonConvert.SerializeObject(repo.Storage, Formatting.Indented);
-            System.IO.File.WriteAllText("/home/horseburger/FTIMS/TPR/workspace/inputDataFiller.json", json);
+            System.IO.File.WriteAllText("inputDataFiller.json", json);
         }
     }
 }
