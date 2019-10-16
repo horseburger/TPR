@@ -5,7 +5,7 @@ namespace part_two
 {
     public class WypelnianieDanymi : DataFiller
     {
-        public void fillWithData(DataRepository repo)
+        public void Fill(DataContext context)
         {
             Wykaz w = new Wykaz("Kamilek", "Glik");
             Katalog k;
@@ -14,10 +14,10 @@ namespace part_two
             {
                 k = new Katalog(i, "ABC");
                 oS = new OpisStanu(k, i);
-                repo.Storage.katalogDict.Add(k.Id, k);
-                repo.Storage.wykazList.Add(w);
-                repo.Storage.zdarzenieCollection.Add(new Zdarzenie(w, DateTime.Now, oS));
-                repo.Storage.statusInfoList.Add(oS);
+                context.katalogDict.Add(k.Id, k);
+                context.wykazList.Add(w);
+                context.zdarzenieCollection.Add(new Zdarzenie(w, DateTime.Now, oS));
+                context.statusInfoList.Add(oS);
             }
         }
 }

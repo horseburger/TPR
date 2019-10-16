@@ -7,11 +7,7 @@ namespace part_one
 
         public int Id
         {
-            get
-            {
-                return id;
-            }
-
+            get => id;
             set => id = value;
         }
         public string Info => info;

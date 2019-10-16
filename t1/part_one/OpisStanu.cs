@@ -2,23 +2,32 @@ namespace part_one
 {
     public class OpisStanu
     {
-        private Katalog product;
-        private int numberInStock;
         private float price;
+        private Katalog product;
+        private int numberinstock;
 
-        public Katalog Product => product;
+
+        public float Price
+        {
+            get => price;
+            set => price = value;
+        }
+        public Katalog Product
+        {
+           get => product;
+            set => product = value;
+        }
         public int NumberInStock
         {
-            get => numberInStock;
-            set => numberInStock = value;
+            get => numberinstock;
+            set => numberinstock = value;
         }
-        public float Price => price;
 
         public OpisStanu(Katalog product, float price)
         {
-            this.product = product;
-            numberInStock = 0;
-            this.price = price;
+            this.Product = product;
+            this.NumberInStock = 0;
+            this.Price = price;
         }
     }
 }
