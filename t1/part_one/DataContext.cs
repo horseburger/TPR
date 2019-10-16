@@ -1,14 +1,23 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 
 namespace part_one
 {
     public class DataContext
     {
-        public List<Wykaz> wykazList = new List<Wykaz>();
-        public Dictionary<int, Katalog> katalogDict = new Dictionary<int, Katalog>();
-        public ObservableCollection<Zdarzenie> zdarzenieCollection = new ObservableCollection<Zdarzenie>();
-        public List<OpisStanu> statusInfoList = new List<OpisStanu>();
+        public List<Wykaz> wykazList { get; }
+        public Dictionary<int, Katalog> katalogDict { get; }
+        public ObservableCollection<Zdarzenie> zdarzenieCollection { get; }
+        public List<OpisStanu> statusInfoList { get; }
+
+        public DataContext()
+        {
+            this.wykazList = new List<Wykaz>();
+            this.katalogDict = new Dictionary<int, Katalog>();
+            this.zdarzenieCollection = new ObservableCollection<Zdarzenie>();
+            this.statusInfoList = new List<OpisStanu>();
+        }
 
     }
 }
