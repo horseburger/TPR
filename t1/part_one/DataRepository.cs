@@ -6,20 +6,19 @@ namespace part_one
 {
     public class DataRepository
     {
-        public DataContext storage { get; set; }
-        private DataFiller api;
-        public DataFiller Api => api;
+        public DataContext Storage { get; set; }
+        public DataFiller Api { get; set; }
 
         public DataRepository(DataFiller api)
         {
-            this.storage = new DataContext();
-            this.api = api;
+            this.Storage = new DataContext();
+            this.Api = api;
         }
         public void AddKatalog(Katalog pozycja)
         {
             try
             {
-                storage.katalogDict.Add(pozycja.Id, pozycja);
+                Storage.katalogDict.Add(pozycja.Id, pozycja);
             }
             catch (ArgumentException e)
             {
@@ -31,7 +30,7 @@ namespace part_one
             Katalog katalog = null;
             try
             {
-                 katalog = storage.katalogDict[id];
+                 katalog = Storage.katalogDict[id];
             }
             catch (KeyNotFoundException e)
             {
@@ -41,13 +40,13 @@ namespace part_one
         }
         public Dictionary<int, Katalog> GetAllKatalog()
         {
-            return storage.katalogDict;
+            return Storage.katalogDict;
         }
         public void UpdateKatalog(int id, Katalog pozycja)
         {
             try
             {
-                storage.katalogDict[id] = pozycja;
+                Storage.katalogDict[id] = pozycja;
             }
             catch (System.Exception e)
             {
@@ -56,13 +55,13 @@ namespace part_one
         }
         public bool DeleteKatalog(Katalog pozycja)
         {
-           return storage.katalogDict.Remove(pozycja.Id);
+           return Storage.katalogDict.Remove(pozycja.Id);
         }
         public void AddWykaz(Wykaz element)
         {
             try
             {
-                storage.wykazList.Add(element);
+                Storage.wykazList.Add(element);
             }
             catch (ArgumentException e)
             {
@@ -73,7 +72,7 @@ namespace part_one
         {
             try
             {
-                return storage.wykazList[id];
+                return Storage.wykazList[id];
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -84,13 +83,13 @@ namespace part_one
         }
         public List<Wykaz> GetAllWykaz()
         {
-            return storage.wykazList;
+            return Storage.wykazList;
         }
         public void UpdateWykaz(int id, Wykaz element)
         {
             try
             {
-                storage.wykazList[id] = element;
+                Storage.wykazList[id] = element;
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -99,13 +98,13 @@ namespace part_one
         }
         public bool DeleteWykaz(Wykaz element)
         {
-                return storage.wykazList.Remove(element);
+                return Storage.wykazList.Remove(element);
         }
         public void AddZdarzenie(Zdarzenie zdarzenie)
         {
             try
             {
-                storage.zdarzenieCollection.Add(zdarzenie);
+                Storage.zdarzenieCollection.Add(zdarzenie);
             }
             catch (ArgumentException e)
             {
@@ -116,7 +115,7 @@ namespace part_one
         {
           try
             {
-                return storage.zdarzenieCollection[id];
+                return Storage.zdarzenieCollection[id];
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -126,13 +125,13 @@ namespace part_one
         }
         public ObservableCollection<Zdarzenie> GetAllZdarzenie()
         {
-            return storage.zdarzenieCollection;
+            return Storage.zdarzenieCollection;
         }
         public void UpdateZdarzenie(int id, Zdarzenie element)
         {
             try
             {
-                storage.zdarzenieCollection[id] = element;
+                Storage.zdarzenieCollection[id] = element;
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -141,13 +140,13 @@ namespace part_one
         }
         public bool DeleteZdarzenie(Zdarzenie element)
         {
-            return storage.zdarzenieCollection.Remove(element);
+            return Storage.zdarzenieCollection.Remove(element);
         }
         public void AddOpisStanu(OpisStanu opis)
         {
             try
             {
-                storage.statusInfoList.Add(opis);
+                Storage.statusInfoList.Add(opis);
             }
             catch (ArgumentException e)
             {
@@ -158,7 +157,7 @@ namespace part_one
         {
             try
             {
-                return storage.statusInfoList[id];
+                return Storage.statusInfoList[id];
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -168,13 +167,13 @@ namespace part_one
         }
         public List<OpisStanu> GetAllOpisStanu()
         {
-            return storage.statusInfoList;
+            return Storage.statusInfoList;
         }
         public void UpdateOpisStanu(int id, OpisStanu stan)
         {
             try
             {
-                storage.statusInfoList[id] = stan;
+                Storage.statusInfoList[id] = stan;
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -183,7 +182,7 @@ namespace part_one
         }
         public bool DeleteOpisStanu(OpisStanu element)
         {
-            return storage.statusInfoList.Remove(element);
+            return Storage.statusInfoList.Remove(element);
         }
     }
 }

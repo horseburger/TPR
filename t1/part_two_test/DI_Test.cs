@@ -11,8 +11,8 @@ namespace part_two_test
         public void DataRepositoryDITest()
         {
             DataRepository repo = new DataRepository(new WypelnianieDanymi());
-            repo.Api.Fill(repo.storage);
-            Assert.AreEqual(10, repo.storage.katalogDict.Count);
+            repo.Api.Fill(repo.Storage);
+            Assert.AreEqual(10, repo.Storage.katalogDict.Count);
         }
     }
 }
