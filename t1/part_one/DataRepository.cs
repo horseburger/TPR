@@ -143,5 +143,47 @@ namespace part_one
         {
             return storage.zdarzenieCollection.Remove(element);
         }
+        public void AddOpisStanu(OpisStanu opis)
+        {
+            try
+            {
+                storage.statusInfoList.Add(opis);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public OpisStanu GetOpisStanu(int id)
+        {
+            try
+            {
+                return storage.statusInfoList[id];
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return null;
+        }
+        public List<OpisStanu> GetAllOpisStanu()
+        {
+            return storage.statusInfoList;
+        }
+        public void UpdateOpisStanu(int id, OpisStanu stan)
+        {
+            try
+            {
+                storage.statusInfoList[id] = stan;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public bool DeleteOpisStanu(OpisStanu element)
+        {
+            return storage.statusInfoList.Remove(element);
+        }
     }
 }
