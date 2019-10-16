@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace part_one
 {
@@ -99,6 +100,90 @@ namespace part_one
         public bool DeleteWykaz(Wykaz element)
         {
                 return storage.wykazList.Remove(element);
+        }
+        public void AddZdarzenie(Zdarzenie zdarzenie)
+        {
+            try
+            {
+                storage.zdarzenieCollection.Add(zdarzenie);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public Zdarzenie GetZdarzenie(int id)
+        {
+          try
+            {
+                return storage.zdarzenieCollection[id];
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return null;
+        }
+        public ObservableCollection<Zdarzenie> GetAllZdarzenie()
+        {
+            return storage.zdarzenieCollection;
+        }
+        public void UpdateZdarzenie(int id, Zdarzenie element)
+        {
+            try
+            {
+                storage.zdarzenieCollection[id] = element;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public bool DeleteZdarzenie(Zdarzenie element)
+        {
+            return storage.zdarzenieCollection.Remove(element);
+        }
+        public void AddOpisStanu(OpisStanu opis)
+        {
+            try
+            {
+                storage.statusInfoList.Add(opis);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public OpisStanu GetOpisStanu(int id)
+        {
+            try
+            {
+                return storage.statusInfoList[id];
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return null;
+        }
+        public List<OpisStanu> GetAllOpisStanu()
+        {
+            return storage.statusInfoList;
+        }
+        public void UpdateOpisStanu(int id, OpisStanu stan)
+        {
+            try
+            {
+                storage.statusInfoList[id] = stan;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public bool DeleteOpisStanu(OpisStanu element)
+        {
+            return storage.statusInfoList.Remove(element);
         }
     }
 }
