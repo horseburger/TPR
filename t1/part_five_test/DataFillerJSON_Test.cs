@@ -12,7 +12,7 @@ namespace part_five_test
     public class DataFillerTextFile_Test
     {
         [Test]
-        public void Test1()
+        public void FillJSON_Test()
         {
             DataRepository tmp = new DataRepository(new WypelnianieDanymi());
             tmp.Api.Fill(tmp.storage);
