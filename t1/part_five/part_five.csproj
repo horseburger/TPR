@@ -65,15 +65,14 @@
           <HintPath>..\packages\System.Text.Encodings.Web.4.7.0-preview1.19504.10\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
           <Private>True</Private>
         </Reference>
-        <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
-          <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
         <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
           <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="System.Xml" />
+        <Reference Include="System.Threading.Tasks.Extensions">
+          <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="DataFillerJSON.cs" />
