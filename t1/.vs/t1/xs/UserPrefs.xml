@@ -1,28 +1,24 @@
-﻿<Properties StartupConfiguration="{A02E8BA6-D4BD-4A33-808A-004C9ED23C8D}|Unit Tests">
+﻿<Properties>
   <MonoDevelop.Ide.ItemProperties.part__one__test PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="part_four/MyClass.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="part_four/DataService.cs">
     <Files>
-      <File FileName="part_one/DataContext.cs" Line="9" Column="26" />
-      <File FileName="part_one/Katalog.cs" Line="10" Column="23" />
-      <File FileName="part_one/OpisStanu.cs" Line="9" Column="1" />
-      <File FileName="part_one/Wykaz.cs" Line="21" Column="2" />
-      <File FileName="part_one/Zdarzenie.cs" Line="21" Column="41" />
-      <File FileName="part_two/WypelnianieDanymi.cs" Line="8" Column="26" />
-      <File FileName="part_two_test/DI_Test.cs" Line="10" Column="15" />
-      <File FileName="part_one_test/Katalog_Test.cs" Line="1" Column="1" />
-      <File FileName="part_one_test/Wykaz_Test.cs" />
-      <File FileName="part_three_test/Test.cs" Line="9" Column="36" />
-      <File FileName="part_four/Program.cs" Line="1" Column="1" />
-      <File FileName="part_one/DataFiller.cs" Line="5" Column="38" />
-      <File FileName="part_four/MyClass.cs" Line="17" Column="1" />
-      <File FileName="part_one/DataRepository.cs" Line="54" Column="34" NotebookId="1" />
+      <File FileName="part_three_test/DataRepositoryTest.cs" Line="189" Column="39" />
+      <File FileName="part_five_test/DataFillerJSON_Test.cs" Line="17" Column="35" />
+      <File FileName="part_five/DataFillerJSON.cs" Line="1" Column="1" />
+      <File FileName="part_four/DataService.cs" Line="156" Column="1" />
+      <File FileName="part_one/Wykaz.cs" Line="15" Column="16" />
+      <File FileName="part_one/DataRepository.cs" Line="184" Column="36" NotebookId="1" />
+      <File FileName="part_one/DataContext.cs" Line="12" Column="25" NotebookId="1" />
+      <File FileName="part_one/OpisStanu.cs" Line="3" Column="18" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="t1" expanded="True">
+            <Node name="part_five" expanded="True" />
+            <Node name="part_five_test" expanded="True" />
             <Node name="part_four" expanded="True">
-              <Node name="References" selected="True" />
+              <Node name="DataService.cs" selected="True" />
             </Node>
             <Node name="part_one" expanded="True" />
             <Node name="part_one_test" expanded="True" />
@@ -39,7 +35,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.part__four FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
