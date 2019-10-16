@@ -16,21 +16,23 @@ namespace part_five_test
             timer.Stop();
             return timer.Elapsed;
         }
-        
-        [Test]
-        public void TenThousandEntries_Test()
-        {
-            DataRepository repo = new DataRepository(new DataFillerRandom(10000));
-            Assert.That(Time((() => repo.Api.Fill(repo.Storage))), Is.LessThanOrEqualTo(TimeSpan.FromSeconds(20)));
-        }
 
         [Test]
         public void OneThousandEntries_Test()
         {
             DataRepository repo = new DataRepository(new DataFillerRandom(1000));
-            Assert.That(Time(() => repo.Api.Fill(repo.Storage)), Is.LessThanOrEqualTo(TimeSpan.FromSeconds(15)));
+            TimeSpan time = Time((() => repo.Api.Fill(repo.Storage)));
+            TestContext.WriteLine("Time / 1_000 / Linear: " + time.Milliseconds.ToString());
+            Assert.That(time, Is.LessThanOrEqualTo(TimeSpan.FromSeconds(15)));
         }
-        
-        
+
+        [Test]
+        public void TenThousandEntries_Test()
+        {
+            DataRepository repo = new DataRepository(new DataFillerRandom(10000));
+            TimeSpan time = Time((() => repo.Api.Fill(repo.Storage)));
+            TestContext.WriteLine("Time / 10_000 / Linear: " + time.Milliseconds.ToString());
+            Assert.That(time, Is.LessThanOrEqualTo(TimeSpan.FromSeconds(20)));
+        }
     }
 }
