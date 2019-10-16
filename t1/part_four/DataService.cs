@@ -160,7 +160,17 @@ namespace part_four
 
             return zdarzenia;
         }
-        public IEnumerable<OpisStanu> OpisStanuAndKatalog(Katalog katalog)
+        public ObservableCollection<Zdarzenie> WykazAndZdarzenieAndOpisStanu(Wykaz wykaz, OpisStanu stan)
+        {
+            ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
+
+            foreach (Zdarzenie zdarzenie in this.repository.GetAllZdarzenie())
+            {
+                if (zdarzenie.StatusInfo.Equals(stan) && zdarzenie.Who.Equals(wykaz)) zdarzenia.Add(zdarzenie);
+            }
+            return zdarzenia;
+        }
+        public List<OpisStanu> OpisStanuAndKatalog(Katalog katalog)
         {
             List<OpisStanu> stany = new List<OpisStanu>();
 
@@ -172,6 +182,37 @@ namespace part_four
             return stany;
         }
 
+        //Usuwanie
+        public bool UsunWykaz(Wykaz wykaz)
+        {
+            return this.repository.DeleteWykaz(wykaz);
+        }
+
+        public bool UsunKatalog(Katalog katalog)
+        {
+            return this.repository.DeleteKatalog(katalog);
+        }
+
+        public bool UsunOpisStanu(OpisStanu stan)
+        {
+            return this.repository.DeleteOpisStanu(stan);
+        }
+
+        public bool UsunZdarzenie(Zdarzenie zdarzenie)
+        {
+            return this.repository.DeleteZdarzenie(zdarzenie);
+        }
+        public bool UsunZdarzenie(Wykaz wykaz, OpisStanu stan)
+        {
+            bool usuniete = false;
+
+            foreach (Zdarzenie zdarzenie in WykazAndZdarzenieAndOpisStanu(wykaz, stan))
+            {
+                this.repository.DeleteZdarzenie(zdarzenie);
+                usuniete = true;
+            }
+            return usuniete;
+        }
 
     }
 }

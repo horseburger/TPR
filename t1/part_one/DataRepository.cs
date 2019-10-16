@@ -54,9 +54,9 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public void DeleteKatalog(Katalog pozycja)
+        public bool DeleteKatalog(Katalog pozycja)
         {
-            storage.katalogDict.Remove(pozycja.Id);
+           return storage.katalogDict.Remove(pozycja.Id);
         }
         public void AddWykaz(Wykaz element)
         {
