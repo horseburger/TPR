@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using part_one;
+using Newtonsoft.Json;
 using part_two;
 
 namespace part_four
@@ -16,36 +17,24 @@ namespace part_four
         }
 
         //Wyświetl
-        public void Wyswietl(List<Wykaz> wykazy)
+        public string Wyswietl(List<Wykaz> wykazy)
         {
-            foreach(Wykaz wykaz in wykazy)
-            {
-                Console.WriteLine(wykaz.ToString());
-            }
+            return JsonConvert.SerializeObject(wykazy);
         }
 
-        public void Wyswietl(Dictionary<int, Katalog> katalogi)
+        public string Wyswietl(Dictionary<int, Katalog> katalogi)
         {
-            foreach (var item in katalogi)
-            {
-                Console.WriteLine("index: " + item.Key + " " + item.Value.ToString());
-            }
+            return JsonConvert.SerializeObject(katalogi);
         }
 
-        public void Wyswietl(ObservableCollection<Zdarzenie> zdarzenia)
+        public string Wyswietl(ObservableCollection<Zdarzenie> zdarzenia)
         {
-            foreach (Zdarzenie zdarzenie in zdarzenia)
-            {
-                Console.WriteLine(zdarzenie.ToString());
-            }
+            return JsonConvert.SerializeObject(zdarzenia);
         }
 
-        public void Wyswietl(List<OpisStanu> opisy)
+        public string Wyswietl(List<OpisStanu> opisy)
         {
-            foreach (OpisStanu opis in opisy)
-            {
-                Console.WriteLine(opis.ToString());
-            }
+           return JsonConvert.SerializeObject(opisy);
         }
 
         //Dodaj
