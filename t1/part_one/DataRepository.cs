@@ -6,13 +6,18 @@ namespace part_one
 {
     public class DataRepository
     {
-        public DataContext Storage { get; set; }
+        private DataContext Storage;
         public DataFiller Api { get; set; }
 
         public DataRepository(DataFiller api)
         {
             this.Storage = new DataContext();
             this.Api = api;
+        }
+
+        public DataContext GetStorage()
+        {
+            return Storage;
         }
         public void AddKatalog(Katalog pozycja)
         {

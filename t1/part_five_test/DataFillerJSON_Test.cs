@@ -15,12 +15,12 @@ namespace part_five_test
         public void FillJSON_Test()
         {
             DataRepository tmp = new DataRepository(new WypelnianieDanymi());
-            tmp.Api.Fill(tmp.Storage);
-            string json = JsonConvert.SerializeObject(tmp.Storage);
+            tmp.Api.Fill(tmp.GetStorage());
+            string json = JsonConvert.SerializeObject(tmp.GetStorage());
             File.WriteAllText("./inputDataFiller.json", json);
             DataRepository repo = new DataRepository(new DataFillerJSON("./inputDataFiller.json"));
-            repo.Api.Fill(repo.Storage);
-            Assert.AreEqual(10, repo.Storage.wykazList.Count);
+            repo.Api.Fill(repo.GetStorage());
+            Assert.AreEqual(10, repo.GetAllWykaz().Count);
         }
     }
 }
