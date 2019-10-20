@@ -16,23 +16,23 @@ namespace part_four
             this.repository = repository;
         }
 
-        //Wyświetl
-        public string Wyswietl(List<Wykaz> wykazy)
+        //Zwróć
+        public string Zwroc(List<Wykaz> wykazy)
         {
             return JsonConvert.SerializeObject(wykazy);
         }
 
-        public string Wyswietl(Dictionary<int, Katalog> katalogi)
+        public string Zwroc(Dictionary<int, Katalog> katalogi)
         {
             return JsonConvert.SerializeObject(katalogi);
         }
 
-        public string Wyswietl(ObservableCollection<Zdarzenie> zdarzenia)
+        public string Zwroc(ObservableCollection<Zdarzenie> zdarzenia)
         {
             return JsonConvert.SerializeObject(zdarzenia);
         }
 
-        public string Wyswietl(List<OpisStanu> opisy)
+        public string Zwroc(List<OpisStanu> opisy)
         {
            return JsonConvert.SerializeObject(opisy);
         }
