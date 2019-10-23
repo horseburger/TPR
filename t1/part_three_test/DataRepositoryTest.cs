@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using NUnit.Framework;
 using part_one;
@@ -198,6 +199,40 @@ namespace part_three_test
             dataRepository.AddOpisStanu(opisStanu);
             dataRepository.DeleteOpisStanu(opisStanu);
             Assert.AreEqual(0, dataRepository.GetAllOpisStanu().Count);
+        }
+
+        [Test]
+        public void ZdarzenieAddedTest()
+        {
+            DataRepositoryApi dataRepository = new DataRepository(new WypelnianieDanymi());
+            Klient klient = new Klient("Jan", "Kowalski");
+            Ksiazka ksiazka = new Ksiazka(1, "example");
+            OpisStanu opisStanu = new OpisStanu(ksiazka, 9.99f);
+            bool flag = false;
+            dataRepository.ZdarzenieAdded += (object s, EventArgs e) =>
+            {
+                flag = true;
+            };
+            dataRepository.AddZdarzenie(new Zdarzenie(klient, DateTime.Now, opisStanu));
+            Assert.AreEqual(true, flag);
+        }
+
+        [Test]
+        public void ZdarzenieRemovedTest()
+        {
+            DataRepositoryApi dataRepository = new DataRepository(new WypelnianieDanymi());
+            Klient klient = new Klient("Jan", "Kowalski");
+            Ksiazka ksiazka = new Ksiazka(1, "example");
+            OpisStanu opisStanu = new OpisStanu(ksiazka, 9.99f);
+            Zdarzenie zdarzenie = new Zdarzenie(klient, DateTime.Now, opisStanu);
+            dataRepository.AddZdarzenie(zdarzenie);
+            bool flag = false;
+            dataRepository.ZdarzenieRemoved += (object s, EventArgs e) =>
+            {
+                flag = true;
+            };
+            dataRepository.DeleteZdarzenie(zdarzenie);
+            Assert.AreEqual(true, flag);
         }
     }
 }

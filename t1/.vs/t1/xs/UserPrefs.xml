@@ -1,31 +1,31 @@
 ﻿<Properties StartupConfiguration="{A02E8BA6-D4BD-4A33-808A-004C9ED23C8D}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.part__one__test PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="part_one/DataRepositoryApi.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="part_three_test/DataRepositoryTest.cs">
     <Files>
-      <File FileName="part_three_test/DataRepositoryTest.cs" Line="59" Column="47" />
-      <File FileName="part_five_test/DataFillerJSON_Test.cs" />
-      <File FileName="part_five/DataFillerJSON.cs" />
-      <File FileName="part_four/DataService.cs" Line="20" Column="40" />
-      <File FileName="part_one_test/part_one_test.csproj" />
-      <File FileName="part_two_test/part_two_test.csproj" />
-      <File FileName="part_three_test/part_three_test.csproj" />
-      <File FileName="../../../../Library/Frameworks/Mono.framework/Versions/6.4.0/lib/mono/msbuild/Current/bin/Microsoft.Common.CurrentVersion.targets" />
-      <File FileName="part_two_test/DI_Test.cs" />
-      <File FileName="part_two/WypelnianieDanymi.cs" />
-      <File FileName="part_five_test/DataFillerRandom_Test.cs" />
-      <File FileName="part_five_test/packages.config" />
-      <File FileName="part_five/inputDataFiller.json" />
-      <File FileName="part_five/DataFillerRandom.cs" />
-      <File FileName="part_five/packages.config" />
-      <File FileName="part_one/Wykaz.cs" Line="5" Column="24" />
-      <File FileName="part_one/Zdarzenie.cs" />
-      <File FileName="part_one/OpisStanu.cs" Line="1" Column="1" />
-      <File FileName="part_one/Katalog.cs" Line="3" Column="25" />
-      <File FileName="part_one/DataRepository.cs" Line="65" Column="36" />
-      <File FileName="part_one/DataFiller.cs" />
-      <File FileName="part_four/packages.config" />
-      <File FileName="part_one/DataContext.cs" />
-      <File FileName="part_one/DataRepositoryApi.cs" Line="1" Column="1" />
+      <File FileName="part_three_test/DataRepositoryTest.cs" Line="208" Column="1" />
+      <File FileName="part_four/DataService.cs" Line="220" Column="1" />
+      <File FileName="part_five_test/DataFillerJSON_Test.cs" Line="19" Column="66" NotebookId="1" />
+      <File FileName="part_five/DataFillerJSON.cs" NotebookId="1" />
+      <File FileName="part_one_test/part_one_test.csproj" NotebookId="1" />
+      <File FileName="part_two_test/part_two_test.csproj" NotebookId="1" />
+      <File FileName="part_three_test/part_three_test.csproj" NotebookId="1" />
+      <File FileName="../../../../Library/Frameworks/Mono.framework/Versions/6.4.0/lib/mono/msbuild/Current/bin/Microsoft.Common.CurrentVersion.targets" NotebookId="1" />
+      <File FileName="part_two_test/DI_Test.cs" Line="14" Column="39" NotebookId="1" />
+      <File FileName="part_two/WypelnianieDanymi.cs" NotebookId="1" />
+      <File FileName="part_five_test/DataFillerRandom_Test.cs" Line="14" Column="32" NotebookId="1" />
+      <File FileName="part_five_test/packages.config" NotebookId="1" />
+      <File FileName="part_five/inputDataFiller.json" NotebookId="1" />
+      <File FileName="part_five/DataFillerRandom.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="part_five/packages.config" NotebookId="1" />
+      <File FileName="part_one/Wykaz.cs" Line="5" Column="24" NotebookId="1" />
+      <File FileName="part_one/Zdarzenie.cs" NotebookId="1" />
+      <File FileName="part_one/OpisStanu.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="part_one/Katalog.cs" Line="3" Column="25" NotebookId="1" />
+      <File FileName="part_one/DataRepository.cs" Line="13" Column="49" NotebookId="1" />
+      <File FileName="part_one/DataFiller.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="part_four/packages.config" NotebookId="1" />
+      <File FileName="part_one/DataContext.cs" Line="11" Column="36" NotebookId="1" />
+      <File FileName="part_one/DataRepositoryApi.cs" Line="35" Column="1" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -33,11 +33,9 @@
           <Node name="t1" expanded="True">
             <Node name="part_five" expanded="True" />
             <Node name="part_five_test" expanded="True" />
-            <Node name="part_four" expanded="True">
-              <Node name="References" expanded="True" />
-            </Node>
+            <Node name="part_four" expanded="True" />
             <Node name="part_one" expanded="True">
-              <Node name="DataRepositoryApi.cs" selected="True" />
+              <Node name="DataRepository.cs" selected="True" />
             </Node>
             <Node name="part_one_test" expanded="True" />
             <Node name="part_three_test" expanded="True" />
