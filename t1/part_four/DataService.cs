@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using part_one;
 using Newtonsoft.Json;
 
@@ -15,6 +16,17 @@ namespace part_four
             this.repository = repository;
         }
 
+        public event EventHandler ZdarzenieAdded
+        {
+            add => repository.ZdarzenieAdded += value;
+            remove => repository.ZdarzenieAdded -= value;
+        }
+        
+        public event EventHandler ZdarzenieRemoved
+        {
+            add => repository.ZdarzenieRemoved += value;
+            remove => repository.ZdarzenieRemoved -= value;
+        }
         //Zwróć
         public string Zwroc(List<Klient> wykazy)
         {

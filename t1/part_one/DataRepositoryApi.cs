@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using part_one;
 
@@ -8,6 +9,8 @@ using part_one;
         DataContext Storage { get; set; }
         DataFiller Api { get; set; }
 
+        event EventHandler ZdarzenieAdded;
+        event EventHandler ZdarzenieRemoved;
          void AddKsiazka(Ksiazka pozycja);
          Ksiazka GetKsiazka(int id);
          Dictionary<int, Ksiazka> GetAllKsiazka();

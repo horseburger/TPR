@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace part_one
 {
@@ -9,12 +10,29 @@ namespace part_one
         public DataContext Storage { get; set; }
         public DataFiller Api { get; set; }
 
+        public event EventHandler ZdarzenieAdded;
+        public event EventHandler ZdarzenieRemoved;
+
         public DataRepository(DataFiller api)
         {
             this.Storage = new DataContext();
             this.Api = api;
+
+            this.Storage.zdarzenieCollection.CollectionChanged += ZdarzenieChanged;
         }
 
+        private void ZdarzenieChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                ZdarzenieAdded?.Invoke(this, new EventArgs());
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                ZdarzenieRemoved?.Invoke(this, new EventArgs());
+            }
+        }
+        
         public DataContext GetStorage()
         {
             return Storage;
@@ -53,7 +71,7 @@ namespace part_one
             {
                 Storage.katalogDict[id] = pozycja;
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
