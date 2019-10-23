@@ -9,14 +9,14 @@ namespace part_1_test
         [Test]
         public void NameGetterTest()
         {
-            Wykaz w = new Wykaz("Grzegorz", "Brzeczyszczykiewicz");
+            Klient w = new Klient("Grzegorz", "Brzeczyszczykiewicz");
             Assert.AreEqual("Grzegorz", w.Name);
         }
 
         [Test]
         public void SurnameGetterTest()
         {
-            Wykaz w = new Wykaz("Grzegorz", "Brzeczyszczykiewicz");
+            Klient w = new Klient("Grzegorz", "Brzeczyszczykiewicz");
             Assert.AreEqual("Brzeczyszczykiewicz", w.Surname);
         }
     }

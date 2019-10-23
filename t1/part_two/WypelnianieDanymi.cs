@@ -7,12 +7,12 @@ namespace part_two
     {
         public void Fill(DataContext context)
         {
-            Wykaz w = new Wykaz("Kamilek", "Glik");
-            Katalog k;
+            Klient w = new Klient("Kamilek", "Glik");
+            Ksiazka k;
             OpisStanu oS;
             for (int i = 0; i < 10; i++)
             {
-                k = new Katalog(i, "ABC");
+                k = new Ksiazka(i, "ABC");
                 oS = new OpisStanu(k, i);
                 context.katalogDict.Add(k.Id, k);
                 context.wykazList.Add(w);

@@ -1,6 +1,6 @@
 namespace part_one
 {
-    public class Katalog
+    public class Ksiazka
     {
         private int _id;
         private string info;
@@ -12,7 +12,7 @@ namespace part_one
         }
         public string Info => info;
 
-        public Katalog(int id, string info)
+        public Ksiazka(int id, string info)
         {
             this.info = info;
             this._id = id;

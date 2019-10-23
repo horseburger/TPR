@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{A02E8BA6-D4BD-4A33-808A-004C9ED23C8D}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.part__one__test PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="part_four/DataService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="part_one/DataRepository.cs">
     <Files>
       <File FileName="part_three_test/DataRepositoryTest.cs" Line="189" Column="39" />
       <File FileName="part_five_test/DataFillerJSON_Test.cs" />
-      <File FileName="part_five/DataFillerJSON.cs" Line="3" Column="1" />
-      <File FileName="part_four/DataService.cs" Line="22" Column="56" />
+      <File FileName="part_five/DataFillerJSON.cs" />
+      <File FileName="part_four/DataService.cs" />
       <File FileName="part_one_test/part_one_test.csproj" />
       <File FileName="part_two_test/part_two_test.csproj" />
       <File FileName="part_three_test/part_three_test.csproj" />
@@ -15,16 +15,16 @@
       <File FileName="part_five_test/DataFillerRandom_Test.cs" />
       <File FileName="part_five_test/packages.config" />
       <File FileName="part_five/inputDataFiller.json" />
-      <File FileName="part_five/DataFillerRandom.cs" Line="1" Column="1" />
+      <File FileName="part_five/DataFillerRandom.cs" />
       <File FileName="part_five/packages.config" />
       <File FileName="part_one/Wykaz.cs" />
       <File FileName="part_one/Zdarzenie.cs" />
       <File FileName="part_one/OpisStanu.cs" />
       <File FileName="part_one/Katalog.cs" />
-      <File FileName="part_one/DataRepository.cs" />
-      <File FileName="part_one/DataFiller.cs" Line="1" Column="1" />
-      <File FileName="part_four/packages.config" Line="1" Column="1" />
-      <File FileName="part_one/DataContext.cs" Line="1" Column="1" />
+      <File FileName="part_one/DataRepository.cs" Line="112" Column="17" />
+      <File FileName="part_one/DataFiller.cs" />
+      <File FileName="part_four/packages.config" />
+      <File FileName="part_one/DataContext.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -34,9 +34,10 @@
             <Node name="part_five_test" expanded="True" />
             <Node name="part_four" expanded="True">
               <Node name="References" expanded="True" />
-              <Node name="DataService.cs" selected="True" />
             </Node>
-            <Node name="part_one" expanded="True" />
+            <Node name="part_one" expanded="True">
+              <Node name="DataRepository.cs" selected="True" />
+            </Node>
             <Node name="part_one_test" expanded="True" />
             <Node name="part_three_test" expanded="True" />
             <Node name="part_two" expanded="True" />

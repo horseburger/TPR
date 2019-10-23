@@ -14,15 +14,15 @@ namespace part_five
         }
         public void Fill(DataContext context)
         {
-            Wykaz w;
-            Katalog k;
+            Klient w;
+            Ksiazka k;
             OpisStanu s;
             Zdarzenie z;
             
             for (int i = 0; i < number; i++)
             {
-                k = new Katalog(i, GenerateRandomString());
-                w = new Wykaz(GenerateRandomString(), GenerateRandomString());
+                k = new Ksiazka(i, GenerateRandomString());
+                w = new Klient(GenerateRandomString(), GenerateRandomString());
                 s = new OpisStanu(k, new Random().Next());
                 z = new Zdarzenie(w, DateTime.Now, s);
                 context.katalogDict.Add(i, k);

@@ -3,7 +3,7 @@ namespace part_one
     public class OpisStanu
     {
         private float price;
-        private Katalog product;
+        private Ksiazka product;
         private int numberinstock;
 
 
@@ -12,7 +12,7 @@ namespace part_one
             get => price;
             set => price = value;
         }
-        public Katalog Product
+        public Ksiazka Product
         {
            get => product;
             set => product = value;
@@ -23,7 +23,7 @@ namespace part_one
             set => numberinstock = value;
         }
 
-        public OpisStanu(Katalog product, float price)
+        public OpisStanu(Ksiazka product, float price)
         {
             this.Product = product;
             this.NumberInStock = 0;

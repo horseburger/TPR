@@ -13,14 +13,14 @@ namespace part_three_test
         public void AddKatalogTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            dataRepository.AddKatalog(new Katalog(1, "example"));
+            dataRepository.AddKatalog(new Ksiazka(1, "example"));
             Assert.AreEqual(1, dataRepository.GetAllKatalog().Count);
         }
         [Test]
         public void GetKatalogTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Katalog katalog = new Katalog(1, "example");
+            Ksiazka katalog = new Ksiazka(1, "example");
             dataRepository.AddKatalog(katalog);
             Assert.AreEqual(katalog, dataRepository.GetKatalog(1));
         }
@@ -28,8 +28,8 @@ namespace part_three_test
         public void GetAllKatalogTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Dictionary<int, Katalog> dictionary = dataRepository.GetAllKatalog();
-            Katalog katalog = new Katalog(1, "example");
+            Dictionary<int, Ksiazka> dictionary = dataRepository.GetAllKatalog();
+            Ksiazka katalog = new Ksiazka(1, "example");
             dataRepository.AddKatalog(katalog);
             Assert.AreEqual(dictionary, dataRepository.GetAllKatalog());
         }
@@ -37,9 +37,9 @@ namespace part_three_test
         public void UpdateKatalogTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Katalog katalog = new Katalog(1, "example");
+            Ksiazka katalog = new Ksiazka(1, "example");
             dataRepository.AddKatalog(katalog);
-            Katalog katalog2 = new Katalog(1, "hello");
+            Ksiazka katalog2 = new Ksiazka(1, "hello");
             dataRepository.UpdateKatalog(1, katalog2);
             Assert.AreEqual(katalog2, dataRepository.GetKatalog(1));
         }
@@ -47,7 +47,7 @@ namespace part_three_test
         public void DeleteKatalogTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Katalog katalog = new Katalog(1, "example");
+            Ksiazka katalog = new Ksiazka(1, "example");
             dataRepository.AddKatalog(katalog);
             dataRepository.DeleteKatalog(katalog);
             Assert.AreEqual(0, dataRepository.GetAllKatalog().Count);
@@ -56,14 +56,14 @@ namespace part_three_test
         public void AddWykazTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            dataRepository.AddWykaz(new Wykaz("Jan", "Kowalski"));
+            dataRepository.AddWykaz(new Klient("Jan", "Kowalski"));
             Assert.AreEqual(1, dataRepository.GetAllWykaz().Count);
         }
         [Test]
         public void GetWykazTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
+            Klient wykaz = new Klient("Jan", "Kowalski");
             dataRepository.AddWykaz(wykaz);
             Assert.AreEqual(wykaz, dataRepository.GetWykaz(0));
         }
@@ -71,8 +71,8 @@ namespace part_three_test
         public void GetAllWykazTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            List<Wykaz> lista = dataRepository.GetAllWykaz();
-            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
+            List<Klient> lista = dataRepository.GetAllWykaz();
+            Klient wykaz = new Klient("Jan", "Kowalski");
             dataRepository.AddWykaz(wykaz);
             Assert.AreEqual(lista, dataRepository.GetAllWykaz());
         }
@@ -80,9 +80,9 @@ namespace part_three_test
         public void UpdateWykazTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
+            Klient wykaz = new Klient("Jan", "Kowalski");
             dataRepository.AddWykaz(wykaz);
-            Wykaz wykaz2 = new Wykaz("Adrian", "Nowak");
+            Klient wykaz2 = new Klient("Adrian", "Nowak");
             dataRepository.UpdateWykaz(0, wykaz2);
             Assert.AreEqual(wykaz2, dataRepository.GetWykaz(0));
         }
@@ -90,7 +90,7 @@ namespace part_three_test
         public void DeleteWykazTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
+            Klient wykaz = new Klient("Jan", "Kowalski");
             dataRepository.AddWykaz(wykaz);
             dataRepository.DeleteWykaz(wykaz);
             Assert.AreEqual(0, dataRepository.GetAllWykaz().Count);
@@ -99,15 +99,15 @@ namespace part_three_test
         public void AddZdarzenieTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            dataRepository.AddZdarzenie(new Zdarzenie(new Wykaz("Jan", "Kowalski"), System.DateTime.Now, new OpisStanu(new Katalog(0, "hello"), 3.99f)));
+            dataRepository.AddZdarzenie(new Zdarzenie(new Klient("Jan", "Kowalski"), System.DateTime.Now, new OpisStanu(new Ksiazka(0, "hello"), 3.99f)));
             Assert.AreEqual(1, dataRepository.GetAllZdarzenie().Count);
         }
         [Test]
         public void GetZdarzenieTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
-            Katalog katalog = new Katalog(1, "example");
+            Klient wykaz = new Klient("Jan", "Kowalski");
+            Ksiazka katalog = new Ksiazka(1, "example");
             OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
             Zdarzenie zdarzenie = new Zdarzenie(wykaz, System.DateTime.Now, opisStanu);
             dataRepository.AddZdarzenie(zdarzenie);
@@ -118,8 +118,8 @@ namespace part_three_test
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
             ObservableCollection<Zdarzenie> zdarzenia = dataRepository.GetAllZdarzenie();
-            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
-            Katalog katalog = new Katalog(1, "example");
+            Klient wykaz = new Klient("Jan", "Kowalski");
+            Ksiazka katalog = new Ksiazka(1, "example");
             OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
             Zdarzenie zdarzenie = new Zdarzenie(wykaz, System.DateTime.Now, opisStanu);
             dataRepository.AddZdarzenie(zdarzenie);
@@ -129,8 +129,8 @@ namespace part_three_test
         public void UpdateZdarzenieTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
-            Katalog katalog = new Katalog(1, "example");
+            Klient wykaz = new Klient("Jan", "Kowalski");
+            Ksiazka katalog = new Ksiazka(1, "example");
             OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
             Zdarzenie zdarzenie = new Zdarzenie(wykaz, System.DateTime.Now, opisStanu);
             dataRepository.AddZdarzenie(zdarzenie);
@@ -142,8 +142,8 @@ namespace part_three_test
         public void DeleteZdarzenieTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Wykaz wykaz = new Wykaz("Jan", "Kowalski");
-            Katalog katalog = new Katalog(1, "example");
+            Klient wykaz = new Klient("Jan", "Kowalski");
+            Ksiazka katalog = new Ksiazka(1, "example");
             OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
             Zdarzenie zdarzenie = new Zdarzenie(wykaz, System.DateTime.Now, opisStanu);
             dataRepository.AddZdarzenie(zdarzenie);
@@ -154,7 +154,7 @@ namespace part_three_test
         public void AddOpisStanuTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Katalog katalog = new Katalog(1, "example");
+            Ksiazka katalog = new Ksiazka(1, "example");
             dataRepository.AddOpisStanu(new OpisStanu(katalog, 3.99f));
             Assert.AreEqual(1, dataRepository.GetAllOpisStanu().Count);
         }
@@ -162,7 +162,7 @@ namespace part_three_test
         public void GetOpisStanuTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Katalog katalog = new Katalog(1, "example");
+            Ksiazka katalog = new Ksiazka(1, "example");
             OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
             dataRepository.AddOpisStanu(opisStanu);
             Assert.AreEqual(opisStanu, dataRepository.GetOpisStanu(0));
@@ -172,7 +172,7 @@ namespace part_three_test
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
             List<OpisStanu> lista = dataRepository.GetAllOpisStanu();
-            Katalog katalog = new Katalog(1, "example");
+            Ksiazka katalog = new Ksiazka(1, "example");
             OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
             dataRepository.AddOpisStanu(opisStanu);
             Assert.AreEqual(lista, dataRepository.GetAllOpisStanu());
@@ -181,7 +181,7 @@ namespace part_three_test
         public void UpdateOpisStanuTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Katalog katalog = new Katalog(1, "example");
+            Ksiazka katalog = new Ksiazka(1, "example");
             OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
             dataRepository.AddOpisStanu(opisStanu);
             OpisStanu opisStanu2 = new OpisStanu(katalog, 8.99f);
@@ -192,7 +192,7 @@ namespace part_three_test
         public void DeleteOpisStanuTest()
         {
             DataRepository dataRepository = new DataRepository(new WypelnianieDanymi());
-            Katalog katalog = new Katalog(1, "example");
+            Ksiazka katalog = new Ksiazka(1, "example");
             OpisStanu opisStanu = new OpisStanu(katalog, 9.99f);
             dataRepository.AddOpisStanu(opisStanu);
             dataRepository.DeleteOpisStanu(opisStanu);

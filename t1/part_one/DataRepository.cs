@@ -19,7 +19,7 @@ namespace part_one
         {
             return Storage;
         }
-        public void AddKatalog(Katalog pozycja)
+        public void AddKatalog(Ksiazka pozycja)
         {
             try
             {
@@ -30,9 +30,9 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public Katalog GetKatalog(int id)
+        public Ksiazka GetKatalog(int id)
         {
-            Katalog katalog = null;
+            Ksiazka katalog = null;
             try
             {
                  katalog = Storage.katalogDict[id];
@@ -43,11 +43,11 @@ namespace part_one
             }
             return katalog;
         }
-        public Dictionary<int, Katalog> GetAllKatalog()
+        public Dictionary<int, Ksiazka> GetAllKatalog()
         {
             return Storage.katalogDict;
         }
-        public void UpdateKatalog(int id, Katalog pozycja)
+        public void UpdateKatalog(int id, Ksiazka pozycja)
         {
             try
             {
@@ -58,11 +58,11 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteKatalog(Katalog pozycja)
+        public bool DeleteKatalog(Ksiazka pozycja)
         {
            return Storage.katalogDict.Remove(pozycja.Id);
         }
-        public void AddWykaz(Wykaz element)
+        public void AddWykaz(Klient element)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public Wykaz GetWykaz(int id)
+        public Klient GetWykaz(int id)
         {
             try
             {
@@ -86,11 +86,11 @@ namespace part_one
 
             return null;
         }
-        public List<Wykaz> GetAllWykaz()
+        public List<Klient> GetAllWykaz()
         {
             return Storage.wykazList;
         }
-        public void UpdateWykaz(int id, Wykaz element)
+        public void UpdateWykaz(int id, Klient element)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteWykaz(Wykaz element)
+        public bool DeleteWykaz(Klient element)
         {
                 return Storage.wykazList.Remove(element);
         }

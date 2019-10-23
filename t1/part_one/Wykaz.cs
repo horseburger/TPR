@@ -2,7 +2,7 @@
 
 namespace part_one
 {
-    public class Wykaz
+    public class Klient
     {
         private string name;
         private string surname;
@@ -12,7 +12,7 @@ namespace part_one
 
 
 
-        public Wykaz(string name, string surname)
+        public Klient(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;

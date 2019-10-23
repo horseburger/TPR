@@ -17,12 +17,12 @@ namespace part_four
         }
 
         //Zwróć
-        public string Zwroc(List<Wykaz> wykazy)
+        public string Zwroc(List<Klient> wykazy)
         {
             return JsonConvert.SerializeObject(wykazy);
         }
 
-        public string Zwroc(Dictionary<int, Katalog> katalogi)
+        public string Zwroc(Dictionary<int, Ksiazka> katalogi)
         {
             return JsonConvert.SerializeObject(katalogi);
         }
@@ -34,31 +34,31 @@ namespace part_four
 
         public string Zwroc(List<OpisStanu> opisy)
         {
-           return JsonConvert.SerializeObject(opisy);
+            return JsonConvert.SerializeObject(opisy);
         }
 
         //Dodaj
-        public void DodajWykaz(Wykaz wykaz)
+        public void DodajWykaz(Klient wykaz)
         {
             this.repository.AddWykaz(wykaz);
         }
         public void DodajWykaz(string name, string surname)
         {
-            this.repository.AddWykaz(new Wykaz(name, surname));
+            this.repository.AddWykaz(new Klient(name, surname));
         }
-        public void DodajKatalog(Katalog katalog)
+        public void DodajKatalog(Ksiazka katalog)
         {
             this.repository.AddKatalog(katalog);
         }
         public void DodajKatalog(int id, string info)
         {
-            this.repository.AddKatalog(new Katalog(id, info));
+            this.repository.AddKatalog(new Ksiazka(id, info));
         }
         public void DodajZdarzenie(Zdarzenie zdarzenie)
         {
             this.repository.AddZdarzenie(zdarzenie);
         }
-        public void DodajZdarzenie(Wykaz who, DateTime borrowdate, OpisStanu statusInfo)
+        public void DodajZdarzenie(Klient who, DateTime borrowdate, OpisStanu statusInfo)
         {
             this.repository.AddZdarzenie(new Zdarzenie(who, borrowdate, statusInfo));
         }
@@ -66,26 +66,26 @@ namespace part_four
         {
             this.repository.AddOpisStanu(opis);
         }
-        public void DodajOpisStanu(Katalog product, DateTime data_zakupu, float price)
+        public void DodajOpisStanu(Ksiazka product, DateTime data_zakupu, float price)
         {
             this.repository.AddOpisStanu(new OpisStanu(product, price));
         }
 
         //Wyszukaj
-        public List<Wykaz> SzukajWykaz(string fraza)
+        public List<Klient> SzukajWykaz(string fraza)
         {
-            List<Wykaz> rezultat = new List<Wykaz>();
+            List<Klient> rezultat = new List<Klient>();
 
-            foreach (Wykaz wykaz in this.repository.GetAllWykaz())
+            foreach (Klient wykaz in this.repository.GetAllWykaz())
             {
                 if (wykaz.ToString().Contains(fraza)) rezultat.Add(wykaz);
             }
             return rezultat;
         }
 
-        public Dictionary<int, Katalog> SzukajKatalog(string fraza)
+        public Dictionary<int, Ksiazka> SzukajKatalog(string fraza)
         {
-            Dictionary<int, Katalog> rezultat = new Dictionary<int, Katalog>();
+            Dictionary<int, Ksiazka> rezultat = new Dictionary<int, Ksiazka>();
 
             foreach (var item in this.repository.GetAllKatalog())
             {
@@ -117,7 +117,7 @@ namespace part_four
         {
             List<OpisStanu> rezultat = new List<OpisStanu>();
 
-            foreach(OpisStanu opis in this.repository.GetAllOpisStanu())
+            foreach (OpisStanu opis in this.repository.GetAllOpisStanu())
             {
                 if (opis.Price >= minPrice && opis.Price <= maxPrice) rezultat.Add(opis);
             }
@@ -125,7 +125,7 @@ namespace part_four
         }
 
         //Znajdź powiązania
-        public ObservableCollection<Zdarzenie> ZdarzenieAndWykaz(Wykaz wykaz)
+        public ObservableCollection<Zdarzenie> ZdarzenieAndWykaz(Klient wykaz)
         {
             ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
 
@@ -139,7 +139,7 @@ namespace part_four
 
         public ObservableCollection<Zdarzenie> ZdarzeniaAndOpisStanu(OpisStanu stan)
         {
-        
+
             ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
 
             foreach (Zdarzenie zdarzenie in this.repository.GetAllZdarzenie())
@@ -149,7 +149,7 @@ namespace part_four
 
             return zdarzenia;
         }
-        public ObservableCollection<Zdarzenie> WykazAndZdarzenieAndOpisStanu(Wykaz wykaz, OpisStanu stan)
+        public ObservableCollection<Zdarzenie> WykazAndZdarzenieAndOpisStanu(Klient wykaz, OpisStanu stan)
         {
             ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
 
@@ -159,7 +159,7 @@ namespace part_four
             }
             return zdarzenia;
         }
-        public List<OpisStanu> OpisStanuAndKatalog(Katalog katalog)
+        public List<OpisStanu> OpisStanuAndKatalog(Ksiazka katalog)
         {
             List<OpisStanu> stany = new List<OpisStanu>();
 
@@ -172,12 +172,12 @@ namespace part_four
         }
 
         //Usuwanie
-        public bool UsunWykaz(Wykaz wykaz)
+        public bool UsunWykaz(Klient wykaz)
         {
             return this.repository.DeleteWykaz(wykaz);
         }
 
-        public bool UsunKatalog(Katalog katalog)
+        public bool UsunKatalog(Ksiazka katalog)
         {
             return this.repository.DeleteKatalog(katalog);
         }
@@ -191,7 +191,7 @@ namespace part_four
         {
             return this.repository.DeleteZdarzenie(zdarzenie);
         }
-        public bool UsunZdarzenie(Wykaz wykaz, OpisStanu stan)
+        public bool UsunZdarzenie(Klient wykaz, OpisStanu stan)
         {
             bool usuniete = false;
 
