@@ -10,9 +10,9 @@ namespace part_two_test
         [Test]
         public void DataRepositoryDITest()
         {
-            DataRepository repo = new DataRepository(new WypelnianieDanymi());
-            repo.Api.Fill(repo.GetStorage());
-            Assert.AreEqual(10, repo.GetAllKatalog().Count);
+            DataRepositoryApi repo = new DataRepository(new WypelnianieDanymi());
+            repo.Api.Fill(repo.Storage);
+            Assert.AreEqual(10, repo.GetAllKsiazka().Count);
         }
     }
 }

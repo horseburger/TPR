@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 
 namespace part_one
 {
-    public class DataRepository
+    public class DataRepository : DataRepositoryApi
     {
-        private DataContext Storage;
+        public DataContext Storage { get; set; }
         public DataFiller Api { get; set; }
 
         public DataRepository(DataFiller api)
@@ -19,7 +19,7 @@ namespace part_one
         {
             return Storage;
         }
-        public void AddKatalog(Ksiazka pozycja)
+        public void AddKsiazka(Ksiazka pozycja)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public Ksiazka GetKatalog(int id)
+        public Ksiazka GetKsiazka(int id)
         {
             Ksiazka katalog = null;
             try
@@ -43,11 +43,11 @@ namespace part_one
             }
             return katalog;
         }
-        public Dictionary<int, Ksiazka> GetAllKatalog()
+        public Dictionary<int, Ksiazka> GetAllKsiazka()
         {
             return Storage.katalogDict;
         }
-        public void UpdateKatalog(int id, Ksiazka pozycja)
+        public void UpdateKsiazka(int id, Ksiazka pozycja)
         {
             try
             {
@@ -58,11 +58,11 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteKatalog(Ksiazka pozycja)
+        public bool DeleteKsiazka(Ksiazka pozycja)
         {
            return Storage.katalogDict.Remove(pozycja.Id);
         }
-        public void AddWykaz(Klient element)
+        public void AddKlient(Klient element)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public Klient GetWykaz(int id)
+        public Klient GetKlient(int id)
         {
             try
             {
@@ -86,11 +86,11 @@ namespace part_one
 
             return null;
         }
-        public List<Klient> GetAllWykaz()
+        public List<Klient> GetAllKlient()
         {
             return Storage.wykazList;
         }
-        public void UpdateWykaz(int id, Klient element)
+        public void UpdateKlient(int id, Klient element)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace part_one
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteWykaz(Klient element)
+        public bool DeleteKlient(Klient element)
         {
                 return Storage.wykazList.Remove(element);
         }

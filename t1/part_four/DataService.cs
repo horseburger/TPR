@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using part_one;
 using Newtonsoft.Json;
-using part_two;
 
 namespace part_four
 {
     class DataService
     {
-        private DataRepository repository;
+        private DataRepositoryApi repository;
 
-        public DataService(DataRepository repository)
+        public DataService(DataRepositoryApi repository)
         {
             this.repository = repository;
         }
@@ -40,19 +39,19 @@ namespace part_four
         //Dodaj
         public void DodajWykaz(Klient wykaz)
         {
-            this.repository.AddWykaz(wykaz);
+            this.repository.AddKlient(wykaz);
         }
         public void DodajWykaz(string name, string surname)
         {
-            this.repository.AddWykaz(new Klient(name, surname));
+            this.repository.AddKlient(new Klient(name, surname));
         }
         public void DodajKatalog(Ksiazka katalog)
         {
-            this.repository.AddKatalog(katalog);
+            this.repository.AddKsiazka(katalog);
         }
         public void DodajKatalog(int id, string info)
         {
-            this.repository.AddKatalog(new Ksiazka(id, info));
+            this.repository.AddKsiazka(new Ksiazka(id, info));
         }
         public void DodajZdarzenie(Zdarzenie zdarzenie)
         {
@@ -76,7 +75,7 @@ namespace part_four
         {
             List<Klient> rezultat = new List<Klient>();
 
-            foreach (Klient wykaz in this.repository.GetAllWykaz())
+            foreach (Klient wykaz in this.repository.GetAllKlient())
             {
                 if (wykaz.ToString().Contains(fraza)) rezultat.Add(wykaz);
             }
@@ -87,7 +86,7 @@ namespace part_four
         {
             Dictionary<int, Ksiazka> rezultat = new Dictionary<int, Ksiazka>();
 
-            foreach (var item in this.repository.GetAllKatalog())
+            foreach (var item in this.repository.GetAllKsiazka())
             {
                 if (item.Value.ToString().Contains(fraza)) rezultat.Add(item.Key, item.Value);
             }
@@ -174,12 +173,12 @@ namespace part_four
         //Usuwanie
         public bool UsunWykaz(Klient wykaz)
         {
-            return this.repository.DeleteWykaz(wykaz);
+            return this.repository.DeleteKlient(wykaz);
         }
 
         public bool UsunKatalog(Ksiazka katalog)
         {
-            return this.repository.DeleteKatalog(katalog);
+            return this.repository.DeleteKsiazka(katalog);
         }
 
         public bool UsunOpisStanu(OpisStanu stan)

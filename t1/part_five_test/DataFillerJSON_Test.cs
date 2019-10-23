@@ -14,13 +14,13 @@ namespace part_five_test
         [Test]
         public void FillJSON_Test()
         {
-            DataRepository tmp = new DataRepository(new WypelnianieDanymi());
-            tmp.Api.Fill(tmp.GetStorage());
-            string json = JsonConvert.SerializeObject(tmp.GetStorage());
+            DataRepositoryApi tmp = new DataRepository(new WypelnianieDanymi());
+            tmp.Api.Fill(tmp.Storage);
+            string json = JsonConvert.SerializeObject(tmp.Storage);
             File.WriteAllText("./inputDataFiller.json", json);
-            DataRepository repo = new DataRepository(new DataFillerJSON("./inputDataFiller.json"));
-            repo.Api.Fill(repo.GetStorage());
-            Assert.AreEqual(10, repo.GetAllWykaz().Count);
+            DataRepositoryApi repo = new DataRepository(new DataFillerJSON("./inputDataFiller.json"));
+            repo.Api.Fill(repo.Storage);
+            Assert.AreEqual(10, repo.GetAllKlient().Count);
         }
     }
 }

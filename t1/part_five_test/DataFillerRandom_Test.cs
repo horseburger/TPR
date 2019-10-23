@@ -10,9 +10,9 @@ namespace part_five_test
         [Test]
         public void FillRandom_Test()
         {
-            DataRepository repo = new DataRepository(new DataFillerRandom(10));
-            repo.Api.Fill(repo.GetStorage());
-            Assert.AreEqual(10, repo.GetAllWykaz().Count);
+            DataRepositoryApi repo = new DataRepository(new DataFillerRandom(10));
+            repo.Api.Fill(repo.Storage);
+            Assert.AreEqual(10, repo.GetAllKlient().Count);
         }
     }
 }
