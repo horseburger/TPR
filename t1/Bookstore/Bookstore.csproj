@@ -44,7 +44,6 @@
     <ItemGroup>
         <Compile Include="DataContext.cs" />
         <Compile Include="DataFiller.cs" />
-        <Compile Include="DataFillerJSON.cs" />
         <Compile Include="DataFillerRandom.cs" />
         <Compile Include="DataRepository.cs" />
         <Compile Include="DataRepositoryApi.cs" />
