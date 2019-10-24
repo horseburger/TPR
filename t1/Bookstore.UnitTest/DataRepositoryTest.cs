@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Bookstore.Objects;
 using NUnit.Framework;
-using part_one;
-using part_two;
 
-namespace part_three_test
+namespace Bookstore.UnitTest
 {
     [TestFixture]
     public class DataRepositoryTest

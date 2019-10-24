@@ -1,8 +1,7 @@
 using System;
 using System.Linq;
-using part_one;
 
-namespace part_five
+namespace Bookstore.Objects
 {
     public class DataFillerRandom : DataFiller
     {

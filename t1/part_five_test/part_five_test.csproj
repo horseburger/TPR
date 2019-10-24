@@ -82,8 +82,6 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="DataFillerJSON_Test.cs" />
-        <Compile Include="DataFillerRandom_Test.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace part_one
+﻿namespace Bookstore.Objects
 {
     public interface DataFiller
     {

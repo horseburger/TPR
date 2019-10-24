@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading;
-using part_one;
 using Newtonsoft.Json;
 
-namespace part_four
+namespace Bookstore.Objects
 {
     class DataService
     {

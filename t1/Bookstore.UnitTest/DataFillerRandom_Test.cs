@@ -1,8 +1,7 @@
+using Bookstore.Objects;
 using NUnit.Framework;
-using part_five;
-using part_one;
 
-namespace part_five_test
+namespace Bookstore.UnitTest
 {
     [TestFixture]
     public class DataFillerRandom_Test

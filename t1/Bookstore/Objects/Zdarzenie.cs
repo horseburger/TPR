@@ -1,6 +1,6 @@
 using System;
 
-namespace part_one
+namespace Bookstore.Objects
 {
     public class Zdarzenie
     {

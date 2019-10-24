@@ -1,7 +1,6 @@
 using System;
-using part_one;
 
-namespace part_two
+namespace Bookstore.Objects
 {
     public class WypelnianieDanymi : DataFiller
     {

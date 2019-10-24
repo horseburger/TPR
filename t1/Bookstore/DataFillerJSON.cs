@@ -1,9 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Newtonsoft.Json;
-using part_one;
 
-namespace part_five
+namespace Bookstore.Objects
 {
     public class DataFillerJSON : DataFiller
     {

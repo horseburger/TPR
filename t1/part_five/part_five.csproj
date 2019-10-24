@@ -75,8 +75,6 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="DataFillerJSON.cs" />
-        <Compile Include="DataFillerRandom.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>

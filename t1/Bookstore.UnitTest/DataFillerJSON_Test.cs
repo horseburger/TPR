@@ -1,12 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+using Bookstore.Objects;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using part_five;
-using part_one;
-using part_two;
 
-namespace part_five_test
+namespace Bookstore.UnitTest
 {
     [TestFixture]
     public class DataFillerTextFile_Test

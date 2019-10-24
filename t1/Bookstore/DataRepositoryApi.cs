@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using part_one;
+using Bookstore.Objects;
 
 
-     public interface DataRepositoryApi
+public interface DataRepositoryApi
     {
         DataContext Storage { get; set; }
         DataFiller Api { get; set; }

@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
-using part_one;
-using part_two;
+﻿using Bookstore.Objects;
+using NUnit.Framework;
 
-namespace part_two_test
+namespace Bookstore.UnitTest
 {
     [TestFixture]
     public class DI_Test

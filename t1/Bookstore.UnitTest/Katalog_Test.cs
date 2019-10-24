@@ -1,10 +1,10 @@
+using Bookstore.Objects;
 using NUnit.Framework;
-using part_one;
 
-namespace part_1_test
+namespace Bookstore.UnitTest
 {
     [TestFixture]
-    public class Katalog_Test
+    public class KatalogTest
     {
         [Test]
         public void IdGetterTest()

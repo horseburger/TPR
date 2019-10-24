@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using part_one;
+using Bookstore.Objects;
 
-namespace part_1_test
+namespace Bookstore.UnitTest
 {
     [TestFixture]
     public class WykazTest

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace part_one
+namespace Bookstore.Objects
 {
     public class DataRepository : DataRepositoryApi
     {
