@@ -6,31 +6,31 @@ using Bookstore.Objects;
 
 namespace Bookstore
 {
-    public class DataRepository : DataRepositoryApi
+    public class DataRepository : IDataRepository
     {
         public DataContext Storage { get; set; }
-        public DataFiller Api { get; set; }
+        public IDataFiller Api { get; set; }
 
-        public event EventHandler ZdarzenieAdded;
-        public event EventHandler ZdarzenieRemoved;
+        public event EventHandler ReceiptAdded;
+        public event EventHandler ReceiptRemoved;
 
-        public DataRepository(DataFiller api)
+        public DataRepository(IDataFiller api)
         {
             this.Storage = new DataContext();
             this.Api = api;
 
-            this.Storage.zdarzenieCollection.CollectionChanged += ZdarzenieChanged;
+            this.Storage.Receipts.CollectionChanged += ZdarzenieChanged;
         }
 
         private void ZdarzenieChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                ZdarzenieAdded?.Invoke(this, new EventArgs());
+                ReceiptAdded?.Invoke(this, new EventArgs());
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                ZdarzenieRemoved?.Invoke(this, new EventArgs());
+                ReceiptRemoved?.Invoke(this, new EventArgs());
             }
         }
         
@@ -38,23 +38,23 @@ namespace Bookstore
         {
             return Storage;
         }
-        public void AddKsiazka(Ksiazka pozycja)
+        public void AddKsiazka(Book pozycja)
         {
             try
             {
-                Storage.katalogDict.Add(pozycja.Id, pozycja);
+                Storage.Books.Add(pozycja.Id, pozycja);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public Ksiazka GetKsiazka(int id)
+        public Book GetKsiazka(int id)
         {
-            Ksiazka katalog = null;
+            Book katalog = null;
             try
             {
-                 katalog = Storage.katalogDict[id];
+                 katalog = Storage.Books[id];
             }
             catch (KeyNotFoundException e)
             {
@@ -62,41 +62,41 @@ namespace Bookstore
             }
             return katalog;
         }
-        public Dictionary<int, Ksiazka> GetAllKsiazka()
+        public Dictionary<int, Book> GetAllKsiazka()
         {
-            return Storage.katalogDict;
+            return Storage.Books;
         }
-        public void UpdateKsiazka(int id, Ksiazka pozycja)
+        public void UpdateKsiazka(int id, Book pozycja)
         {
             try
             {
-                Storage.katalogDict[id] = pozycja;
+                Storage.Books[id] = pozycja;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteKsiazka(Ksiazka pozycja)
+        public bool DeleteKsiazka(Book pozycja)
         {
-           return Storage.katalogDict.Remove(pozycja.Id);
+           return Storage.Books.Remove(pozycja.Id);
         }
-        public void AddKlient(Klient element)
+        public void AddKlient(Client element)
         {
             try
             {
-                Storage.wykazList.Add(element);
+                Storage.Clients.Add(element);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public Klient GetKlient(int id)
+        public Client GetKlient(int id)
         {
             try
             {
-                return Storage.wykazList[id];
+                return Storage.Clients[id];
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -105,41 +105,41 @@ namespace Bookstore
 
             return null;
         }
-        public List<Klient> GetAllKlient()
+        public List<Client> GetAllKlient()
         {
-            return Storage.wykazList;
+            return Storage.Clients;
         }
-        public void UpdateKlient(int id, Klient element)
+        public void UpdateKlient(int id, Client element)
         {
             try
             {
-                Storage.wykazList[id] = element;
+                Storage.Clients[id] = element;
             }
             catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteKlient(Klient element)
+        public bool DeleteKlient(Client element)
         {
-                return Storage.wykazList.Remove(element);
+                return Storage.Clients.Remove(element);
         }
-        public void AddZdarzenie(Zdarzenie zdarzenie)
+        public void AddZdarzenie(Receipt receipt)
         {
             try
             {
-                Storage.zdarzenieCollection.Add(zdarzenie);
+                Storage.Receipts.Add(receipt);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public Zdarzenie GetZdarzenie(int id)
+        public Receipt GetZdarzenie(int id)
         {
           try
             {
-                return Storage.zdarzenieCollection[id];
+                return Storage.Receipts[id];
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -147,41 +147,41 @@ namespace Bookstore
             }
             return null;
         }
-        public ObservableCollection<Zdarzenie> GetAllZdarzenie()
+        public ObservableCollection<Receipt> GetAllZdarzenie()
         {
-            return Storage.zdarzenieCollection;
+            return Storage.Receipts;
         }
-        public void UpdateZdarzenie(int id, Zdarzenie element)
+        public void UpdateZdarzenie(int id, Receipt element)
         {
             try
             {
-                Storage.zdarzenieCollection[id] = element;
+                Storage.Receipts[id] = element;
             }
             catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteZdarzenie(Zdarzenie element)
+        public bool DeleteZdarzenie(Receipt element)
         {
-            return Storage.zdarzenieCollection.Remove(element);
+            return Storage.Receipts.Remove(element);
         }
-        public void AddOpisStanu(OpisStanu opis)
+        public void AddOpisStanu(Status opis)
         {
             try
             {
-                Storage.statusInfoList.Add(opis);
+                Storage.Statuses.Add(opis);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public OpisStanu GetOpisStanu(int id)
+        public Status GetOpisStanu(int id)
         {
             try
             {
-                return Storage.statusInfoList[id];
+                return Storage.Statuses[id];
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -189,24 +189,24 @@ namespace Bookstore
             }
             return null;
         }
-        public List<OpisStanu> GetAllOpisStanu()
+        public List<Status> GetAllOpisStanu()
         {
-            return Storage.statusInfoList;
+            return Storage.Statuses;
         }
-        public void UpdateOpisStanu(int id, OpisStanu stan)
+        public void UpdateOpisStanu(int id, Status stan)
         {
             try
             {
-                Storage.statusInfoList[id] = stan;
+                Storage.Statuses[id] = stan;
             }
             catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteOpisStanu(OpisStanu element)
+        public bool DeleteOpisStanu(Status element)
         {
-            return Storage.statusInfoList.Remove(element);
+            return Storage.Statuses.Remove(element);
         }
     }
 }

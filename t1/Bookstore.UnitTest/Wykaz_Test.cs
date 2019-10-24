@@ -9,14 +9,14 @@ namespace Bookstore.UnitTest
         [Test]
         public void NameGetterTest()
         {
-            Klient w = new Klient("Grzegorz", "Brzeczyszczykiewicz");
+            Client w = new Client("Grzegorz", "Brzeczyszczykiewicz");
             Assert.AreEqual("Grzegorz", w.Name);
         }
 
         [Test]
         public void SurnameGetterTest()
         {
-            Klient w = new Klient("Grzegorz", "Brzeczyszczykiewicz");
+            Client w = new Client("Grzegorz", "Brzeczyszczykiewicz");
             Assert.AreEqual("Brzeczyszczykiewicz", w.Surname);
         }
     }

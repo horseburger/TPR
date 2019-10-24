@@ -6,17 +6,17 @@ namespace Bookstore
 {
     public class DataContext
     {
-        public List<Klient> wykazList { get; set; }
-        public Dictionary<int, Ksiazka> katalogDict { get; set;  }
-        public ObservableCollection<Zdarzenie> zdarzenieCollection { get; set;  }
-        public List<OpisStanu> statusInfoList { get; set;  }
+        public List<Client> Clients { get; set; }
+        public Dictionary<int, Book> Books { get; set;  }
+        public ObservableCollection<Receipt> Receipts { get; set;  }
+        public List<Status> Statuses { get; set;  }
 
         public DataContext()
         {
-            this.wykazList = new List<Klient>();
-            this.katalogDict = new Dictionary<int, Ksiazka>();
-            this.zdarzenieCollection = new ObservableCollection<Zdarzenie>();
-            this.statusInfoList = new List<OpisStanu>();
+            this.Clients = new List<Client>();
+            this.Books = new Dictionary<int, Book>();
+            this.Receipts = new ObservableCollection<Receipt>();
+            this.Statuses = new List<Status>();
         }
 
     }

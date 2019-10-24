@@ -1,6 +1,6 @@
 namespace Bookstore.Objects
 {
-    public class Ksiazka
+    public class Book
     {
         private int _id;
         private string info;
@@ -12,7 +12,7 @@ namespace Bookstore.Objects
         }
         public string Info => info;
 
-        public Ksiazka(int id, string info)
+        public Book(int id, string info)
         {
             this.info = info;
             this._id = id;

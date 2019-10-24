@@ -2,19 +2,19 @@ using System;
 
 namespace Bookstore.Objects
 {
-    public class Zdarzenie
+    public class Receipt
     {
-        private Klient who;
+        private Client who;
         private DateTime borrowDate;
         private DateTime returnDate;
-        private OpisStanu statusInfo;
+        private Status statusInfo;
 
-        public Klient Who { get => who; set => who = value; }
+        public Client Who { get => who; set => who = value; }
         public DateTime BorrowDate { get => borrowDate; set => borrowDate = value; }
         public DateTime ReturnDate { get => returnDate; set => returnDate = value; }
-        public OpisStanu StatusInfo { get => statusInfo; set => statusInfo = value; }
+        public Status StatusInfo { get => statusInfo; set => statusInfo = value; }
 
-        public Zdarzenie(Klient who, DateTime borrowdate, OpisStanu statusinfo)
+        public Receipt(Client who, DateTime borrowdate, Status statusinfo)
         {
             this.Who = who;
             this.BorrowDate = borrowdate;

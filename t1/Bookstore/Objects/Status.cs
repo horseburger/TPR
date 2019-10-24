@@ -1,9 +1,9 @@
 namespace Bookstore.Objects
 {
-    public class OpisStanu
+    public class Status
     {
         private float price;
-        private Ksiazka product;
+        private Book product;
         private int numberinstock;
 
 
@@ -12,7 +12,7 @@ namespace Bookstore.Objects
             get => price;
             set => price = value;
         }
-        public Ksiazka Product
+        public Book Product
         {
            get => product;
             set => product = value;
@@ -23,7 +23,7 @@ namespace Bookstore.Objects
             set => numberinstock = value;
         }
 
-        public OpisStanu(Ksiazka product, float price)
+        public Status(Book product, float price)
         {
             this.Product = product;
             this.NumberInStock = 0;

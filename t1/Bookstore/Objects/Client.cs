@@ -1,6 +1,6 @@
 ﻿namespace Bookstore.Objects
 {
-    public class Klient
+    public class Client
     {
         private string name;
         private string surname;
@@ -10,7 +10,7 @@
 
 
 
-        public Klient(string name, string surname)
+        public Client(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;

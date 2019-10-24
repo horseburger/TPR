@@ -8,94 +8,94 @@ namespace Bookstore
 {
     class DataService
     {
-        private DataRepositoryApi repository;
+        private IDataRepository repository;
 
-        public DataService(DataRepositoryApi repository)
+        public DataService(IDataRepository repository)
         {
             this.repository = repository;
         }
 
         public event EventHandler ZdarzenieAdded
         {
-            add => repository.ZdarzenieAdded += value;
-            remove => repository.ZdarzenieAdded -= value;
+            add => repository.ReceiptAdded += value;
+            remove => repository.ReceiptAdded -= value;
         }
         
         public event EventHandler ZdarzenieRemoved
         {
-            add => repository.ZdarzenieRemoved += value;
-            remove => repository.ZdarzenieRemoved -= value;
+            add => repository.ReceiptRemoved += value;
+            remove => repository.ReceiptRemoved -= value;
         }
         //Zwróć
-        public string Zwroc(List<Klient> wykazy)
+        public string Zwroc(List<Client> wykazy)
         {
             return JsonConvert.SerializeObject(wykazy);
         }
 
-        public string Zwroc(Dictionary<int, Ksiazka> katalogi)
+        public string Zwroc(Dictionary<int, Book> katalogi)
         {
             return JsonConvert.SerializeObject(katalogi);
         }
 
-        public string Zwroc(ObservableCollection<Zdarzenie> zdarzenia)
+        public string Zwroc(ObservableCollection<Receipt> zdarzenia)
         {
             return JsonConvert.SerializeObject(zdarzenia);
         }
 
-        public string Zwroc(List<OpisStanu> opisy)
+        public string Zwroc(List<Status> opisy)
         {
             return JsonConvert.SerializeObject(opisy);
         }
 
         //Dodaj
-        public void DodajWykaz(Klient wykaz)
+        public void DodajWykaz(Client wykaz)
         {
             this.repository.AddKlient(wykaz);
         }
         public void DodajWykaz(string name, string surname)
         {
-            this.repository.AddKlient(new Klient(name, surname));
+            this.repository.AddKlient(new Client(name, surname));
         }
-        public void DodajKatalog(Ksiazka katalog)
+        public void DodajKatalog(Book katalog)
         {
             this.repository.AddKsiazka(katalog);
         }
         public void DodajKatalog(int id, string info)
         {
-            this.repository.AddKsiazka(new Ksiazka(id, info));
+            this.repository.AddKsiazka(new Book(id, info));
         }
-        public void DodajZdarzenie(Zdarzenie zdarzenie)
+        public void DodajZdarzenie(Receipt receipt)
         {
-            this.repository.AddZdarzenie(zdarzenie);
+            this.repository.AddZdarzenie(receipt);
         }
-        public void DodajZdarzenie(Klient who, DateTime borrowdate, OpisStanu statusInfo)
+        public void DodajZdarzenie(Client who, DateTime borrowdate, Status statusInfo)
         {
-            this.repository.AddZdarzenie(new Zdarzenie(who, borrowdate, statusInfo));
+            this.repository.AddZdarzenie(new Receipt(who, borrowdate, statusInfo));
         }
-        public void DodajOpisStanu(OpisStanu opis)
+        public void DodajOpisStanu(Status opis)
         {
             this.repository.AddOpisStanu(opis);
         }
-        public void DodajOpisStanu(Ksiazka product, DateTime data_zakupu, float price)
+        public void DodajOpisStanu(Book product, DateTime data_zakupu, float price)
         {
-            this.repository.AddOpisStanu(new OpisStanu(product, price));
+            this.repository.AddOpisStanu(new Status(product, price));
         }
 
         //Wyszukaj
-        public List<Klient> SzukajWykaz(string fraza)
+        public List<Client> SzukajWykaz(string fraza)
         {
-            List<Klient> rezultat = new List<Klient>();
+            List<Client> rezultat = new List<Client>();
 
-            foreach (Klient wykaz in this.repository.GetAllKlient())
+            foreach (Client wykaz in this.repository.GetAllKlient())
             {
                 if (wykaz.ToString().Contains(fraza)) rezultat.Add(wykaz);
             }
             return rezultat;
         }
 
-        public Dictionary<int, Ksiazka> SzukajKatalog(string fraza)
+        public Dictionary<int, Book> SzukajKatalog(string fraza)
         {
-            Dictionary<int, Ksiazka> rezultat = new Dictionary<int, Ksiazka>();
+            Dictionary<int, Book> rezultat = new Dictionary<int, Book>();
 
             foreach (var item in this.repository.GetAllKsiazka())
             {
@@ -103,31 +103,31 @@ namespace Bookstore
             }
             return rezultat;
         }
-        public ObservableCollection<Zdarzenie> SzukajZdarzenia(DateTime borrowDate, DateTime returnDate)
+        public ObservableCollection<Receipt> SzukajZdarzenia(DateTime borrowDate, DateTime returnDate)
         {
-            ObservableCollection<Zdarzenie> rezultat = new ObservableCollection<Zdarzenie>();
+            ObservableCollection<Receipt> rezultat = new ObservableCollection<Receipt>();
 
-            foreach (Zdarzenie zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
             {
                 if (zdarzenie.BorrowDate > borrowDate && zdarzenie.ReturnDate < returnDate) rezultat.Add(zdarzenie);
             }
             return rezultat;
         }
-        public ObservableCollection<Zdarzenie> SzukajZdarzenia(DateTime borrowDate)
+        public ObservableCollection<Receipt> SzukajZdarzenia(DateTime borrowDate)
         {
-            ObservableCollection<Zdarzenie> rezultat = new ObservableCollection<Zdarzenie>();
+            ObservableCollection<Receipt> rezultat = new ObservableCollection<Receipt>();
 
-            foreach (Zdarzenie zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
             {
                 if (zdarzenie.BorrowDate > borrowDate) rezultat.Add(zdarzenie);
             }
             return rezultat;
         }
-        public List<OpisStanu> SzukajOpisStanu(float minPrice, double maxPrice)
+        public List<Status> SzukajOpisStanu(float minPrice, double maxPrice)
         {
-            List<OpisStanu> rezultat = new List<OpisStanu>();
+            List<Status> rezultat = new List<Status>();
 
-            foreach (OpisStanu opis in this.repository.GetAllOpisStanu())
+            foreach (Status opis in this.repository.GetAllOpisStanu())
             {
                 if (opis.Price >= minPrice && opis.Price <= maxPrice) rezultat.Add(opis);
             }
@@ -135,11 +135,11 @@ namespace Bookstore
         }
 
         //Znajdź powiązania
-        public ObservableCollection<Zdarzenie> ZdarzenieAndWykaz(Klient wykaz)
+        public ObservableCollection<Receipt> ZdarzenieAndWykaz(Client wykaz)
         {
-            ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
+            ObservableCollection<Receipt> zdarzenia = new ObservableCollection<Receipt>();
 
-            foreach (Zdarzenie zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
             {
                 if (zdarzenie.Who.Equals(wykaz)) zdarzenia.Add(zdarzenie);
             }
@@ -147,33 +147,33 @@ namespace Bookstore
             return zdarzenia;
         }
 
-        public ObservableCollection<Zdarzenie> ZdarzeniaAndOpisStanu(OpisStanu stan)
+        public ObservableCollection<Receipt> ZdarzeniaAndOpisStanu(Status stan)
         {
 
-            ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
+            ObservableCollection<Receipt> zdarzenia = new ObservableCollection<Receipt>();
 
-            foreach (Zdarzenie zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
             {
                 if (zdarzenie.StatusInfo.Equals(stan)) zdarzenia.Add(zdarzenie);
             }
 
             return zdarzenia;
         }
-        public ObservableCollection<Zdarzenie> WykazAndZdarzenieAndOpisStanu(Klient wykaz, OpisStanu stan)
+        public ObservableCollection<Receipt> WykazAndZdarzenieAndOpisStanu(Client wykaz, Status stan)
         {
-            ObservableCollection<Zdarzenie> zdarzenia = new ObservableCollection<Zdarzenie>();
+            ObservableCollection<Receipt> zdarzenia = new ObservableCollection<Receipt>();
 
-            foreach (Zdarzenie zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
             {
                 if (zdarzenie.StatusInfo.Equals(stan) && zdarzenie.Who.Equals(wykaz)) zdarzenia.Add(zdarzenie);
             }
             return zdarzenia;
         }
-        public List<OpisStanu> OpisStanuAndKatalog(Ksiazka katalog)
+        public List<Status> OpisStanuAndKatalog(Book katalog)
         {
-            List<OpisStanu> stany = new List<OpisStanu>();
+            List<Status> stany = new List<Status>();
 
-            foreach (OpisStanu stan in this.repository.GetAllOpisStanu())
+            foreach (Status stan in this.repository.GetAllOpisStanu())
             {
                 if (stan.Product.Equals(katalog)) stany.Add(stan);
             }
@@ -182,30 +182,30 @@ namespace Bookstore
         }
 
         //Usuwanie
-        public bool UsunWykaz(Klient wykaz)
+        public bool UsunWykaz(Client wykaz)
         {
             return this.repository.DeleteKlient(wykaz);
         }
 
-        public bool UsunKatalog(Ksiazka katalog)
+        public bool UsunKatalog(Book katalog)
         {
             return this.repository.DeleteKsiazka(katalog);
         }
 
-        public bool UsunOpisStanu(OpisStanu stan)
+        public bool UsunOpisStanu(Status stan)
         {
             return this.repository.DeleteOpisStanu(stan);
         }
 
-        public bool UsunZdarzenie(Zdarzenie zdarzenie)
+        public bool UsunZdarzenie(Receipt receipt)
         {
-            return this.repository.DeleteZdarzenie(zdarzenie);
+            return this.repository.DeleteZdarzenie(receipt);
         }
-        public bool UsunZdarzenie(Klient wykaz, OpisStanu stan)
+        public bool UsunZdarzenie(Client wykaz, Status stan)
         {
             bool usuniete = false;
 
-            foreach (Zdarzenie zdarzenie in WykazAndZdarzenieAndOpisStanu(wykaz, stan))
+            foreach (Receipt zdarzenie in WykazAndZdarzenieAndOpisStanu(wykaz, stan))
             {
                 this.repository.DeleteZdarzenie(zdarzenie);
                 usuniete = true;

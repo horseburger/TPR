@@ -4,7 +4,7 @@ using Bookstore.Objects;
 
 namespace Bookstore
 {
-    public class DataFillerRandom : DataFiller
+    public class DataFillerRandom : IDataFiller
     {
         private int number;
 
@@ -14,21 +14,21 @@ namespace Bookstore
         }
         public void Fill(DataContext context)
         {
-            Klient w;
-            Ksiazka k;
-            OpisStanu s;
-            Zdarzenie z;
+            Client w;
+            Book k;
+            Status s;
+            Receipt z;
             
             for (int i = 0; i < number; i++)
             {
-                k = new Ksiazka(i, GenerateRandomString());
-                w = new Klient(GenerateRandomString(), GenerateRandomString());
-                s = new OpisStanu(k, new Random().Next());
-                z = new Zdarzenie(w, DateTime.Now, s);
-                context.katalogDict.Add(i, k);
-                context.wykazList.Add(w);
-                context.zdarzenieCollection.Add(z);
-                context.statusInfoList.Add(s);
+                k = new Book(i, GenerateRandomString());
+                w = new Client(GenerateRandomString(), GenerateRandomString());
+                s = new Status(k, new Random().Next());
+                z = new Receipt(w, DateTime.Now, s);
+                context.Books.Add(i, k);
+                context.Clients.Add(w);
+                context.Receipts.Add(z);
+                context.Statuses.Add(s);
             }
         }
 
