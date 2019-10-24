@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Bookstore.Objects;
 
-namespace Bookstore.Objects
+namespace Bookstore
 {
     public class DataContext
     {

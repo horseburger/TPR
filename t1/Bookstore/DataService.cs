@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Bookstore.Objects;
 using Newtonsoft.Json;
 
-namespace Bookstore.Objects
+namespace Bookstore
 {
     class DataService
     {

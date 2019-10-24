@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Bookstore.Objects;
 
-namespace Bookstore.Objects
+namespace Bookstore
 {
     public class DataRepository : DataRepositoryApi
     {
