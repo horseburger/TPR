@@ -14,94 +14,94 @@ namespace Bookstore.UnitTest
         public void AddBookTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            dataRepository.AddKsiazka(new Book(1, "example"));
-            Assert.AreEqual(1, dataRepository.GetAllKsiazka().Count);
+            dataRepository.AddBook(new Book(1, "example"));
+            Assert.AreEqual(1, dataRepository.GetAllBooks().Count);
         }
         [Test]
         public void GetBookTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Book katalog = new Book(1, "example");
-            dataRepository.AddKsiazka(katalog);
-            Assert.AreEqual(katalog, dataRepository.GetKsiazka(1));
+            dataRepository.AddBook(katalog);
+            Assert.AreEqual(katalog, dataRepository.GetBook(1));
         }
         [Test]
         public void GetAllBooksTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            Dictionary<int, Book> dictionary = dataRepository.GetAllKsiazka();
+            Dictionary<int, Book> dictionary = dataRepository.GetAllBooks();
             Book book = new Book(1, "example");
-            dataRepository.AddKsiazka(book);
-            Assert.AreEqual(dictionary, dataRepository.GetAllKsiazka());
+            dataRepository.AddBook(book);
+            Assert.AreEqual(dictionary, dataRepository.GetAllBooks());
         }
         [Test]
         public void UpdateBookTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Book book = new Book(1, "example");
-            dataRepository.AddKsiazka(book);
+            dataRepository.AddBook(book);
             Book book2 = new Book(1, "hello");
-            dataRepository.UpdateKsiazka(1, book2);
-            Assert.AreEqual(book2, dataRepository.GetKsiazka(1));
+            dataRepository.UpdateBook(1, book2);
+            Assert.AreEqual(book2, dataRepository.GetBook(1));
         }
         [Test]
         public void DeleteBookTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Book book = new Book(1, "example");
-            dataRepository.AddKsiazka(book);
-            dataRepository.DeleteKsiazka(book);
-            Assert.AreEqual(0, dataRepository.GetAllKsiazka().Count);
+            dataRepository.AddBook(book);
+            dataRepository.DeleteBook(book);
+            Assert.AreEqual(0, dataRepository.GetAllBooks().Count);
         }
         [Test]
         public void AddClienttTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            dataRepository.AddKlient(new Client("Jan", "Kowalski"));
-            Assert.AreEqual(1, dataRepository.GetAllKlient().Count);
+            dataRepository.AddClient(new Client("Jan", "Kowalski"));
+            Assert.AreEqual(1, dataRepository.GetAllClient().Count);
         }
         [Test]
         public void GetWykazTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Client client = new Client("Jan", "Kowalski");
-            dataRepository.AddKlient(client);
-            Assert.AreEqual(client, dataRepository.GetKlient(0));
+            dataRepository.AddClient(client);
+            Assert.AreEqual(client, dataRepository.GetClient(0));
         }
         [Test]
         public void GetAllClientsTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            List<Client> lista = dataRepository.GetAllKlient();
+            List<Client> lista = dataRepository.GetAllClient();
             Client client = new Client("Jan", "Kowalski");
-            dataRepository.AddKlient(client);
-            Assert.AreEqual(lista, dataRepository.GetAllKlient());
+            dataRepository.AddClient(client);
+            Assert.AreEqual(lista, dataRepository.GetAllClient());
         }
         [Test]
         public void UpdateClientTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Client client = new Client("Jan", "Kowalski");
-            dataRepository.AddKlient(client);
+            dataRepository.AddClient(client);
             Client client2 = new Client("Adrian", "Nowak");
-            dataRepository.UpdateKlient(0, client2);
-            Assert.AreEqual(client2, dataRepository.GetKlient(0));
+            dataRepository.UpdateClient(0, client2);
+            Assert.AreEqual(client2, dataRepository.GetClient(0));
         }
         [Test]
         public void DeleteClientTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Client client = new Client("Jan", "Kowalski");
-            dataRepository.AddKlient(client);
-            dataRepository.DeleteKlient(client);
-            Assert.AreEqual(0, dataRepository.GetAllKlient().Count);
+            dataRepository.AddClient(client);
+            dataRepository.DeleteClient(client);
+            Assert.AreEqual(0, dataRepository.GetAllClient().Count);
         }
         [Test]
         public void AddReceiptTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            dataRepository.AddZdarzenie(new Receipt(new Client("Jan", "Kowalski"), System.DateTime.Now, new Status(new Book(0, "hello"), 3.99f)));
-            Assert.AreEqual(1, dataRepository.GetAllZdarzenie().Count);
+            dataRepository.AddReceipt(new Receipt(new Client("Jan", "Kowalski"), System.DateTime.Now, new Status(new Book(0, "hello"), 3.99f)));
+            Assert.AreEqual(1, dataRepository.GetAllReceipts().Count);
         }
         [Test]
         public void GetReceiptTest()
@@ -111,20 +111,20 @@ namespace Bookstore.UnitTest
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             Receipt receipt = new Receipt(client, System.DateTime.Now, status);
-            dataRepository.AddZdarzenie(receipt);
-            Assert.AreEqual(receipt, dataRepository.GetZdarzenie(0));
+            dataRepository.AddReceipt(receipt);
+            Assert.AreEqual(receipt, dataRepository.GetReceipt(0));
         }
         [Test]
         public void GetAllReceiptsTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            ObservableCollection<Receipt> zdarzenia = dataRepository.GetAllZdarzenie();
+            ObservableCollection<Receipt> zdarzenia = dataRepository.GetAllReceipts();
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             Receipt receipt = new Receipt(client, System.DateTime.Now, status);
-            dataRepository.AddZdarzenie(receipt);
-            Assert.AreEqual(zdarzenia, dataRepository.GetAllZdarzenie());
+            dataRepository.AddReceipt(receipt);
+            Assert.AreEqual(zdarzenia, dataRepository.GetAllReceipts());
         }
         [Test]
         public void UpdateReceiptTest()
@@ -134,10 +134,10 @@ namespace Bookstore.UnitTest
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             Receipt receipt = new Receipt(client, System.DateTime.Now, status);
-            dataRepository.AddZdarzenie(receipt);
+            dataRepository.AddReceipt(receipt);
             Receipt receipt2 = new Receipt(client, System.DateTime.Now.AddMinutes(5), status);
-            dataRepository.UpdateZdarzenie(0, receipt2);
-            Assert.AreEqual(receipt2, dataRepository.GetZdarzenie(0));
+            dataRepository.UpdateReceipt(0, receipt2);
+            Assert.AreEqual(receipt2, dataRepository.GetReceipt(0));
         }
         [Test]
         public void DeleteReceiptTest()
@@ -147,17 +147,17 @@ namespace Bookstore.UnitTest
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             Receipt receipt = new Receipt(client, System.DateTime.Now, status);
-            dataRepository.AddZdarzenie(receipt);
-            dataRepository.DeleteZdarzenie(receipt);
-            Assert.AreEqual(0, dataRepository.GetAllZdarzenie().Count);
+            dataRepository.AddReceipt(receipt);
+            dataRepository.DelteReceipt(receipt);
+            Assert.AreEqual(0, dataRepository.GetAllReceipts().Count);
         }
         [Test]
         public void AddStatusTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Book book = new Book(1, "example");
-            dataRepository.AddOpisStanu(new Status(book, 3.99f));
-            Assert.AreEqual(1, dataRepository.GetAllOpisStanu().Count);
+            dataRepository.AddStatus(new Status(book, 3.99f));
+            Assert.AreEqual(1, dataRepository.GetAllStatus().Count);
         }
         [Test]
         public void GetOpisStanuTest()
@@ -165,18 +165,18 @@ namespace Bookstore.UnitTest
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            dataRepository.AddOpisStanu(status);
-            Assert.AreEqual(status, dataRepository.GetOpisStanu(0));
+            dataRepository.AddStatus(status);
+            Assert.AreEqual(status, dataRepository.GetStatus(0));
         }
         [Test]
         public void GetAllStatusesTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            List<Status> list = dataRepository.GetAllOpisStanu();
+            List<Status> list = dataRepository.GetAllStatus();
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            dataRepository.AddOpisStanu(status);
-            Assert.AreEqual(list, dataRepository.GetAllOpisStanu());
+            dataRepository.AddStatus(status);
+            Assert.AreEqual(list, dataRepository.GetAllStatus());
         }
         [Test]
         public void UpdateStatusTest()
@@ -184,10 +184,10 @@ namespace Bookstore.UnitTest
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            dataRepository.AddOpisStanu(status);
+            dataRepository.AddStatus(status);
             Status status2 = new Status(book, 8.99f);
-            dataRepository.UpdateOpisStanu(0, status2);
-            Assert.AreEqual(status2, dataRepository.GetOpisStanu(0));
+            dataRepository.UpdateStatus(0, status2);
+            Assert.AreEqual(status2, dataRepository.GetStatus(0));
         }
         [Test]
         public void DeleteStatusTest()
@@ -195,9 +195,9 @@ namespace Bookstore.UnitTest
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            dataRepository.AddOpisStanu(status);
-            dataRepository.DeleteOpisStanu(status);
-            Assert.AreEqual(0, dataRepository.GetAllOpisStanu().Count);
+            dataRepository.AddStatus(status);
+            dataRepository.DeleteStatus(status);
+            Assert.AreEqual(0, dataRepository.GetAllStatus().Count);
         }
 
         [Test]
@@ -212,7 +212,7 @@ namespace Bookstore.UnitTest
             {
                 flag = true;
             };
-            dataRepository.AddZdarzenie(new Receipt(client, DateTime.Now, status));
+            dataRepository.AddReceipt(new Receipt(client, DateTime.Now, status));
             Assert.AreEqual(true, flag);
         }
 
@@ -224,13 +224,13 @@ namespace Bookstore.UnitTest
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             Receipt receipt = new Receipt(client, DateTime.Now, status);
-            dataRepository.AddZdarzenie(receipt);
+            dataRepository.AddReceipt(receipt);
             bool flag = false;
             dataRepository.ReceiptRemoved += (object s, EventArgs e) =>
             {
                 flag = true;
             };
-            dataRepository.DeleteZdarzenie(receipt);
+            dataRepository.DelteReceipt(receipt);
             Assert.AreEqual(true, flag);
         }
     }

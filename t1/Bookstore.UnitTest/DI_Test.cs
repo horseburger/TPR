@@ -11,7 +11,7 @@ namespace Bookstore.UnitTest
         {
             IDataRepository repo = new DataRepository(new DataFiller());
             repo.Api.Fill(repo.Storage);
-            Assert.AreEqual(10, repo.GetAllKsiazka().Count);
+            Assert.AreEqual(10, repo.GetAllBooks().Count);
         }
     }
 }

@@ -19,10 +19,10 @@ namespace Bookstore
             this.Storage = new DataContext();
             this.Api = api;
 
-            this.Storage.Receipts.CollectionChanged += ZdarzenieChanged;
+            this.Storage.Receipts.CollectionChanged += ReceiptChanged;
         }
 
-        private void ZdarzenieChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void ReceiptChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
@@ -38,50 +38,50 @@ namespace Bookstore
         {
             return Storage;
         }
-        public void AddKsiazka(Book pozycja)
+        public void AddBook(Book book)
         {
             try
             {
-                Storage.Books.Add(pozycja.Id, pozycja);
+                Storage.Books.Add(book.Id, book);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public Book GetKsiazka(int id)
+        public Book GetBook(int id)
         {
-            Book katalog = null;
+            Book book = null;
             try
             {
-                 katalog = Storage.Books[id];
+                 book = Storage.Books[id];
             }
             catch (KeyNotFoundException e)
             {
                 Console.WriteLine(e.Message);
             }
-            return katalog;
+            return book;
         }
-        public Dictionary<int, Book> GetAllKsiazka()
+        public Dictionary<int, Book> GetAllBooks()
         {
             return Storage.Books;
         }
-        public void UpdateKsiazka(int id, Book pozycja)
+        public void UpdateBook(int id, Book book)
         {
             try
             {
-                Storage.Books[id] = pozycja;
+                Storage.Books[id] = book;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteKsiazka(Book pozycja)
+        public bool DeleteBook(Book book)
         {
-           return Storage.Books.Remove(pozycja.Id);
+           return Storage.Books.Remove(book.Id);
         }
-        public void AddKlient(Client element)
+        public void AddClient(Client element)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace Bookstore
                 Console.WriteLine(e.Message);
             }
         }
-        public Client GetKlient(int id)
+        public Client GetClient(int id)
         {
             try
             {
@@ -105,11 +105,11 @@ namespace Bookstore
 
             return null;
         }
-        public List<Client> GetAllKlient()
+        public List<Client> GetAllClient()
         {
             return Storage.Clients;
         }
-        public void UpdateKlient(int id, Client element)
+        public void UpdateClient(int id, Client element)
         {
             try
             {
@@ -120,11 +120,11 @@ namespace Bookstore
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteKlient(Client element)
+        public bool DeleteClient(Client element)
         {
                 return Storage.Clients.Remove(element);
         }
-        public void AddZdarzenie(Receipt receipt)
+        public void AddReceipt(Receipt receipt)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace Bookstore
                 Console.WriteLine(e.Message);
             }
         }
-        public Receipt GetZdarzenie(int id)
+        public Receipt GetReceipt(int id)
         {
           try
             {
@@ -147,11 +147,11 @@ namespace Bookstore
             }
             return null;
         }
-        public ObservableCollection<Receipt> GetAllZdarzenie()
+        public ObservableCollection<Receipt> GetAllReceipts()
         {
             return Storage.Receipts;
         }
-        public void UpdateZdarzenie(int id, Receipt element)
+        public void UpdateReceipt(int id, Receipt element)
         {
             try
             {
@@ -162,22 +162,22 @@ namespace Bookstore
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteZdarzenie(Receipt element)
+        public bool DelteReceipt(Receipt element)
         {
             return Storage.Receipts.Remove(element);
         }
-        public void AddOpisStanu(Status opis)
+        public void AddStatus(Status status)
         {
             try
             {
-                Storage.Statuses.Add(opis);
+                Storage.Statuses.Add(status);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public Status GetOpisStanu(int id)
+        public Status GetStatus(int id)
         {
             try
             {
@@ -189,22 +189,22 @@ namespace Bookstore
             }
             return null;
         }
-        public List<Status> GetAllOpisStanu()
+        public List<Status> GetAllStatus()
         {
             return Storage.Statuses;
         }
-        public void UpdateOpisStanu(int id, Status stan)
+        public void UpdateStatus(int id, Status status)
         {
             try
             {
-                Storage.Statuses[id] = stan;
+                Storage.Statuses[id] = status;
             }
             catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DeleteOpisStanu(Status element)
+        public bool DeleteStatus(Status element)
         {
             return Storage.Statuses.Remove(element);
         }
