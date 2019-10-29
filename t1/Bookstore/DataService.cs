@@ -15,95 +15,95 @@ namespace Bookstore
             this.repository = repository;
         }
 
-        public event EventHandler ZdarzenieAdded
+        public event EventHandler ReceiptAdded
         {
             add => repository.ReceiptAdded += value;
             remove => repository.ReceiptAdded -= value;
         }
         
-        public event EventHandler ZdarzenieRemoved
+        public event EventHandler ReceiptRemoved
         {
             add => repository.ReceiptRemoved += value;
             remove => repository.ReceiptRemoved -= value;
         }
         //Zwróć
-        public string Zwroc(List<Client> wykazy)
+        public string Get(List<Client> clients)
         {
-            return JsonConvert.SerializeObject(wykazy);
+            return JsonConvert.SerializeObject(clients);
         }
 
-        public string Zwroc(Dictionary<int, Book> katalogi)
+        public string Get(Dictionary<int, Book> books)
         {
-            return JsonConvert.SerializeObject(katalogi);
+            return JsonConvert.SerializeObject(books);
         }
 
-        public string Zwroc(ObservableCollection<Receipt> zdarzenia)
+        public string Get(ObservableCollection<Receipt> receipts)
         {
-            return JsonConvert.SerializeObject(zdarzenia);
+            return JsonConvert.SerializeObject(receipts);
         }
 
-        public string Zwroc(List<Status> opisy)
+        public string Get(List<Status> statuses)
         {
-            return JsonConvert.SerializeObject(opisy);
+            return JsonConvert.SerializeObject(statuses);
         }
 
         //Dodaj
-        public void DodajWykaz(Client wykaz)
+        public void AddClient(Client client)
         {
-            this.repository.AddKlient(wykaz);
+            this.repository.AddKlient(client);
         }
-        public void DodajWykaz(string name, string surname)
+        public void AddClient(string name, string surname)
         {
             this.repository.AddKlient(new Client(name, surname));
         }
-        public void DodajKatalog(Book katalog)
+        public void AddBook(Book book)
         {
-            this.repository.AddKsiazka(katalog);
+            this.repository.AddKsiazka(book);
         }
-        public void DodajKatalog(int id, string info)
+        public void AddBook(int id, string info)
         {
             this.repository.AddKsiazka(new Book(id, info));
         }
-        public void DodajZdarzenie(Receipt receipt)
+        public void AddReceipt(Receipt receipt)
         {
             this.repository.AddZdarzenie(receipt);
         }
-        public void DodajZdarzenie(Client who, DateTime borrowdate, Status statusInfo)
+        public void AddReceipt(Client who, DateTime borrowdate, Status statusInfo)
         {
             this.repository.AddZdarzenie(new Receipt(who, borrowdate, statusInfo));
         }
-        public void DodajOpisStanu(Status opis)
+        public void AddStatus(Status status)
         {
-            this.repository.AddOpisStanu(opis);
+            this.repository.AddOpisStanu(status);
         }
-        public void DodajOpisStanu(Book product, DateTime data_zakupu, float price)
+        public void AddStatus(Book product, DateTime data_zakupu, float price)
         {
             this.repository.AddOpisStanu(new Status(product, price));
         }
 
         //Wyszukaj
-        public List<Client> SzukajWykaz(string fraza)
+        public List<Client> SearchClient(string pattern)
         {
             List<Client> rezultat = new List<Client>();
 
             foreach (Client wykaz in this.repository.GetAllKlient())
             {
-                if (wykaz.ToString().Contains(fraza)) rezultat.Add(wykaz);
+                if (wykaz.ToString().Contains(pattern)) rezultat.Add(wykaz);
             }
             return rezultat;
         }
 
-        public Dictionary<int, Book> SzukajKatalog(string fraza)
+        public Dictionary<int, Book> SearchBook(string pattern)
         {
             Dictionary<int, Book> rezultat = new Dictionary<int, Book>();
 
             foreach (var item in this.repository.GetAllKsiazka())
             {
-                if (item.Value.ToString().Contains(fraza)) rezultat.Add(item.Key, item.Value);
+                if (item.Value.ToString().Contains(pattern)) rezultat.Add(item.Key, item.Value);
             }
             return rezultat;
         }
-        public ObservableCollection<Receipt> SzukajZdarzenia(DateTime borrowDate, DateTime returnDate)
+        public ObservableCollection<Receipt> SearchReceipt(DateTime borrowDate, DateTime returnDate)
         {
             ObservableCollection<Receipt> rezultat = new ObservableCollection<Receipt>();
 
@@ -113,7 +113,7 @@ namespace Bookstore
             }
             return rezultat;
         }
-        public ObservableCollection<Receipt> SzukajZdarzenia(DateTime borrowDate)
+        public ObservableCollection<Receipt> SearchReceipt(DateTime borrowDate)
         {
             ObservableCollection<Receipt> rezultat = new ObservableCollection<Receipt>();
 
@@ -123,7 +123,7 @@ namespace Bookstore
             }
             return rezultat;
         }
-        public List<Status> SzukajOpisStanu(float minPrice, double maxPrice)
+        public List<Status> SearchStatus(float minPrice, double maxPrice)
         {
             List<Status> rezultat = new List<Status>();
 
@@ -135,82 +135,82 @@ namespace Bookstore
         }
 
         //Znajdź powiązania
-        public ObservableCollection<Receipt> ZdarzenieAndWykaz(Client wykaz)
+        public ObservableCollection<Receipt> SearchReceiptsByClient(Client client)
         {
+            ObservableCollection<Receipt> receipts = new ObservableCollection<Receipt>();
+
+            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
+            {
+                if (zdarzenie.Who.Equals(client)) receipts.Add(zdarzenie);
+            }
+
+            return receipts;
+        }
+
+        public ObservableCollection<Receipt> SearchReceiptsByStatus(Status status)
+        {
+
             ObservableCollection<Receipt> zdarzenia = new ObservableCollection<Receipt>();
 
             foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
             {
-                if (zdarzenie.Who.Equals(wykaz)) zdarzenia.Add(zdarzenie);
+                if (zdarzenie.StatusInfo.Equals(status)) zdarzenia.Add(zdarzenie);
             }
 
             return zdarzenia;
         }
-
-        public ObservableCollection<Receipt> ZdarzeniaAndOpisStanu(Status stan)
+        public ObservableCollection<Receipt> SearchReceiptsByClientAndStatus(Client client, Status status)
         {
+            ObservableCollection<Receipt> receipts = new ObservableCollection<Receipt>();
 
-            ObservableCollection<Receipt> zdarzenia = new ObservableCollection<Receipt>();
-
-            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt receipt in this.repository.GetAllZdarzenie())
             {
-                if (zdarzenie.StatusInfo.Equals(stan)) zdarzenia.Add(zdarzenie);
+                if (receipt.StatusInfo.Equals(status) && receipt.Who.Equals(client)) receipts.Add(receipt);
             }
-
-            return zdarzenia;
+            return receipts;
         }
-        public ObservableCollection<Receipt> WykazAndZdarzenieAndOpisStanu(Client wykaz, Status stan)
+        public List<Status> SearchStatusesByBooks(Book book)
         {
-            ObservableCollection<Receipt> zdarzenia = new ObservableCollection<Receipt>();
+            List<Status> statuses = new List<Status>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Status status in this.repository.GetAllOpisStanu())
             {
-                if (zdarzenie.StatusInfo.Equals(stan) && zdarzenie.Who.Equals(wykaz)) zdarzenia.Add(zdarzenie);
-            }
-            return zdarzenia;
-        }
-        public List<Status> OpisStanuAndKatalog(Book katalog)
-        {
-            List<Status> stany = new List<Status>();
-
-            foreach (Status stan in this.repository.GetAllOpisStanu())
-            {
-                if (stan.Product.Equals(katalog)) stany.Add(stan);
+                if (status.Product.Equals(book)) statuses.Add(status);
             }
 
-            return stany;
+            return statuses;
         }
 
         //Usuwanie
-        public bool UsunWykaz(Client wykaz)
+        public bool DeleteClient(Client client)
         {
-            return this.repository.DeleteKlient(wykaz);
+            return this.repository.DeleteKlient(client);
         }
 
-        public bool UsunKatalog(Book katalog)
+        public bool DeleteBook(Book book)
         {
-            return this.repository.DeleteKsiazka(katalog);
+            return this.repository.DeleteKsiazka(book);
         }
 
-        public bool UsunOpisStanu(Status stan)
+        public bool DeleteStatus(Status status)
         {
-            return this.repository.DeleteOpisStanu(stan);
+            return this.repository.DeleteOpisStanu(status);
         }
 
-        public bool UsunZdarzenie(Receipt receipt)
+        public bool DeleteReceipt(Receipt receipt)
         {
             return this.repository.DeleteZdarzenie(receipt);
         }
-        public bool UsunZdarzenie(Client wykaz, Status stan)
+        public bool DeleteReceipt(Client client, Status status)
         {
-            bool usuniete = false;
+            bool delete = false;
 
-            foreach (Receipt zdarzenie in WykazAndZdarzenieAndOpisStanu(wykaz, stan))
+            foreach (Receipt zdarzenie in SearchReceiptsByClientAndStatus(client, status))
             {
                 this.repository.DeleteZdarzenie(zdarzenie);
-                usuniete = true;
+                delete = true;
             }
-            return usuniete;
+            return delete;
         }
 
     }
