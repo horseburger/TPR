@@ -9,15 +9,15 @@ namespace Bookstore.UnitTest
         [Test]
         public void IdGetterTest()
         {
-            Book k = new Book(0, "abc");
-            Assert.AreEqual(0, k.Id);
+            Book book = new Book(0, "abc");
+            Assert.AreEqual(0, book.Id);
         }
 
         [Test]
         public void InfoGetterTest()
         {
-            Book k = new Book(0, "abc");
-            Assert.AreEqual("abc", k.Info);
+            Book book = new Book(0, "abc");
+            Assert.AreEqual("abc", book.Info);
         }
     }
 }

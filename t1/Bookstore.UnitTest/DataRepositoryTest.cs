@@ -11,14 +11,14 @@ namespace Bookstore.UnitTest
     {
 
         [Test]
-        public void AddKatalogTest()
+        public void AddBookTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             dataRepository.AddKsiazka(new Book(1, "example"));
             Assert.AreEqual(1, dataRepository.GetAllKsiazka().Count);
         }
         [Test]
-        public void GetKatalogTest()
+        public void GetBookTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Book katalog = new Book(1, "example");
@@ -26,35 +26,35 @@ namespace Bookstore.UnitTest
             Assert.AreEqual(katalog, dataRepository.GetKsiazka(1));
         }
         [Test]
-        public void GetAllKatalogTest()
+        public void GetAllBooksTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Dictionary<int, Book> dictionary = dataRepository.GetAllKsiazka();
-            Book katalog = new Book(1, "example");
-            dataRepository.AddKsiazka(katalog);
+            Book book = new Book(1, "example");
+            dataRepository.AddKsiazka(book);
             Assert.AreEqual(dictionary, dataRepository.GetAllKsiazka());
         }
         [Test]
-        public void UpdateKatalogTest()
+        public void UpdateBookTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            Book katalog = new Book(1, "example");
-            dataRepository.AddKsiazka(katalog);
-            Book katalog2 = new Book(1, "hello");
-            dataRepository.UpdateKsiazka(1, katalog2);
-            Assert.AreEqual(katalog2, dataRepository.GetKsiazka(1));
+            Book book = new Book(1, "example");
+            dataRepository.AddKsiazka(book);
+            Book book2 = new Book(1, "hello");
+            dataRepository.UpdateKsiazka(1, book2);
+            Assert.AreEqual(book2, dataRepository.GetKsiazka(1));
         }
         [Test]
-        public void DeleteKatalogTest()
+        public void DeleteBookTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            Book katalog = new Book(1, "example");
-            dataRepository.AddKsiazka(katalog);
-            dataRepository.DeleteKsiazka(katalog);
+            Book book = new Book(1, "example");
+            dataRepository.AddKsiazka(book);
+            dataRepository.DeleteKsiazka(book);
             Assert.AreEqual(0, dataRepository.GetAllKsiazka().Count);
         }
         [Test]
-        public void AddWykazTest()
+        public void AddClienttTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             dataRepository.AddKlient(new Client("Jan", "Kowalski"));
@@ -64,36 +64,36 @@ namespace Bookstore.UnitTest
         public void GetWykazTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            Client wykaz = new Client("Jan", "Kowalski");
-            dataRepository.AddKlient(wykaz);
-            Assert.AreEqual(wykaz, dataRepository.GetKlient(0));
+            Client client = new Client("Jan", "Kowalski");
+            dataRepository.AddKlient(client);
+            Assert.AreEqual(client, dataRepository.GetKlient(0));
         }
         [Test]
-        public void GetAllWykazTest()
+        public void GetAllClientsTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             List<Client> lista = dataRepository.GetAllKlient();
-            Client wykaz = new Client("Jan", "Kowalski");
-            dataRepository.AddKlient(wykaz);
+            Client client = new Client("Jan", "Kowalski");
+            dataRepository.AddKlient(client);
             Assert.AreEqual(lista, dataRepository.GetAllKlient());
         }
         [Test]
-        public void UpdateWykazTest()
+        public void UpdateClientTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            Client wykaz = new Client("Jan", "Kowalski");
-            dataRepository.AddKlient(wykaz);
-            Client wykaz2 = new Client("Adrian", "Nowak");
-            dataRepository.UpdateKlient(0, wykaz2);
-            Assert.AreEqual(wykaz2, dataRepository.GetKlient(0));
+            Client client = new Client("Jan", "Kowalski");
+            dataRepository.AddKlient(client);
+            Client client2 = new Client("Adrian", "Nowak");
+            dataRepository.UpdateKlient(0, client2);
+            Assert.AreEqual(client2, dataRepository.GetKlient(0));
         }
         [Test]
-        public void DeleteWykazTest()
+        public void DeleteClientTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            Client wykaz = new Client("Jan", "Kowalski");
-            dataRepository.AddKlient(wykaz);
-            dataRepository.DeleteKlient(wykaz);
+            Client client = new Client("Jan", "Kowalski");
+            dataRepository.AddKlient(client);
+            dataRepository.DeleteKlient(client);
             Assert.AreEqual(0, dataRepository.GetAllKlient().Count);
         }
         [Test]
