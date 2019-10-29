@@ -50,35 +50,35 @@ namespace Bookstore
         //Dodaj
         public void AddClient(Client client)
         {
-            this.repository.AddKlient(client);
+            this.repository.AddClient(client);
         }
         public void AddClient(string name, string surname)
         {
-            this.repository.AddKlient(new Client(name, surname));
+            this.repository.AddClient(new Client(name, surname));
         }
         public void AddBook(Book book)
         {
-            this.repository.AddKsiazka(book);
+            this.repository.AddBook(book);
         }
         public void AddBook(int id, string info)
         {
-            this.repository.AddKsiazka(new Book(id, info));
+            this.repository.AddBook(new Book(id, info));
         }
         public void AddReceipt(Receipt receipt)
         {
-            this.repository.AddZdarzenie(receipt);
+            this.repository.AddReceipt(receipt);
         }
         public void AddReceipt(Client who, DateTime borrowdate, Status statusInfo)
         {
-            this.repository.AddZdarzenie(new Receipt(who, borrowdate, statusInfo));
+            this.repository.AddReceipt(new Receipt(who, borrowdate, statusInfo));
         }
         public void AddStatus(Status status)
         {
-            this.repository.AddOpisStanu(status);
+            this.repository.AddStatus(status);
         }
         public void AddStatus(Book product, DateTime data_zakupu, float price)
         {
-            this.repository.AddOpisStanu(new Status(product, price));
+            this.repository.AddStatus(new Status(product, price));
         }
 
         //Wyszukaj
@@ -86,7 +86,7 @@ namespace Bookstore
         {
             List<Client> rezultat = new List<Client>();
 
-            foreach (Client wykaz in this.repository.GetAllKlient())
+            foreach (Client wykaz in this.repository.GetAllClient())
             {
                 if (wykaz.ToString().Contains(pattern)) rezultat.Add(wykaz);
             }
@@ -97,7 +97,7 @@ namespace Bookstore
         {
             Dictionary<int, Book> rezultat = new Dictionary<int, Book>();
 
-            foreach (var item in this.repository.GetAllKsiazka())
+            foreach (var item in this.repository.GetAllBooks())
             {
                 if (item.Value.ToString().Contains(pattern)) rezultat.Add(item.Key, item.Value);
             }
@@ -107,7 +107,7 @@ namespace Bookstore
         {
             ObservableCollection<Receipt> rezultat = new ObservableCollection<Receipt>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllReceipts())
             {
                 if (zdarzenie.BorrowDate > borrowDate && zdarzenie.ReturnDate < returnDate) rezultat.Add(zdarzenie);
             }
@@ -117,7 +117,7 @@ namespace Bookstore
         {
             ObservableCollection<Receipt> rezultat = new ObservableCollection<Receipt>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllReceipts())
             {
                 if (zdarzenie.BorrowDate > borrowDate) rezultat.Add(zdarzenie);
             }
@@ -127,7 +127,7 @@ namespace Bookstore
         {
             List<Status> rezultat = new List<Status>();
 
-            foreach (Status opis in this.repository.GetAllOpisStanu())
+            foreach (Status opis in this.repository.GetAllStatus())
             {
                 if (opis.Price >= minPrice && opis.Price <= maxPrice) rezultat.Add(opis);
             }
@@ -139,7 +139,7 @@ namespace Bookstore
         {
             ObservableCollection<Receipt> receipts = new ObservableCollection<Receipt>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllReceipts())
             {
                 if (zdarzenie.Who.Equals(client)) receipts.Add(zdarzenie);
             }
@@ -152,7 +152,7 @@ namespace Bookstore
 
             ObservableCollection<Receipt> zdarzenia = new ObservableCollection<Receipt>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllZdarzenie())
+            foreach (Receipt zdarzenie in this.repository.GetAllReceipts())
             {
                 if (zdarzenie.StatusInfo.Equals(status)) zdarzenia.Add(zdarzenie);
             }
@@ -163,7 +163,7 @@ namespace Bookstore
         {
             ObservableCollection<Receipt> receipts = new ObservableCollection<Receipt>();
 
-            foreach (Receipt receipt in this.repository.GetAllZdarzenie())
+            foreach (Receipt receipt in this.repository.GetAllReceipts())
             {
                 if (receipt.StatusInfo.Equals(status) && receipt.Who.Equals(client)) receipts.Add(receipt);
             }
@@ -173,7 +173,7 @@ namespace Bookstore
         {
             List<Status> statuses = new List<Status>();
 
-            foreach (Status status in this.repository.GetAllOpisStanu())
+            foreach (Status status in this.repository.GetAllStatus())
             {
                 if (status.Product.Equals(book)) statuses.Add(status);
             }
@@ -184,30 +184,30 @@ namespace Bookstore
         //Usuwanie
         public bool DeleteClient(Client client)
         {
-            return this.repository.DeleteKlient(client);
+            return this.repository.DeleteClient(client);
         }
 
         public bool DeleteBook(Book book)
         {
-            return this.repository.DeleteKsiazka(book);
+            return this.repository.DeleteBook(book);
         }
 
         public bool DeleteStatus(Status status)
         {
-            return this.repository.DeleteOpisStanu(status);
+            return this.repository.DeleteStatus(status);
         }
 
         public bool DeleteReceipt(Receipt receipt)
         {
-            return this.repository.DeleteZdarzenie(receipt);
+            return this.repository.DelteReceipt(receipt);
         }
         public bool DeleteReceipt(Client client, Status status)
         {
             bool delete = false;
 
-            foreach (Receipt zdarzenie in SearchReceiptsByClientAndStatus(client, status))
+            foreach (Receipt receipt in SearchReceiptsByClientAndStatus(client, status))
             {
-                this.repository.DeleteZdarzenie(zdarzenie);
+                this.repository.DelteReceipt(receipt);
                 delete = true;
             }
             return delete;

@@ -11,7 +11,7 @@ namespace Bookstore.UnitTest
         {
             IDataRepository repo = new DataRepository(new DataFillerRandom(10));
             repo.Api.Fill(repo.Storage);
-            Assert.AreEqual(10, repo.GetAllKlient().Count);
+            Assert.AreEqual(10, repo.GetAllClient().Count);
         }
     }
 }
