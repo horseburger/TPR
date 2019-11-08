@@ -97,58 +97,59 @@ namespace Bookstore.UnitTest
             Assert.AreEqual(0, dataRepository.GetAllClient().Count);
         }
         [Test]
-        public void AddReceiptTest()
+        public void AddPurchaseTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            dataRepository.AddReceipt(new Receipt(new Client("Jan", "Kowalski"), System.DateTime.Now, new Status(new Book(0, "hello"), 3.99f)));
+            dataRepository.AddPurchase(new Purchase(new Client("Jan", "Kowalski"), new Status(new Book(0, "hello"), 3.99f)));
             Assert.AreEqual(1, dataRepository.GetAllReceipts().Count);
         }
         [Test]
-        public void GetReceiptTest()
+        public void GetPurchaseTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Receipt receipt = new Receipt(client, System.DateTime.Now, status);
-            dataRepository.AddReceipt(receipt);
-            Assert.AreEqual(receipt, dataRepository.GetReceipt(0));
+            Purchase purchase = new Purchase(client, status);
+            dataRepository.AddPurchase(purchase);
+            Assert.AreEqual(purchase, dataRepository.GetReceipt(0));
         }
         [Test]
-        public void GetAllReceiptsTest()
+        public void GetAllPurchaseTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
-            ObservableCollection<Receipt> zdarzenia = dataRepository.GetAllReceipts();
+            ObservableCollection<Purchase> zdarzenia = dataRepository.GetAllReceipts();
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Receipt receipt = new Receipt(client, System.DateTime.Now, status);
-            dataRepository.AddReceipt(receipt);
+            Purchase purchase = new Purchase(client, status);
+            dataRepository.AddPurchase(purchase);
             Assert.AreEqual(zdarzenia, dataRepository.GetAllReceipts());
         }
         [Test]
-        public void UpdateReceiptTest()
+        public void UpdatePurchaseTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Receipt receipt = new Receipt(client, System.DateTime.Now, status);
-            dataRepository.AddReceipt(receipt);
-            Receipt receipt2 = new Receipt(client, System.DateTime.Now.AddMinutes(5), status);
+            Purchase purchase = new Purchase(client, status);
+            dataRepository.AddPurchase(purchase);
+            status = new Status(book, 19.99f);
+            Purchase receipt2 = new Purchase(client, status);
             dataRepository.UpdateReceipt(0, receipt2);
             Assert.AreEqual(receipt2, dataRepository.GetReceipt(0));
         }
         [Test]
-        public void DeleteReceiptTest()
+        public void DeletePurchaseTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFiller());
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Receipt receipt = new Receipt(client, System.DateTime.Now, status);
-            dataRepository.AddReceipt(receipt);
-            dataRepository.DelteReceipt(receipt);
+            Purchase purchase = new Purchase(client, status);
+            dataRepository.AddPurchase(purchase);
+            dataRepository.DelteReceipt(purchase);
             Assert.AreEqual(0, dataRepository.GetAllReceipts().Count);
         }
         [Test]
@@ -212,7 +213,7 @@ namespace Bookstore.UnitTest
             {
                 flag = true;
             };
-            dataRepository.AddReceipt(new Receipt(client, DateTime.Now, status));
+            dataRepository.AddPurchase(new Purchase(client, status));
             Assert.AreEqual(true, flag);
         }
 
@@ -223,14 +224,14 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Receipt receipt = new Receipt(client, DateTime.Now, status);
-            dataRepository.AddReceipt(receipt);
+            Purchase purchase = new Purchase(client, status);
+            dataRepository.AddPurchase(purchase);
             bool flag = false;
             dataRepository.ReceiptRemoved += (object s, EventArgs e) =>
             {
                 flag = true;
             };
-            dataRepository.DelteReceipt(receipt);
+            dataRepository.DelteReceipt(purchase);
             Assert.AreEqual(true, flag);
         }
     }

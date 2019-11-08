@@ -124,18 +124,18 @@ namespace Bookstore
         {
                 return Storage.Clients.Remove(element);
         }
-        public void AddReceipt(Receipt receipt)
+        public void AddPurchase(Purchase purchase)
         {
             try
             {
-                Storage.Receipts.Add(receipt);
+                Storage.Receipts.Add(purchase);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public Receipt GetReceipt(int id)
+        public Purchase GetReceipt(int id)
         {
           try
             {
@@ -147,11 +147,11 @@ namespace Bookstore
             }
             return null;
         }
-        public ObservableCollection<Receipt> GetAllReceipts()
+        public ObservableCollection<Purchase> GetAllReceipts()
         {
             return Storage.Receipts;
         }
-        public void UpdateReceipt(int id, Receipt element)
+        public void UpdateReceipt(int id, Purchase element)
         {
             try
             {
@@ -162,7 +162,7 @@ namespace Bookstore
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DelteReceipt(Receipt element)
+        public bool DelteReceipt(Purchase element)
         {
             return Storage.Receipts.Remove(element);
         }

@@ -44,16 +44,15 @@
     <ItemGroup>
         <Compile Include="DataContext.cs" />
         <Compile Include="IDataFiller.cs" />
-        <Compile Include="DataFillerRandom.cs" />
         <Compile Include="DataRepository.cs" />
         <Compile Include="IDataRepository.cs" />
         <Compile Include="DataService.cs" />
+        <Compile Include="Objects\Borrow.cs" />
         <Compile Include="Objects\Client.cs" />
         <Compile Include="Objects\Book.cs" />
         <Compile Include="Objects\Status.cs" />
-        <Compile Include="Objects\Receipt.cs" />
+        <Compile Include="Objects\Purchase.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="DataFiller.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

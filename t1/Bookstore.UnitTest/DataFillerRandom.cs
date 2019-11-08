@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Bookstore.Objects;
 
-namespace Bookstore
+namespace Bookstore.UnitTest
 {
     public class DataFillerRandom : IDataFiller
     {
@@ -17,14 +17,14 @@ namespace Bookstore
             Client w;
             Book k;
             Status s;
-            Receipt z;
+            Purchase z;
             
             for (int i = 0; i < number; i++)
             {
                 k = new Book(i, GenerateRandomString());
                 w = new Client(GenerateRandomString(), GenerateRandomString());
                 s = new Status(k, new Random().Next());
-                z = new Receipt(w, DateTime.Now, s);
+                z = new Purchase(w);
                 context.Books.Add(i, k);
                 context.Clients.Add(w);
                 context.Receipts.Add(z);

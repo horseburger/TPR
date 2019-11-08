@@ -37,7 +37,7 @@ namespace Bookstore
             return JsonConvert.SerializeObject(books);
         }
 
-        public string Get(ObservableCollection<Receipt> receipts)
+        public string Get(ObservableCollection<Purchase> receipts)
         {
             return JsonConvert.SerializeObject(receipts);
         }
@@ -64,13 +64,13 @@ namespace Bookstore
         {
             this.repository.AddBook(new Book(id, info));
         }
-        public void AddReceipt(Receipt receipt)
+        public void AddPurchase(Purchase purchase)
         {
-            this.repository.AddReceipt(receipt);
+            this.repository.AddPurchase(purchase);
         }
-        public void AddReceipt(Client who, DateTime borrowdate, Status statusInfo)
+        public void AddPurchase(Client who, Status statusInfo)
         {
-            this.repository.AddReceipt(new Receipt(who, borrowdate, statusInfo));
+            this.repository.AddPurchase(new Purchase(who));
         }
         public void AddStatus(Status status)
         {
@@ -103,21 +103,21 @@ namespace Bookstore
             }
             return rezultat;
         }
-        public ObservableCollection<Receipt> SearchReceipt(DateTime borrowDate, DateTime returnDate)
+        public ObservableCollection<Purchase> SearchReceipt(DateTime borrowDate, DateTime returnDate)
         {
-            ObservableCollection<Receipt> rezultat = new ObservableCollection<Receipt>();
+            ObservableCollection<Purchase> rezultat = new ObservableCollection<Purchase>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllReceipts())
+            foreach (Borrow zdarzenie in this.repository.GetAllReceipts())
             {
                 if (zdarzenie.BorrowDate > borrowDate && zdarzenie.ReturnDate < returnDate) rezultat.Add(zdarzenie);
             }
             return rezultat;
         }
-        public ObservableCollection<Receipt> SearchReceipt(DateTime borrowDate)
+        public ObservableCollection<Purchase> SearchReceipt(DateTime borrowDate)
         {
-            ObservableCollection<Receipt> rezultat = new ObservableCollection<Receipt>();
+            ObservableCollection<Purchase> rezultat = new ObservableCollection<Purchase>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllReceipts())
+            foreach (Borrow zdarzenie in this.repository.GetAllReceipts())
             {
                 if (zdarzenie.BorrowDate > borrowDate) rezultat.Add(zdarzenie);
             }
@@ -135,11 +135,11 @@ namespace Bookstore
         }
 
         //Znajdź powiązania
-        public ObservableCollection<Receipt> SearchReceiptsByClient(Client client)
+        public ObservableCollection<Purchase> SearchReceiptsByClient(Client client)
         {
-            ObservableCollection<Receipt> receipts = new ObservableCollection<Receipt>();
+            ObservableCollection<Purchase> receipts = new ObservableCollection<Purchase>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllReceipts())
+            foreach (Purchase zdarzenie in this.repository.GetAllReceipts())
             {
                 if (zdarzenie.Who.Equals(client)) receipts.Add(zdarzenie);
             }
@@ -147,23 +147,23 @@ namespace Bookstore
             return receipts;
         }
 
-        public ObservableCollection<Receipt> SearchReceiptsByStatus(Status status)
+        public ObservableCollection<Purchase> SearchReceiptsByStatus(Status status)
         {
 
-            ObservableCollection<Receipt> zdarzenia = new ObservableCollection<Receipt>();
+            ObservableCollection<Purchase> zdarzenia = new ObservableCollection<Purchase>();
 
-            foreach (Receipt zdarzenie in this.repository.GetAllReceipts())
+            foreach (Purchase zdarzenie in this.repository.GetAllReceipts())
             {
                 if (zdarzenie.StatusInfo.Equals(status)) zdarzenia.Add(zdarzenie);
             }
 
             return zdarzenia;
         }
-        public ObservableCollection<Receipt> SearchReceiptsByClientAndStatus(Client client, Status status)
+        public ObservableCollection<Purchase> SearchReceiptsByClientAndStatus(Client client, Status status)
         {
-            ObservableCollection<Receipt> receipts = new ObservableCollection<Receipt>();
+            ObservableCollection<Purchase> receipts = new ObservableCollection<Purchase>();
 
-            foreach (Receipt receipt in this.repository.GetAllReceipts())
+            foreach (Purchase receipt in this.repository.GetAllReceipts())
             {
                 if (receipt.StatusInfo.Equals(status) && receipt.Who.Equals(client)) receipts.Add(receipt);
             }
@@ -197,15 +197,15 @@ namespace Bookstore
             return this.repository.DeleteStatus(status);
         }
 
-        public bool DeleteReceipt(Receipt receipt)
+        public bool DeleteReceipt(Purchase purchase)
         {
-            return this.repository.DelteReceipt(receipt);
+            return this.repository.DelteReceipt(purchase);
         }
         public bool DeleteReceipt(Client client, Status status)
         {
             bool delete = false;
 
-            foreach (Receipt receipt in SearchReceiptsByClientAndStatus(client, status))
+            foreach (Purchase receipt in SearchReceiptsByClientAndStatus(client, status))
             {
                 this.repository.DelteReceipt(receipt);
                 delete = true;

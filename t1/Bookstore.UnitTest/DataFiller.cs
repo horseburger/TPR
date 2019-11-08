@@ -1,7 +1,7 @@
 using System;
 using Bookstore.Objects;
 
-namespace Bookstore
+namespace Bookstore.UnitTest
 {
     public class DataFiller : IDataFiller
     {
@@ -16,7 +16,7 @@ namespace Bookstore
                 oS = new Status(k, i);
                 context.Books.Add(k.Id, k);
                 context.Clients.Add(w);
-                context.Receipts.Add(new Receipt(w, DateTime.Now, oS));
+                context.Receipts.Add(new Purchase(w));
                 context.Statuses.Add(oS);
             }
         }

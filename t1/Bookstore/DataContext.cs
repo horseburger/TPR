@@ -8,14 +8,14 @@ namespace Bookstore
     {
         public List<Client> Clients { get; set; }
         public Dictionary<int, Book> Books { get; set;  }
-        public ObservableCollection<Receipt> Receipts { get; set;  }
+        public ObservableCollection<Purchase> Receipts { get; set;  }
         public List<Status> Statuses { get; set;  }
 
         public DataContext()
         {
             this.Clients = new List<Client>();
             this.Books = new Dictionary<int, Book>();
-            this.Receipts = new ObservableCollection<Receipt>();
+            this.Receipts = new ObservableCollection<Purchase>();
             this.Statuses = new List<Status>();
         }
 
