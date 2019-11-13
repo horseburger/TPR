@@ -103,8 +103,8 @@ namespace Bookstore.UnitTest
             Book book = new Book(0, "stary człowiek a może");
             Client client = new Client("Jan", "Kowalski");
             Status status = new Status(book, 39.99f);
-            dataRepository.AddPurchase(new Purchase(client, status, DateTime.Now, 39.99f));
-            Assert.AreEqual(1, dataRepository.GetAllReceipts().Count);
+            dataRepository.AddEvent(new Purchase(client, status, DateTime.Now, false));
+            Assert.AreEqual(1, dataRepository.GetAllEvents().Count);
         }
         [Test]
         public void GetPurchaseTest()
@@ -114,20 +114,20 @@ namespace Bookstore.UnitTest
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             Event purchase = new Purchase();
-            dataRepository.AddPurchase(purchase);
-            Assert.AreEqual(purchase, dataRepository.GetReceipt(0));
+            dataRepository.AddEvent(purchase);
+            Assert.AreEqual(purchase, dataRepository.GetEvent(0));
         }
         [Test]
         public void GetAllPurchaseTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
-            ObservableCollection<Purchase> zdarzenia = dataRepository.GetAllReceipts();
+            ObservableCollection<Event> zdarzenia = dataRepository.GetAllEvents();
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Event purchase = new Purchase(client, status);
-            dataRepository.AddPurchase(purchase);
-            Assert.AreEqual(zdarzenia, dataRepository.GetAllReceipts());
+            Event purchase = new Purchase(client, status, DateTime.Now, false);
+            dataRepository.AddEvent(purchase);
+            Assert.AreEqual(zdarzenia, dataRepository.GetAllEvents());
         }
         [Test]
         public void UpdatePurchaseTest()
@@ -136,12 +136,12 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Event purchase = new Purchase(client, status);
-            dataRepository.AddPurchase(purchase);
+            Event purchase = new Purchase(client, status, DateTime.Now, true);
+            dataRepository.AddEvent(purchase);
             status = new Status(book, 19.99f);
-            Event receipt2 = new Purchase(client, status);
-            dataRepository.UpdateReceipt(0, receipt2);
-            Assert.AreEqual(receipt2, dataRepository.GetReceipt(0));
+            Event receipt2 = new Purchase(client, status, DateTime.Now, false);
+            dataRepository.UpdateEvent(0, receipt2);
+            Assert.AreEqual(receipt2, dataRepository.GetEvent(0));
         }
         [Test]
         public void DeletePurchaseTest()
@@ -150,10 +150,10 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Event purchase = new Purchase(client, status);
-            dataRepository.AddPurchase(purchase);
-            dataRepository.DelteReceipt(purchase);
-            Assert.AreEqual(0, dataRepository.GetAllReceipts().Count);
+            Event purchase = new Purchase(client, status, DateTime.Now, false);
+            dataRepository.AddEvent(purchase);
+            dataRepository.DeleteEvent(purchase);
+            Assert.AreEqual(0, dataRepository.GetAllEvents().Count);
         }
         [Test]
         public void AddStatusTest()
@@ -212,11 +212,11 @@ namespace Bookstore.UnitTest
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             bool flag = false;
-            dataRepository.ReceiptAdded += (object s, EventArgs e) =>
+            dataRepository.EventAdded += (object s, EventArgs e) =>
             {
                 flag = true;
             };
-            dataRepository.AddPurchase(new Purchase(client, status));
+            dataRepository.AddEvent(new Purchase(client, status, DateTime.Now, false));
             Assert.AreEqual(true, flag);
         }
 
@@ -227,14 +227,14 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Event purchase = new Purchase(client, status);
-            dataRepository.AddPurchase(purchase);
+            Event purchase = new Purchase(client, status, DateTime.Now, true);
+            dataRepository.AddEvent(purchase);
             bool flag = false;
-            dataRepository.ReceiptRemoved += (object s, EventArgs e) =>
+            dataRepository.EventRemoved += (object s, EventArgs e) =>
             {
                 flag = true;
             };
-            dataRepository.DelteReceipt(purchase);
+            dataRepository.DeleteEvent(purchase);
             Assert.AreEqual(true, flag);
         }
     }

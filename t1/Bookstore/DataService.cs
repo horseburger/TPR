@@ -17,14 +17,14 @@ namespace Bookstore
 
         public event EventHandler ReceiptAdded
         {
-            add => repository.ReceiptAdded += value;
-            remove => repository.ReceiptAdded -= value;
+            add => repository.EventAdded += value;
+            remove => repository.EventAdded -= value;
         }
         
         public event EventHandler ReceiptRemoved
         {
-            add => repository.ReceiptRemoved += value;
-            remove => repository.ReceiptRemoved -= value;
+            add => repository.EventAdded += value;
+            remove => repository.EventAdded -= value;
         }
         //Zwróć
         public string Get(List<Client> clients)
@@ -66,18 +66,18 @@ namespace Bookstore
         }
         public void AddPurchase(Event purchase)
         {
-            this.repository.AddPurchase(purchase);
+            this.repository.AddEvent(purchase);
         }
-        public void AddPurchase(Client who, Status statusInfo)
+        public void AddPurchase(Client who, Status statusInfo, bool method)
         {
 
-            this.repository.AddPurchase(new Purchase(who));
+            this.repository.AddEvent(new Purchase(who, statusInfo, DateTime.Now, method));
         }
         public void AddStatus(Status status)
         {
             this.repository.AddStatus(status);
         }
-        public void AddStatus(Book product, DateTime data_zakupu, float price)
+        public void AddStatus(Book product, float price)
         {
             this.repository.AddStatus(new Status(product, price));
         }
@@ -104,27 +104,17 @@ namespace Bookstore
             }
             return rezultat;
         }
-        public ObservableCollection<Event> SearchReceipt(DateTime borrowDate, DateTime returnDate)
+    
+        public ObservableCollection<Event> SearchEvent(DateTime borrowDate)
         {
-            // TODO 
-//            ObservableCollection<Event> rezultat = new ObservableCollection<Event>();
-//
-//            foreach (Borrow zdarzenie in this.repository.GetAllReceipts())
-//            {
-//                if (zdarzenie.BorrowDate > borrowDate && zdarzenie.ReturnDate < returnDate) rezultat.Add(zdarzenie);
-//            }
-//            return rezultat;
-        }
-        public ObservableCollection<Event> SearchReceipt(DateTime borrowDate)
-        {
-            // TODO 
-//            ObservableCollection<Event> rezultat = new ObservableCollection<Event>();
-//
-//            foreach (Borrow zdarzenie in this.repository.GetAllReceipts())
-//            {
-//                if (zdarzenie.BorrowDate > borrowDate) rezultat.Add(zdarzenie);
-//            }
-//            return rezultat;
+        
+        ObservableCollection<Event> rezultat = new ObservableCollection<Event>();
+
+            foreach (Event zdarzenie in this.repository.GetAllEvents())
+            {
+                if (zdarzenie.Date > borrowDate) rezultat.Add(zdarzenie);
+            }
+            return rezultat;
         }
         public List<Status> SearchStatus(float minPrice, double maxPrice)
         {
@@ -142,7 +132,7 @@ namespace Bookstore
         {
             ObservableCollection<Event> receipts = new ObservableCollection<Event>();
 
-            foreach (Purchase zdarzenie in this.repository.GetAllReceipts())
+            foreach (Event zdarzenie in this.repository.GetAllEvents())
             {
                 if (zdarzenie.Who.Equals(client)) receipts.Add(zdarzenie);
             }
@@ -155,7 +145,7 @@ namespace Bookstore
 
             ObservableCollection<Event> zdarzenia = new ObservableCollection<Event>();
 
-            foreach (Purchase zdarzenie in this.repository.GetAllReceipts())
+            foreach (Event zdarzenie in this.repository.GetAllEvents())
             {
                 if (zdarzenie.StatusInfo.Equals(status)) zdarzenia.Add(zdarzenie);
             }
@@ -166,7 +156,7 @@ namespace Bookstore
         {
             ObservableCollection<Event> receipts = new ObservableCollection<Event>();
 
-            foreach (Purchase receipt in this.repository.GetAllReceipts())
+            foreach (Event receipt in this.repository.GetAllEvents())
             {
                 if (receipt.StatusInfo.Equals(status) && receipt.Who.Equals(client)) receipts.Add(receipt);
             }
@@ -202,15 +192,15 @@ namespace Bookstore
 
         public bool DeleteReceipt(Event purchase)
         {
-            return this.repository.DelteReceipt(purchase);
+            return this.repository.DeleteEvent(purchase);
         }
         public bool DeleteReceipt(Client client, Status status)
         {
             bool delete = false;
 
-            foreach (Purchase receipt in SearchReceiptsByClientAndStatus(client, status))
+            foreach (Event receipt in SearchReceiptsByClientAndStatus(client, status))
             {
-                this.repository.DelteReceipt(receipt);
+                this.repository.DeleteEvent(receipt);
                 delete = true;
             }
             return delete;
