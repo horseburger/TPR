@@ -11,8 +11,8 @@ namespace Bookstore
         public DataContext Storage { get; set; }
         public IDataFiller Api { get; set; }
 
-        public event EventHandler ReceiptAdded;
-        public event EventHandler ReceiptRemoved;
+        public event EventHandler EventAdded;
+        public event EventHandler EventRemoved;
 
         public DataRepository(IDataFiller api)
         {
@@ -26,11 +26,11 @@ namespace Bookstore
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                ReceiptAdded?.Invoke(this, new EventArgs());
+                EventAdded?.Invoke(this, new EventArgs());
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
-                ReceiptRemoved?.Invoke(this, new EventArgs());
+                EventRemoved?.Invoke(this, new EventArgs());
             }
         }
         
@@ -124,11 +124,11 @@ namespace Bookstore
         {
                 return Storage.Clients.Remove(element);
         }
-        public void AddEvent(Event purchase)
+        public void AddEvent(Event evt)
         {
             try
             {
-                Storage.Events.Add(purchase);
+                Storage.Events.Add(evt);
             }
             catch (ArgumentException e)
             {

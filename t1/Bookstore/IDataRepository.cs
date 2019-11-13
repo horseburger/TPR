@@ -10,8 +10,8 @@ public interface IDataRepository
         DataContext Storage { get; set; }
         IDataFiller Api { get; set; }
 
-        event EventHandler ReceiptAdded;
-        event EventHandler ReceiptRemoved;
+        event EventHandler EventAdded;
+        event EventHandler EventRemoved;
          void AddBook(Book book);
          Book GetBook(int id);
          Dictionary<int, Book> GetAllBooks();
@@ -22,7 +22,7 @@ public interface IDataRepository
          List<Client> GetAllClient();
          void UpdateClient(int id, Client element);
          bool DeleteClient(Client element);
-         void AddEvent(Event purchase);
+         void AddEvent(Event evt);
          Event GetEvent(int id);
          ObservableCollection<Event> GetAllEvents();
          void UpdateEvent(int id, Event element);
