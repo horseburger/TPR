@@ -15,13 +15,13 @@ namespace Bookstore
             this.repository = repository;
         }
 
-        public event EventHandler ReceiptAdded
+        public event EventHandler EventAdded
         {
             add => repository.EventAdded += value;
             remove => repository.EventAdded -= value;
         }
         
-        public event EventHandler ReceiptRemoved
+        public event EventHandler EventRemoved
         {
             add => repository.EventAdded += value;
             remove => repository.EventAdded -= value;

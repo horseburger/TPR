@@ -4,7 +4,7 @@ using Bookstore.Objects;
 namespace Bookstore.UnitTest
 {
     [TestFixture]
-    public class WykazTest
+    public class Client_Test
     {
         [Test]
         public void NameGetterTest()

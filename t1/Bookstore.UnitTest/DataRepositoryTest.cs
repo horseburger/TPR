@@ -237,5 +237,33 @@ namespace Bookstore.UnitTest
             dataRepository.DeleteEvent(purchase);
             Assert.AreEqual(true, flag);
         }
+
+        [Test]
+        public void AddBorrowTest()
+        {
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
+            Client client = new Client("Jan", "Kowalski");
+            Book book = new Book(0, "example");
+            Status status = new Status(book, 39.99f);
+            Event borrow = new Borrow(client, status, DateTime.Now, DateTime.Today.AddDays(1));
+            dataRepository.AddEvent(borrow);
+            Assert.IsTrue(dataRepository.GetEvent(0).GetType() == typeof(Borrow));
+        }
+
+        [Test]
+        public void PolymorphismTest()
+        {
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
+            Client client = new Client("Jan", "Kowalski");
+            Book book = new Book(0, "example");
+            Status status = new Status(book, 39.99f);
+            Event purchase = new Purchase(client, status, DateTime.Now, true);
+            Event borrow = new Borrow(client, status, DateTime.Now, DateTime.Now.AddDays(1));
+            dataRepository.AddEvent(purchase);
+            dataRepository.AddEvent(borrow);
+            Assert.IsTrue(dataRepository.GetEvent(0).GetType() == typeof(Purchase));
+            Assert.IsTrue(dataRepository.GetEvent(1).GetType() == typeof(Borrow));
+        }
     }
+    
 }
