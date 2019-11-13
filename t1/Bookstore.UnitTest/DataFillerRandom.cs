@@ -17,7 +17,7 @@ namespace Bookstore.UnitTest
             Client w;
             Book k;
             Status s;
-            Purchase z;
+            Event z;
             
             for (int i = 0; i < number; i++)
             {
@@ -27,7 +27,7 @@ namespace Bookstore.UnitTest
                 z = new Purchase(w);
                 context.Books.Add(i, k);
                 context.Clients.Add(w);
-                context.Receipts.Add(z);
+                context.Events.Add(z);
                 context.Statuses.Add(s);
             }
         }

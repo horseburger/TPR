@@ -16,7 +16,7 @@ namespace Bookstore.UnitTest
                 oS = new Status(k, i);
                 context.Books.Add(k.Id, k);
                 context.Clients.Add(w);
-                context.Receipts.Add(new Purchase(w));
+                context.Events.Add(new Purchase());
                 context.Statuses.Add(oS);
             }
         }

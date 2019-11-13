@@ -19,7 +19,7 @@ namespace Bookstore
             this.Storage = new DataContext();
             this.Api = api;
 
-            this.Storage.Receipts.CollectionChanged += ReceiptChanged;
+            this.Storage.Events.CollectionChanged += ReceiptChanged;
         }
 
         private void ReceiptChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -124,22 +124,22 @@ namespace Bookstore
         {
                 return Storage.Clients.Remove(element);
         }
-        public void AddPurchase(Purchase purchase)
+        public void AddPurchase(Event purchase)
         {
             try
             {
-                Storage.Receipts.Add(purchase);
+                Storage.Events.Add(purchase);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public Purchase GetReceipt(int id)
+        public Event GetReceipt(int id)
         {
           try
             {
-                return Storage.Receipts[id];
+                return Storage.Events[id];
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -147,24 +147,24 @@ namespace Bookstore
             }
             return null;
         }
-        public ObservableCollection<Purchase> GetAllReceipts()
+        public ObservableCollection<Event> GetAllReceipts()
         {
-            return Storage.Receipts;
+            return Storage.Events;
         }
-        public void UpdateReceipt(int id, Purchase element)
+        public void UpdateReceipt(int id, Event element)
         {
             try
             {
-                Storage.Receipts[id] = element;
+                Storage.Events[id] = element;
             }
             catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DelteReceipt(Purchase element)
+        public bool DelteReceipt(Event element)
         {
-            return Storage.Receipts.Remove(element);
+            return Storage.Events.Remove(element);
         }
         public void AddStatus(Status status)
         {

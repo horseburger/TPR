@@ -110,7 +110,7 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Purchase purchase = new Purchase(client, status);
+            Event purchase = new Purchase(client, status);
             dataRepository.AddPurchase(purchase);
             Assert.AreEqual(purchase, dataRepository.GetReceipt(0));
         }
@@ -122,7 +122,7 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Purchase purchase = new Purchase(client, status);
+            Event purchase = new Purchase(client, status);
             dataRepository.AddPurchase(purchase);
             Assert.AreEqual(zdarzenia, dataRepository.GetAllReceipts());
         }
@@ -133,10 +133,10 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Purchase purchase = new Purchase(client, status);
+            Event purchase = new Purchase(client, status);
             dataRepository.AddPurchase(purchase);
             status = new Status(book, 19.99f);
-            Purchase receipt2 = new Purchase(client, status);
+            Event receipt2 = new Purchase(client, status);
             dataRepository.UpdateReceipt(0, receipt2);
             Assert.AreEqual(receipt2, dataRepository.GetReceipt(0));
         }
@@ -147,7 +147,7 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Purchase purchase = new Purchase(client, status);
+            Event purchase = new Purchase(client, status);
             dataRepository.AddPurchase(purchase);
             dataRepository.DelteReceipt(purchase);
             Assert.AreEqual(0, dataRepository.GetAllReceipts().Count);
@@ -224,7 +224,7 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Purchase purchase = new Purchase(client, status);
+            Event purchase = new Purchase(client, status);
             dataRepository.AddPurchase(purchase);
             bool flag = false;
             dataRepository.ReceiptRemoved += (object s, EventArgs e) =>

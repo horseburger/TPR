@@ -37,7 +37,7 @@ namespace Bookstore
             return JsonConvert.SerializeObject(books);
         }
 
-        public string Get(ObservableCollection<Purchase> receipts)
+        public string Get(ObservableCollection<Event> receipts)
         {
             return JsonConvert.SerializeObject(receipts);
         }
@@ -64,13 +64,14 @@ namespace Bookstore
         {
             this.repository.AddBook(new Book(id, info));
         }
-        public void AddPurchase(Purchase purchase)
+        public void AddPurchase(Event purchase)
         {
             this.repository.AddPurchase(purchase);
         }
         public void AddPurchase(Client who, Status statusInfo)
         {
-            this.repository.AddPurchase(new Purchase(who));
+            // TODO 
+//            this.repository.AddPurchase(new Purchase(who));
         }
         public void AddStatus(Status status)
         {
@@ -103,25 +104,27 @@ namespace Bookstore
             }
             return rezultat;
         }
-        public ObservableCollection<Purchase> SearchReceipt(DateTime borrowDate, DateTime returnDate)
+        public ObservableCollection<Event> SearchReceipt(DateTime borrowDate, DateTime returnDate)
         {
-            ObservableCollection<Purchase> rezultat = new ObservableCollection<Purchase>();
-
-            foreach (Borrow zdarzenie in this.repository.GetAllReceipts())
-            {
-                if (zdarzenie.BorrowDate > borrowDate && zdarzenie.ReturnDate < returnDate) rezultat.Add(zdarzenie);
-            }
-            return rezultat;
+            // TODO 
+//            ObservableCollection<Event> rezultat = new ObservableCollection<Event>();
+//
+//            foreach (Borrow zdarzenie in this.repository.GetAllReceipts())
+//            {
+//                if (zdarzenie.BorrowDate > borrowDate && zdarzenie.ReturnDate < returnDate) rezultat.Add(zdarzenie);
+//            }
+//            return rezultat;
         }
-        public ObservableCollection<Purchase> SearchReceipt(DateTime borrowDate)
+        public ObservableCollection<Event> SearchReceipt(DateTime borrowDate)
         {
-            ObservableCollection<Purchase> rezultat = new ObservableCollection<Purchase>();
-
-            foreach (Borrow zdarzenie in this.repository.GetAllReceipts())
-            {
-                if (zdarzenie.BorrowDate > borrowDate) rezultat.Add(zdarzenie);
-            }
-            return rezultat;
+            // TODO 
+//            ObservableCollection<Event> rezultat = new ObservableCollection<Event>();
+//
+//            foreach (Borrow zdarzenie in this.repository.GetAllReceipts())
+//            {
+//                if (zdarzenie.BorrowDate > borrowDate) rezultat.Add(zdarzenie);
+//            }
+//            return rezultat;
         }
         public List<Status> SearchStatus(float minPrice, double maxPrice)
         {
@@ -135,9 +138,9 @@ namespace Bookstore
         }
 
         //Znajdź powiązania
-        public ObservableCollection<Purchase> SearchReceiptsByClient(Client client)
+        public ObservableCollection<Event> SearchReceiptsByClient(Client client)
         {
-            ObservableCollection<Purchase> receipts = new ObservableCollection<Purchase>();
+            ObservableCollection<Event> receipts = new ObservableCollection<Event>();
 
             foreach (Purchase zdarzenie in this.repository.GetAllReceipts())
             {
@@ -147,10 +150,10 @@ namespace Bookstore
             return receipts;
         }
 
-        public ObservableCollection<Purchase> SearchReceiptsByStatus(Status status)
+        public ObservableCollection<Event> SearchReceiptsByStatus(Status status)
         {
 
-            ObservableCollection<Purchase> zdarzenia = new ObservableCollection<Purchase>();
+            ObservableCollection<Event> zdarzenia = new ObservableCollection<Event>();
 
             foreach (Purchase zdarzenie in this.repository.GetAllReceipts())
             {
@@ -159,9 +162,9 @@ namespace Bookstore
 
             return zdarzenia;
         }
-        public ObservableCollection<Purchase> SearchReceiptsByClientAndStatus(Client client, Status status)
+        public ObservableCollection<Event> SearchReceiptsByClientAndStatus(Client client, Status status)
         {
-            ObservableCollection<Purchase> receipts = new ObservableCollection<Purchase>();
+            ObservableCollection<Event> receipts = new ObservableCollection<Event>();
 
             foreach (Purchase receipt in this.repository.GetAllReceipts())
             {
@@ -197,7 +200,7 @@ namespace Bookstore
             return this.repository.DeleteStatus(status);
         }
 
-        public bool DeleteReceipt(Purchase purchase)
+        public bool DeleteReceipt(Event purchase)
         {
             return this.repository.DelteReceipt(purchase);
         }
