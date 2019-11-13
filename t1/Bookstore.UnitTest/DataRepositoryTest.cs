@@ -13,14 +13,14 @@ namespace Bookstore.UnitTest
         [Test]
         public void AddBookTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             dataRepository.AddBook(new Book(1, "example"));
             Assert.AreEqual(1, dataRepository.GetAllBooks().Count);
         }
         [Test]
         public void GetBookTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Book katalog = new Book(1, "example");
             dataRepository.AddBook(katalog);
             Assert.AreEqual(katalog, dataRepository.GetBook(1));
@@ -28,7 +28,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void GetAllBooksTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Dictionary<int, Book> dictionary = dataRepository.GetAllBooks();
             Book book = new Book(1, "example");
             dataRepository.AddBook(book);
@@ -37,7 +37,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void UpdateBookTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Book book = new Book(1, "example");
             dataRepository.AddBook(book);
             Book book2 = new Book(1, "hello");
@@ -47,7 +47,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void DeleteBookTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Book book = new Book(1, "example");
             dataRepository.AddBook(book);
             dataRepository.DeleteBook(book);
@@ -56,14 +56,14 @@ namespace Bookstore.UnitTest
         [Test]
         public void AddClienttTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             dataRepository.AddClient(new Client("Jan", "Kowalski"));
             Assert.AreEqual(1, dataRepository.GetAllClient().Count);
         }
         [Test]
         public void GetWykazTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Client client = new Client("Jan", "Kowalski");
             dataRepository.AddClient(client);
             Assert.AreEqual(client, dataRepository.GetClient(0));
@@ -71,7 +71,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void GetAllClientsTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             List<Client> lista = dataRepository.GetAllClient();
             Client client = new Client("Jan", "Kowalski");
             dataRepository.AddClient(client);
@@ -80,7 +80,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void UpdateClientTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Client client = new Client("Jan", "Kowalski");
             dataRepository.AddClient(client);
             Client client2 = new Client("Adrian", "Nowak");
@@ -90,7 +90,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void DeleteClientTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Client client = new Client("Jan", "Kowalski");
             dataRepository.AddClient(client);
             dataRepository.DeleteClient(client);
@@ -99,14 +99,14 @@ namespace Bookstore.UnitTest
         [Test]
         public void AddPurchaseTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             dataRepository.AddPurchase(new Purchase(new Client("Jan", "Kowalski"), new Status(new Book(0, "hello"), 3.99f)));
             Assert.AreEqual(1, dataRepository.GetAllReceipts().Count);
         }
         [Test]
         public void GetPurchaseTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
@@ -117,7 +117,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void GetAllPurchaseTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             ObservableCollection<Purchase> zdarzenia = dataRepository.GetAllReceipts();
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
@@ -129,7 +129,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void UpdatePurchaseTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
@@ -143,7 +143,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void DeletePurchaseTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
@@ -155,7 +155,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void AddStatusTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Book book = new Book(1, "example");
             dataRepository.AddStatus(new Status(book, 3.99f));
             Assert.AreEqual(1, dataRepository.GetAllStatus().Count);
@@ -163,7 +163,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void GetOpisStanuTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             dataRepository.AddStatus(status);
@@ -172,7 +172,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void GetAllStatusesTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             List<Status> list = dataRepository.GetAllStatus();
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
@@ -182,7 +182,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void UpdateStatusTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             dataRepository.AddStatus(status);
@@ -193,7 +193,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void DeleteStatusTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             dataRepository.AddStatus(status);
@@ -204,7 +204,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void ReceiptAddedTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
@@ -220,7 +220,7 @@ namespace Bookstore.UnitTest
         [Test]
         public void ReceiptRemovedTest()
         {
-            IDataRepository dataRepository = new DataRepository(new DataFiller());
+            IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);

@@ -4,12 +4,12 @@ using NUnit.Framework;
 namespace Bookstore.UnitTest
 {
     [TestFixture]
-    public class DITest
+    public class DataFillerConstants_Test
     {
         [Test]
-        public void DataRepositoryDITest()
+        public void FillConstant_Test()
         {
-            IDataRepository repo = new DataRepository(new DataFiller());
+            IDataRepository repo = new DataRepository(new DataFillerConstants());
             repo.Api.Fill(repo.Storage);
             Assert.AreEqual(10, repo.GetAllBooks().Count);
         }

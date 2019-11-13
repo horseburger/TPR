@@ -3,7 +3,7 @@ using Bookstore.Objects;
 
 namespace Bookstore.UnitTest
 {
-    public class DataFiller : IDataFiller
+    public class DataFillerConstants : IDataFiller
     {
         public void Fill(DataContext context)
         {
