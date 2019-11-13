@@ -47,11 +47,11 @@
         <Compile Include="DataRepository.cs" />
         <Compile Include="IDataRepository.cs" />
         <Compile Include="DataService.cs" />
-        <Compile Include="Objects\Borrow.cs" />
-        <Compile Include="Objects\Client.cs" />
-        <Compile Include="Objects\Book.cs" />
-        <Compile Include="Objects\Status.cs" />
-        <Compile Include="Objects\Purchase.cs" />
+        <Compile Include="Entities\Borrow.cs" />
+        <Compile Include="Entities\Client.cs" />
+        <Compile Include="Entities\Book.cs" />
+        <Compile Include="Entities\Status.cs" />
+        <Compile Include="Entities\Purchase.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
