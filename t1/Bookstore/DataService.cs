@@ -70,8 +70,8 @@ namespace Bookstore
         }
         public void AddPurchase(Client who, Status statusInfo)
         {
-            // TODO 
-//            this.repository.AddPurchase(new Purchase(who));
+
+            this.repository.AddPurchase(new Purchase(who));
         }
         public void AddStatus(Status status)
         {

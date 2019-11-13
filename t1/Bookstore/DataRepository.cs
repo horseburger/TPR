@@ -19,10 +19,10 @@ namespace Bookstore
             this.Storage = new DataContext();
             this.Api = api;
 
-            this.Storage.Events.CollectionChanged += ReceiptChanged;
+            this.Storage.Events.CollectionChanged += EventChanged;
         }
 
-        private void ReceiptChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void EventChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
@@ -124,7 +124,7 @@ namespace Bookstore
         {
                 return Storage.Clients.Remove(element);
         }
-        public void AddPurchase(Event purchase)
+        public void AddEvent(Event purchase)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace Bookstore
                 Console.WriteLine(e.Message);
             }
         }
-        public Event GetReceipt(int id)
+        public Event GetEvent(int id)
         {
           try
             {
@@ -147,11 +147,11 @@ namespace Bookstore
             }
             return null;
         }
-        public ObservableCollection<Event> GetAllReceipts()
+        public ObservableCollection<Event> GetAllEvents()
         {
             return Storage.Events;
         }
-        public void UpdateReceipt(int id, Event element)
+        public void UpdateEvent(int id, Event element)
         {
             try
             {
@@ -162,7 +162,7 @@ namespace Bookstore
                 Console.WriteLine(e.Message);
             }
         }
-        public bool DelteReceipt(Event element)
+        public bool DeleteEvent(Event element)
         {
             return Storage.Events.Remove(element);
         }

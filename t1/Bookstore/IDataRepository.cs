@@ -22,11 +22,11 @@ public interface IDataRepository
          List<Client> GetAllClient();
          void UpdateClient(int id, Client element);
          bool DeleteClient(Client element);
-         void AddPurchase(Event purchase);
-         Event GetReceipt(int id);
-         ObservableCollection<Event> GetAllReceipts();
-         void UpdateReceipt(int id, Event element);
-         bool DelteReceipt(Event element);
+         void AddEvent(Event purchase);
+         Event GetEvent(int id);
+         ObservableCollection<Event> GetAllEvents();
+         void UpdateEvent(int id, Event element);
+         bool DeleteEvent(Event element);
          void AddStatus(Status status);
          Status GetStatus(int id);
          List<Status> GetAllStatus();
