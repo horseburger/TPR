@@ -212,7 +212,7 @@ namespace Bookstore.UnitTest
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
             bool flag = false;
-            dataRepository.EventAdded += (object s, EventArgs e) =>
+            dataRepository.EventAdded += (s, e) =>
             {
                 flag = true;
             };
@@ -230,7 +230,7 @@ namespace Bookstore.UnitTest
             Event purchase = new Purchase(client, status, DateTime.Now, true);
             dataRepository.AddEvent(purchase);
             bool flag = false;
-            dataRepository.EventRemoved += (object s, EventArgs e) =>
+            dataRepository.EventRemoved += (s, e) =>
             {
                 flag = true;
             };
