@@ -2,27 +2,20 @@ using System;
 
 namespace Bookstore.Objects
 {
-    public class Borrow : Purchase
+    public class Borrow : Event
     {
 
-        private DateTime borrowDate;
         private DateTime returnDate;
 
-        public DateTime BorrowDate
+        public DateTime ReturnDate { get; set; }
+
+        public Borrow(Client who, Status statusInfo, DateTime date, DateTime returnDate) : base(who, statusInfo, date)
         {
-            get => borrowDate;
-            set => borrowDate = value;
+            this.returnDate = returnDate;
         }
 
-        public DateTime ReturnDate
+        public Borrow()
         {
-            get => returnDate;
-            set => returnDate = value;
-        }
-
-        public Borrow(Client who, DateTime borrowDate) : base(who)
-        {
-            this.borrowDate = borrowDate;
         }
     }
 }

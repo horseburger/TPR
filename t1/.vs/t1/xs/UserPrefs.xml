@@ -1,28 +1,35 @@
 ﻿<Properties StartupConfiguration="{2B76845A-3E2B-487F-8561-B3C1DC0889BB}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.part__one__test PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Bookstore/DataRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bookstore/Entities/Event.cs">
     <Files>
       <File FileName="../../../../Library/Frameworks/Mono.framework/Versions/6.4.0/lib/mono/msbuild/Current/bin/Microsoft.Common.CurrentVersion.targets" Line="1" Column="1" />
       <File FileName="Bookstore.UnitTest/Books_Test.cs" />
-      <File FileName="Bookstore.UnitTest/DataFillerRandom_Test.cs" />
+      <File FileName="Bookstore.UnitTest/DataFillerRandom_Test.cs" Line="1" Column="1" />
       <File FileName="Bookstore.UnitTest/DataRepositoryTest.cs" />
-      <File FileName="Bookstore/DataRepository.cs" Line="12" Column="31" />
+      <File FileName="Bookstore/DataRepository.cs" Line="27" Column="42" />
       <File FileName="Bookstore/Objects/Status.cs" />
       <File FileName="Bookstore/DataService.cs" />
-      <File FileName="Bookstore.UnitTest/DI_Test.cs" />
       <File FileName="Bookstore/Properties/AssemblyInfo.cs" />
       <File FileName="Bookstore/Objects/Book.cs" />
       <File FileName="Bookstore/packages.config" />
       <File FileName="Bookstore/DataContext.cs" />
       <File FileName="Bookstore/IDataRepository.cs" />
+      <File FileName="Bookstore.UnitTest/DataFillerRandom.cs" Line="1" Column="1" />
+      <File FileName="Bookstore/Entities/Borrow.cs" Line="1" Column="1" />
+      <File FileName="Bookstore/Entities/Purchase.cs" Line="18" Column="25" />
+      <File FileName="Bookstore/EmptyClass.cs" Line="1" Column="1" />
+      <File FileName="Bookstore/Entities/EmptyClass.cs" Line="7" Column="10" />
+      <File FileName="Bookstore/Event.cs" Line="7" Column="35" />
+      <File FileName="Bookstore/Entities/Client.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="t1" expanded="True">
             <Node name="Bookstore" expanded="True">
-              <Node name="Objects" expanded="True" />
-              <Node name="DataRepository.cs" selected="True" />
+              <Node name="Entities" expanded="True">
+                <Node name="Event.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Bookstore.UnitTest" expanded="True" />
           </Node>

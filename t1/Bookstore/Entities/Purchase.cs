@@ -2,24 +2,18 @@ using System;
 
 namespace Bookstore.Objects
 {
-    public class Purchase
+    public class Purchase : Event
     {
-        private Client who;
-        private Status statusInfo;
-        
-        public Client Who { get => who; set => who = value; }
-        public Status StatusInfo { get => statusInfo; set => statusInfo = value; }
+        private Double price;
 
+        public Double Price { get; set;}
 
-        public Purchase(Client who)
+        public Purchase()
         {
-            this.Who = who;
         }
-
-        public Purchase(Client who, Status status)
+        public Purchase(Client who, Status statusInfo, DateTime date, Double price) : base(who, statusInfo, date)
         {
-            this.who = who;
-            this.statusInfo = status;
+            this.price = price;
         }
     }
 }
