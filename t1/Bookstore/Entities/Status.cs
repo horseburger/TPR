@@ -1,5 +1,8 @@
+using System;
+
 namespace Bookstore.Objects
 {
+    [Serializable]
     public class Status
     {
         private float price;

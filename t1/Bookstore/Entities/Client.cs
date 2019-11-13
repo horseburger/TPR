@@ -1,5 +1,8 @@
-﻿namespace Bookstore.Objects
+﻿using System;
+
+namespace Bookstore.Objects
 {
+    [Serializable]
     public class Client
     {
         private string name;

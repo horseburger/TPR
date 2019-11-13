@@ -3,6 +3,7 @@ using Bookstore.Objects;
 
 namespace Bookstore
 {
+    [Serializable]
     public class Event
     {
         private Client who;
