@@ -37,9 +37,9 @@ namespace Bookstore
             return JsonConvert.SerializeObject(books);
         }
 
-        public string Get(ObservableCollection<Event> receipts)
+        public string Get(ObservableCollection<Event> events)
         {
-            return JsonConvert.SerializeObject(receipts);
+            return JsonConvert.SerializeObject(events);
         }
 
         public string Get(List<Status> statuses)
@@ -64,14 +64,9 @@ namespace Bookstore
         {
             this.repository.AddBook(new Book(id, info));
         }
-        public void AddPurchase(Event purchase)
+        public void AddEvent(Event evt)
         {
-            this.repository.AddEvent(purchase);
-        }
-        public void AddPurchase(Client who, Status statusInfo, bool method)
-        {
-
-            this.repository.AddEvent(new Purchase(who, statusInfo, DateTime.Now, method));
+            this.repository.AddEvent(evt);
         }
         public void AddStatus(Status status)
         {
@@ -128,19 +123,19 @@ namespace Bookstore
         }
 
         //Znajdź powiązania
-        public ObservableCollection<Event> SearchReceiptsByClient(Client client)
+        public ObservableCollection<Event> SearchEventsByClient(Client client)
         {
-            ObservableCollection<Event> receipts = new ObservableCollection<Event>();
+            ObservableCollection<Event> events = new ObservableCollection<Event>();
 
             foreach (Event zdarzenie in this.repository.GetAllEvents())
             {
-                if (zdarzenie.Who.Equals(client)) receipts.Add(zdarzenie);
+                if (zdarzenie.Who.Equals(client)) events.Add(zdarzenie);
             }
 
-            return receipts;
+            return events;
         }
 
-        public ObservableCollection<Event> SearchReceiptsByStatus(Status status)
+        public ObservableCollection<Event> SearchEventsByStatus(Status status)
         {
 
             ObservableCollection<Event> zdarzenia = new ObservableCollection<Event>();
@@ -152,15 +147,15 @@ namespace Bookstore
 
             return zdarzenia;
         }
-        public ObservableCollection<Event> SearchReceiptsByClientAndStatus(Client client, Status status)
+        public ObservableCollection<Event> SearchEventsByClientAndStatus(Client client, Status status)
         {
-            ObservableCollection<Event> receipts = new ObservableCollection<Event>();
+            ObservableCollection<Event> events = new ObservableCollection<Event>();
 
-            foreach (Event receipt in this.repository.GetAllEvents())
+            foreach (Event evt in this.repository.GetAllEvents())
             {
-                if (receipt.StatusInfo.Equals(status) && receipt.Who.Equals(client)) receipts.Add(receipt);
+                if (evt.StatusInfo.Equals(status) && evt.Who.Equals(client)) events.Add(evt);
             }
-            return receipts;
+            return events;
         }
         public List<Status> SearchStatusesByBooks(Book book)
         {
@@ -190,17 +185,17 @@ namespace Bookstore
             return this.repository.DeleteStatus(status);
         }
 
-        public bool DeleteReceipt(Event purchase)
+        public bool DeleteEvent(Event evt)
         {
-            return this.repository.DeleteEvent(purchase);
+            return this.repository.DeleteEvent(evt);
         }
-        public bool DeleteReceipt(Client client, Status status)
+        public bool DeleteEvent(Client client, Status status)
         {
             bool delete = false;
 
-            foreach (Event receipt in SearchReceiptsByClientAndStatus(client, status))
+            foreach (Event evt in SearchEventsByClientAndStatus(client, status))
             {
-                this.repository.DeleteEvent(receipt);
+                this.repository.DeleteEvent(evt);
                 delete = true;
             }
             return delete;
