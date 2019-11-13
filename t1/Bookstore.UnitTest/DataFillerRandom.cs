@@ -24,7 +24,7 @@ namespace Bookstore.UnitTest
                 k = new Book(i, GenerateRandomString());
                 w = new Client(GenerateRandomString(), GenerateRandomString());
                 s = new Status(k, new Random().Next());
-                z = new Purchase(w);
+                z = new Purchase(w, s, DateTime.Now, );
                 context.Books.Add(i, k);
                 context.Clients.Add(w);
                 context.Events.Add(z);

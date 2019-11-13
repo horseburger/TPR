@@ -100,7 +100,10 @@ namespace Bookstore.UnitTest
         public void AddPurchaseTest()
         {
             IDataRepository dataRepository = new DataRepository(new DataFillerConstants());
-            dataRepository.AddPurchase(new Purchase(new Client("Jan", "Kowalski"), new Status(new Book(0, "hello"), 3.99f)));
+            Book book = new Book(0, "stary człowiek a może");
+            Client client = new Client("Jan", "Kowalski");
+            Status status = new Status(book, 39.99f);
+            dataRepository.AddPurchase(new Purchase(client, status, DateTime.Now, 39.99f));
             Assert.AreEqual(1, dataRepository.GetAllReceipts().Count);
         }
         [Test]
@@ -110,7 +113,7 @@ namespace Bookstore.UnitTest
             Client client = new Client("Jan", "Kowalski");
             Book book = new Book(1, "example");
             Status status = new Status(book, 9.99f);
-            Event purchase = new Purchase(client, status);
+            Event purchase = new Purchase();
             dataRepository.AddPurchase(purchase);
             Assert.AreEqual(purchase, dataRepository.GetReceipt(0));
         }
