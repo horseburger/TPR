@@ -9,20 +9,7 @@ namespace Serializer
 {
     internal class Program
     {
-        public static void Main(string[] args)
-        {
-            string filename = "abc";
-            IFormatter formatter = new Serializer();
-            DataRepository repo = new DataRepository(new Filler());
-            repo.Api.Fill(repo.GetStorage());
-            Serializer.SerializeItemBinary(filename, formatter, repo.GetStorage());
-            DataContext c = Serializer.DeserializeItemBinary(filename, formatter);
-            Console.WriteLine(c.Clients[0].Name + ' ' + c.Clients[0].Surname);
-            filename = "json";
-            Serializer.SerializeItemJSON(filename, repo.GetStorage());
-            c = Serializer.DeserializeItemJSONFromFile(filename);
-            Console.WriteLine(c.Events[0].Who.Name + " " +c.Events[0].Who.Surname);
-        }
+        public static void Main(string[] args) { }
     }
 
     public class Filler : IDataFiller
