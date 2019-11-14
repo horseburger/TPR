@@ -7,56 +7,20 @@ using Bookstore.Objects;
 
 namespace Serializer
 {
-    public class Serializer : IFormatter
+    public partial class Serializer
 
     {
-    public static void SerializeItem(string filename, IFormatter formatter, DataContext item)
-    {
-        FileStream file = new FileStream(filename, FileMode.Create);
-        formatter.Serialize(file, item);
-        file.Close();
-    }
-
-    public static DataContext DeserializeItem(string filename, IFormatter formatter)
-    {
-        FileStream s = new FileStream(filename, FileMode.Open);
-        return (DataContext) formatter.Deserialize(s);
-    }
-
-    public object Deserialize(Stream serializationStream)
-    {
-        if (serializationStream == null)
+        public static void SerializeItemBinary(string filename, IFormatter formatter, DataContext item)
         {
-            throw new ArgumentNullException("Serialization stream null");
-        }
-        
-        IFormatter formatter = new BinaryFormatter();
-        return formatter.Deserialize(serializationStream);
-    }
-
-    public void Serialize(Stream serializationStream, object graph)
-    {
-        if (serializationStream == null)
-        {
-            throw new ArgumentNullException("Serialization stream null");
+            FileStream file = new FileStream(filename, FileMode.Create);
+            formatter.Serialize(file, item);
+            file.Close();
         }
 
-        if (graph == null)
+        public static DataContext DeserializeItemBinary(string filename, IFormatter formatter)
         {
-            throw new ArgumentNullException("Graph null");
+            FileStream s = new FileStream(filename, FileMode.Open);
+            return (DataContext) formatter.Deserialize(s);
         }
-
-        if (!serializationStream.CanWrite)
-        {
-            throw new ArgumentException("Stream can't write");
-        }
-        
-        IFormatter formatter = new BinaryFormatter();
-        formatter.Serialize(serializationStream, graph);
-    }
-
-    public SerializationBinder Binder { get; set; }
-    public StreamingContext Context { get; set; }
-    public ISurrogateSelector SurrogateSelector { get; set; }
     }
 }
