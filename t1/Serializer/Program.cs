@@ -12,25 +12,30 @@ namespace Serializer
         public static void Main(string[] args)
         {
             string filename = "abc";
-            IFormatter formatter = new BinaryFormatter();
-            Program.SerializeItem(filename, formatter);
-            DataContext c = Program.DeserializeItem(filename, formatter);
+            IFormatter formatter = new Serializer();
+            DataRepository repo = new DataRepository(new Filler());
+            repo.Api.Fill(repo.GetStorage());
+            Serializer.SerializeItem(filename, formatter, repo.GetStorage());
+            DataContext c = Serializer.DeserializeItem(filename, formatter);
             Console.WriteLine(c.Clients[0].Name + ' ' + c.Clients[0].Surname);
         }
+    }
 
-        public static void SerializeItem(string filename, IFormatter formatter)
+    public class Filler : IDataFiller
+    {
+        public void Fill(DataContext context)
         {
-            DataContext context = new DataContext();
-            context.Clients.Add(new Client("Jan", "kowalski"));
-            FileStream file = new FileStream(filename, FileMode.Create);
-            formatter.Serialize(file, context);
-            file.Close();
-        }
-
-        public static DataContext DeserializeItem(string filename, IFormatter formatter)
-        {
-            FileStream s = new FileStream(filename, FileMode.Open);
-            return (DataContext) formatter.Deserialize(s);
+            Book book = new Book(0, "this is a book");
+            Status status = new Status(book, 39.99f);
+            Client client = new Client("Kamil", "Glik");
+            Event purchase = new Purchase(client, status, DateTime.Now, false);
+            for (int i = 0; i < 10; i++)
+            {
+                context.Books.Add(i, book);
+                context.Clients.Add(client);
+                context.Events.Add(purchase);
+                context.Statuses.Add(status);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 
 namespace Bookstore.Objects
 {
+    [Serializable]
     public class Purchase : Event
     {
         private bool _method_of_payment;

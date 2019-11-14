@@ -2,6 +2,7 @@ using System;
 
 namespace Bookstore.Objects
 {
+    [Serializable]
     public class Borrow : Event
     {
 
