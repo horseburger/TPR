@@ -11,7 +11,7 @@ namespace Serializer
         {
             if (serializationStream == null)
             {
-                throw new ArgumentNullException("Serialization stream null");
+                throw new ArgumentNullException(nameof(serializationStream));
             }
         
             IFormatter formatter = new BinaryFormatter();
@@ -22,12 +22,12 @@ namespace Serializer
         {
             if (serializationStream == null)
             {
-                throw new ArgumentNullException("Serialization stream null");
+                throw new ArgumentNullException(nameof(serializationStream));
             }
 
             if (graph == null)
             {
-                throw new ArgumentNullException("Graph null");
+                throw new ArgumentNullException(nameof(graph));
             }
 
             if (!serializationStream.CanWrite)
