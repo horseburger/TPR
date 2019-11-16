@@ -19,6 +19,7 @@ namespace Serializer.UnitTest
         [SetUp]
         public void Setup()
         {
+            serializer = new Serializer();
             data = new DataContext();
             repo = new DataRepository(new Filler());
             repo.Api.Fill(data);
