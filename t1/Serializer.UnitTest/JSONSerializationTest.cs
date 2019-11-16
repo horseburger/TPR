@@ -13,6 +13,7 @@ namespace Serializer.UnitTest
     {
         private DataContext data;
         private DataRepository repo;
+        private Serializer serializer;
         const string filename = "JSONTest.json";
 
         [SetUp]
@@ -30,7 +31,6 @@ namespace Serializer.UnitTest
         [Test]
         public void SerializeToJSON()
         {
-            Serializer serializer = new Serializer();
             serializer.SerializeItemJson(filename, data);
             FileInfo info = new FileInfo(filename);
             Assert.IsTrue(info.Exists);
@@ -42,7 +42,6 @@ namespace Serializer.UnitTest
         public void DeserializeToJSON()
         {
             SerializeToJSON();
-            Serializer serializer = new Serializer();
             DataContext dataFromJson = serializer.DeserializeItemJsonFromFile(filename);
             Assert.IsTrue(dataFromJson.Equals(data));
 
