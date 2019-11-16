@@ -1,30 +1,42 @@
 using System.IO;
 using Bookstore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Serializer
 {
     public partial class Serializer
     {
-        public static void SerializeItemJson(string filename, DataContext context)
+        JsonSerializerSettings settings;
+        public Serializer()
         {
-            File.WriteAllText(filename, JsonConvert.SerializeObject(context));
+            settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All,
+                MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead,
+                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+
+            };
         }
 
-        public static string SerializeItemJson(DataContext context)
+        public void SerializeItemJson(string filename, DataContext context)
         {
-            return JsonConvert.SerializeObject(context);
+            File.WriteAllText(filename, JsonConvert.SerializeObject(context, settings));
         }
 
-        public static DataContext DeserializeItemJson(string obj)
+        public string SerializeItemJson(DataContext context)
         {
-            return JsonConvert.DeserializeObject<DataContext>(obj);
+            return JsonConvert.SerializeObject(context, settings);
         }
 
-        public static DataContext DeserializeItemJsonFromFile(string filename)
+        public DataContext DeserializeItemJson(string obj)
+        {
+            return JsonConvert.DeserializeObject<DataContext>(obj, settings);
+        }
+
+        public DataContext DeserializeItemJsonFromFile(string filename)
         {
             string json = File.ReadAllText(filename);
-            return JsonConvert.DeserializeObject<DataContext>(json);
+            return JsonConvert.DeserializeObject<DataContext>(json, settings);
         }
+
     }
 }
