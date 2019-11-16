@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Bookstore.Objects
 {
@@ -32,5 +33,27 @@ namespace Bookstore.Objects
             this.NumberInStock = 0;
             this.Price = price;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Status status &&
+                   Price == status.Price &&
+                   EqualityComparer<Book>.Default.Equals(Product, status.Product) &&
+                   NumberInStock == status.NumberInStock;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1492547799;
+            hashCode = hashCode * -1521134295 + Price.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Book>.Default.GetHashCode(Product);
+            hashCode = hashCode * -1521134295 + NumberInStock.GetHashCode();
+            return hashCode;
+        }
+        public override string ToString()
+        {
+            return Price + ":" + Product + ":" + NumberInStock;
+        }
     }
+
 }

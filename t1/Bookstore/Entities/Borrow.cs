@@ -18,5 +18,20 @@ namespace Bookstore.Objects
         public Borrow()
         {
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Borrow borrow &&
+                   ReturnDate == borrow.ReturnDate;
+        }
+
+        public override int GetHashCode()
+        {
+            return -2139873453 + ReturnDate.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return base.ToString() + ":" + ReturnDate;
+        }
     }
 }
