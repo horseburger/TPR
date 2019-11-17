@@ -33,6 +33,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JSONSerializationTest.cs" />
+    <Compile Include="BinarySerializationTest.cs" />
+    <Compile Include="FillerForTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
