@@ -10,17 +10,17 @@ namespace Serializer
     public partial class Serializer
 
     {
-        public static void SerializeItemBinary(string filename, IFormatter formatter, DataContext item)
+        public void SerializeItemBinary(string filename, DataContext item)
         {
             FileStream file = new FileStream(filename, FileMode.Create);
-            formatter.Serialize(file, item);
+            Serialize(file, item);
             file.Close();
         }
 
-        public static DataContext DeserializeItemBinary(string filename, IFormatter formatter)
+        public DataContext DeserializeItemBinary(string filename)
         {
             FileStream s = new FileStream(filename, FileMode.Open);
-            return (DataContext) formatter.Deserialize(s);
+            return (DataContext) Deserialize(s);
         }
     }
 }
