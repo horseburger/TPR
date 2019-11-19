@@ -14,7 +14,7 @@ namespace Serializer
         public static void Main(string[] args)
         {
             string filename = "file";
-            DataRepository repo = new DataRepository(new Filler());
+            DataRepository repo = new DataRepository(new CustomFiller());
             repo.Api.Fill(repo.GetStorage());
             Serializer serializer = new Serializer();
             string json = serializer.SerializeItemJson(repo.GetStorage());
@@ -57,7 +57,7 @@ namespace Serializer
         }
     }
 
-    public class Filler : IDataFiller
+    public class CustomFiller : IDataFiller
     {
         public void Fill(DataContext context)
         {
