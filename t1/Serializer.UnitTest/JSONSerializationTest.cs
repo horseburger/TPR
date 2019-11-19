@@ -41,6 +41,11 @@ namespace CustomSerializer.UnitTest
 
             //Deserialize
             DataContext dataFromJson = serializer.DeserializeItemJsonFromFile(filename);
+
+            for(int i = 0; i < dataFromJson.Events.Count;i++)
+            {
+                Console.WriteLine(dataFromJson.Events[i] + "\n" + data.Events[i]);
+            }
             Assert.IsTrue(dataFromJson.Equals(data));
         }
     }

@@ -1,37 +1,43 @@
 ﻿<Properties StartupConfiguration="{3B481ED9-F604-4E9E-9B80-6962547C186E}|Default">
   <MonoDevelop.Ide.ItemProperties.Program PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.part__one__test PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Serializer/Formatter.cs">
     <Files>
       <File FileName="Serializer/Formatter.cs" Line="9" Column="27" />
       <File FileName="Bookstore.UnitTest/packages.config" />
-      <File FileName="Serializer/JSONSerializer.cs" />
+      <File FileName="Serializer/JSONSerializer.cs" Line="15" Column="61" />
       <File FileName="Serializer/Serializer.cs" Line="8" Column="27" />
       <File FileName="Serializer/packages.config" />
-      <File FileName="Bookstore/DataContext.cs" />
-      <File FileName="Bookstore/Entities/Book.cs" />
-      <File FileName="Bookstore/Entities/Borrow.cs" />
+      <File FileName="Bookstore/DataContext.cs" Line="28" Column="40" />
+      <File FileName="Bookstore/Entities/Book.cs" Line="33" Column="9" />
+      <File FileName="Bookstore/Entities/Borrow.cs" Line="45" Column="41" />
       <File FileName="Bookstore/Entities/Client.cs" />
-      <File FileName="Bookstore/Entities/Event.cs" />
+      <File FileName="Bookstore/Entities/Event.cs" Line="10" Column="42" />
       <File FileName="Bookstore/Entities/Purchase.cs" />
-      <File FileName="Bookstore/Entities/Status.cs" />
+      <File FileName="Bookstore/Entities/Status.cs" Line="8" Column="40" />
       <File FileName="Serializer.UnitTest/packages.config" />
       <File FileName="Bookstore/IDataRepository.cs" />
       <File FileName="Bookstore/DataService.cs" />
       <File FileName="Bookstore/DataRepository.cs" />
-      <File FileName="Serializer.UnitTest/BinarySerializationTest.cs" />
+      <File FileName="Serializer.UnitTest/BinarySerializationTest.cs" Line="1" Column="1" />
       <File FileName="Serializer.UnitTest/FillerForTest.cs" />
-      <File FileName="Program/Program.cs" Line="15" Column="20" />
-      <File FileName="Serializer.UnitTest/JSONSerializationTest.cs" Line="11" Column="27" />
+      <File FileName="Program/Program.cs" Line="15" Column="41" />
+      <File FileName="Serializer.UnitTest/JSONSerializationTest.cs" Line="47" Column="83" />
+      <File FileName="Bookstore/ISerializable.cs" Line="1" Column="1" />
+      <File FileName="Serializer/ISerializer.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="t1" expanded="True">
-            <Node name="CustomSerializer" expanded="True" />
+            <Node name="Bookstore" expanded="True">
+              <Node name="Entities" expanded="True" />
+            </Node>
+            <Node name="CustomSerializer" expanded="True">
+              <Node name="Formatter.cs" selected="True" />
+            </Node>
             <Node name="Program" expanded="True">
               <Node name="Properties" expanded="True" />
-              <Node name="Program.cs" selected="True" />
             </Node>
             <Node name="Serializer.UnitTest" expanded="True" />
           </Node>
@@ -41,7 +47,7 @@
         <State name="__root__">
           <Node name="t1" expanded="True">
             <Node name="Serializer.UnitTest" expanded="True">
-              <Node name="Serializer" expanded="True">
+              <Node name="CustomSerializer" expanded="True">
                 <Node name="JSONSerializationTest" selected="True" />
               </Node>
             </Node>
