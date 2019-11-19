@@ -37,13 +37,7 @@ namespace Bookstore.Entities
         
         public Status(){}
 
-        public override bool Equals(object obj)
-        {
-            return obj is Status status &&
-                   Price == status.Price &&
-                   EqualityComparer<Book>.Default.Equals(Product, status.Product) &&
-                   NumberInStock == status.NumberInStock;
-        }
+
 
         public override int GetHashCode()
         {
@@ -74,6 +68,14 @@ namespace Bookstore.Entities
             this.Price = float.Parse(data[2]);
             this.Product = (Book) objDict[int.Parse(data[3])];
             this.NumberInStock = int.Parse(data[4]);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Status status &&
+                   Price == status.Price &&
+                   EqualityComparer<Book>.Default.Equals(Product, status.Product) &&
+                   NumberInStock == status.NumberInStock;
         }
     }
 
