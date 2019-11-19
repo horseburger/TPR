@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Bookstore.Objects
+namespace Bookstore.Entities
 {
     [Serializable]
     public class Status : ISerializable
@@ -34,6 +34,8 @@ namespace Bookstore.Objects
             this.NumberInStock = 0;
             this.Price = price;
         }
+        
+        public Status(){}
 
         public override bool Equals(object obj)
         {

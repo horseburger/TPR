@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Bookstore;
-using Bookstore.Objects;
+using Bookstore.Entities;
 
 namespace Serializer
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Bookstore.Objects;
+using Bookstore.Entities;
 using Newtonsoft.Json;
 
 namespace Bookstore

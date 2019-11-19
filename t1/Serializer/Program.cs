@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Bookstore;
-using Bookstore.Objects;
+using Bookstore.Entities;
 
 namespace Serializer
 {
@@ -21,13 +21,17 @@ namespace Serializer
             Console.WriteLine(json);
             serializer.SerializeItemJson(filename + ".json", repo.GetStorage());
             serializer.SerializeItemBinary(filename + ".data", repo.GetStorage());
+            serializer.Serialize(filename + ".custom", repo.GetStorage());
             DataContext c1 = serializer.DeserializeItemJson(json);
             DataContext c2 = serializer.DeserializeItemJsonFromFile(filename + ".json");
             DataContext c3 = serializer.DeserializeItemBinary(filename + ".data");
+            DataContext c4 = serializer.Deserialize(filename + ".custom");
+
 
             Console.WriteLine("Original repo and c1: " + CheckIfSame(repo.GetStorage(), c1));
             Console.WriteLine("Original repo and c2: " + CheckIfSame(repo.GetStorage(), c2));
             Console.WriteLine("Original repo and c3: " + CheckIfSame(repo.GetStorage(), c3));
+            Console.WriteLine("Original repo and c4: " + CheckIfSame(repo.GetStorage(), c4));
 
 
         }

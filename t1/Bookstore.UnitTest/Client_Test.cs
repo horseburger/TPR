@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Bookstore.Objects;
+using Bookstore.Entities;
 
 namespace Bookstore.UnitTest
 {

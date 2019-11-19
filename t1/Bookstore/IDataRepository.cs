@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Bookstore;
-using Bookstore.Objects;
+using Bookstore.Entities;
 
 
 public interface IDataRepository

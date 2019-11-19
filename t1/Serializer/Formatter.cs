@@ -1,25 +1,119 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Bookstore;
+using Bookstore.Entities;
 
 namespace Serializer
 {
     public partial class Serializer : ISerializer
     {
 
-        public SerializationBinder Binder { get; set; }
-        public StreamingContext Context { get; set; }
-        public ISurrogateSelector SurrogateSelector { get; set; }
+        private Dictionary<int, Object> _dict { get; set; }
+        private string _serializedData { get; set; }
+        public List<string[]> DeserializedData { get; set; }
+        private char separator = ',';
+        
         public void Serialize(string filename, DataContext context)
         {
-            throw new NotImplementedException();
+            ObjectIDGenerator idGen = new ObjectIDGenerator();
+            _serializedData = "";
+            foreach(Client c in context.Clients)
+            {
+                _serializedData += c.Serialization(idGen) + "\n";
+            }
+
+            foreach (KeyValuePair<int, Book> book in context.Books)
+            {
+                _serializedData += book.Value.Serialization(idGen) + book.Key + separator + "\n";
+            }
+
+            foreach (Event e in context.Events)
+            {
+                _serializedData += e.Serialization(idGen) + "\n";
+            }
+
+            foreach (Status s in context.Statuses)
+            {
+                _serializedData += s.Serialization(idGen) + "\n";
+            }
+            
+            FileStream fs = new FileStream(filename, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine(_serializedData);
+            sw.Close();
+            fs.Close();
+
         }
 
         public DataContext Deserialize(string filename)
         {
-            throw new NotImplementedException();
+            FileStream fs = new FileStream(filename, FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+            char[] sep = {separator};
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                DeserializedData.Add(line.Split(sep));
+            }
+            fs.Close();
+            sr.Close();
+
+            return ConstructObjects();
+        }
+
+        private DataContext ConstructObjects()
+        {
+            DataContext result = new DataContext();
+            string type = "";
+            foreach (string[] data in this.DeserializedData)
+            {
+                try
+                {
+                    type = data[0];
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    type = "";
+                    Console.WriteLine(e.Message);
+                }
+
+                switch (type)
+                {
+                    case "Bookstore.Entities.Client":
+                        Client c = new Client();
+                        c.Deserialization(data, _dict);
+                        result.Clients.Add(c);
+                        _dict.Add(int.Parse(data[1]), c);
+                        break;
+                    case "Bookstore.Entities.Book":
+                        Book b = new Book();
+                        b.Deserialization(data, _dict);
+                        result.Books.Add(int.Parse(data[data.Length - 2]), b);
+                        _dict.Add(int.Parse(data[1]), b);
+                        break;
+                    case "Bookstore.Entities.Status":
+                        Status s = new Status();
+                        s.Deserialization(data, _dict);
+                        result.Statuses.Add(s);
+                        _dict.Add(int.Parse(data[1]), s);
+                        break;
+                    case "Bookstore.Entities.Borrow":
+                        Borrow bor = new Borrow();
+                        bor.Deserialization(data, _dict);
+                        result.Events.Add(bor);
+                        break;
+                    case "Bookstore.Entities.Purchase":
+                        Purchase p = new Purchase();
+                        p.Deserialization(data, _dict);
+                        result.Events.Add(p);
+                        break;
+                }
+            }
+
+            return result;
         }
     }
 }

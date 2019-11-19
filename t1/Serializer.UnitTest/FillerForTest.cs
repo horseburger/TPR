@@ -1,6 +1,6 @@
 ﻿using System;
 using Bookstore;
-using Bookstore.Objects;
+using Bookstore.Entities;
 
 namespace Serializer.UnitTest
 {

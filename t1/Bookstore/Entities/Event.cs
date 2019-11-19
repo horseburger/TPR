@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Bookstore.Objects;
+using Bookstore.Entities;
 using Newtonsoft.Json;
 
 namespace Bookstore
 {
     [Serializable]
-    public abstract class Event
+    public abstract class Event : ISerializable
     {
         private Client who;
         private Status statusInfo;
@@ -49,6 +49,17 @@ namespace Bookstore
         public override string ToString()
         {
             return Who + ":" + StatusInfo + Date;
+        }
+        
+        public virtual string Serialization(ObjectIDGenerator idGen)
+        {
+            // this is just a mock method
+            return null;
+        }
+        
+        public virtual void Deserialization(string[] data, Dictionary<int, object> objDict)
+        {
+            // this is also a mock method
         }
         
     }

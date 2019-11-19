@@ -1,5 +1,5 @@
 using System;
-using Bookstore.Objects;
+using Bookstore.Entities;
 
 namespace Bookstore.UnitTest
 {

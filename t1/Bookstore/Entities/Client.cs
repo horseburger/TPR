@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Bookstore.Objects
+namespace Bookstore.Entities
 {
     [Serializable]
     public class Client : ISerializable
@@ -20,6 +20,8 @@ namespace Bookstore.Objects
             this.Name = name;
             this.Surname = surname;
         }
+        
+        public Client(){}
 
         public override bool Equals(object obj)
         {

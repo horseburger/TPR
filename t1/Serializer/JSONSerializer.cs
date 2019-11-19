@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using System.IO;
 using Bookstore;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Serializer
 {
@@ -10,11 +10,14 @@ namespace Serializer
         JsonSerializerSettings settings;
         public Serializer()
         {
-            settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All,
-                MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead,
-                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-
-            };
+            settings = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All,
+                    MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead,
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                };
+            this._dict = new Dictionary<int, object>();
+            this.DeserializedData = new List<string[]>();
         }
 
         public void SerializeItemJson(string filename, DataContext context)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Bookstore;
-using Bookstore.Objects;
+using Bookstore.Entities;
 using NUnit.Framework;
 
 namespace Serializer.UnitTest

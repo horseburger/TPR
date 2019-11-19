@@ -1,4 +1,4 @@
-﻿using Bookstore.Objects;
+﻿using Bookstore.Entities;
 using NUnit.Framework;
 
 namespace Bookstore.UnitTest

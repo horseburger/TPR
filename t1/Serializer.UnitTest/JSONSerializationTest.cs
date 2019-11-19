@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Bookstore;
-using Bookstore.Objects;
+using Bookstore.Entities;
 using System;
 using System.Runtime.Serialization;
 using System.IO;

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
-namespace Bookstore.Objects
+namespace Bookstore.Entities
 {
     [Serializable]
-    public class Borrow : Event, ISerializable
+    public class Borrow : Event
     {
 
         private DateTime _returnDate;
@@ -37,7 +37,7 @@ namespace Bookstore.Objects
             return base.ToString() + ":" + ReturnDate;
         }
 
-        public string Serialization(ObjectIDGenerator idGen)
+        override public string Serialization(ObjectIDGenerator idGen)
         {
             string data = "";
             data += idGen.GetId(this, out bool firstTime) + ",";
@@ -49,7 +49,7 @@ namespace Bookstore.Objects
             return data;
         }
 
-        public void Deserialization(string[] data, Dictionary<int, object> objDict)
+        override public void Deserialization(string[] data, Dictionary<int, object> objDict)
         {
             this.Who = (Client) objDict[int.Parse(data[2])];
             this.StatusInfo = (Status) objDict[int.Parse(data[3])];

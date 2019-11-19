@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace Bookstore.Objects
+namespace Bookstore.Entities
 {
     [Serializable]
     public class Book : ISerializable

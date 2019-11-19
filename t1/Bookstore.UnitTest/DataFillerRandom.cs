@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Bookstore.Objects;
+using Bookstore.Entities;
 
 namespace Bookstore.UnitTest
 {
