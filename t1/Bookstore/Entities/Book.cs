@@ -23,8 +23,11 @@ namespace Bookstore.Entities
             get => _id;
             set => _id = value;
         }
-
-        public string Info => info;
+        public string Info
+        {
+            get => info;
+            set => info = value;
+        }
 
         public Book(int id, string info)
         {
@@ -63,7 +66,7 @@ namespace Bookstore.Entities
             data += this.GetType().FullName + ",";
             data += idGen.GetId(this, out bool firstTime).ToString() + ",";
             data += this.Id.ToString() + ",";
-            data += this.info.ToString() + ",";
+            data += this.info + ",";
 
             return data;
         }

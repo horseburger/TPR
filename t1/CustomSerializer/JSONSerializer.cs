@@ -12,10 +12,9 @@ namespace CustomSerializer
         {
             settings = new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.All,
-                    MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead,
-                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                };
+                TypeNameHandling = TypeNameHandling.Auto,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            };
             this._dict = new Dictionary<int, object>();
             this.DeserializedData = new List<string[]>();
         }
