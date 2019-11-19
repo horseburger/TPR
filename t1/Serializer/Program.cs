@@ -61,16 +61,16 @@ namespace Serializer
     {
         public void Fill(DataContext context)
         {
-            Book book = new Book(0, "this is a book");
-            Status status = new Status(book, 39.99f);
-            Client client = new Client("Kamil", "Glik");
-            Event purchase = new Purchase(client, status, DateTime.Now, false);
+            Book book;
+            Status status;
+            Client client;
+            Event purchase;
             for (int i = 0; i < 10; i++)
             {
-                context.Books.Add(i, book);
-                context.Clients.Add(client);
-                context.Events.Add(purchase);
-                context.Statuses.Add(status);
+                book = new Book(i, "this is a book");
+                status = new Status(book, 10 + i);
+                client = new Client("Kamil" + i.ToString(), "Glik");
+                purchase = new Purchase(client, status, DateTime.Now.AddDays(i), false);
             }
         }
     }

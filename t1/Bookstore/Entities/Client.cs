@@ -44,7 +44,7 @@ namespace Bookstore.Entities
 
         public string Serialization(ObjectIDGenerator idGen)
         {
-            string data = "";
+            string data = this.GetType().FullName + ",";
             data += idGen.GetId(this, out bool firstTime) + ",";
             data += this.Name + ",";
             data += this.Surname + ",";
