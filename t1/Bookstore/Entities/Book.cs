@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Bookstore.Objects
 {
     [Serializable]
-    public class Book
+    public class Book : ISerializer
     {
         private int _id;
         private string info;
@@ -32,6 +33,10 @@ namespace Bookstore.Objects
             this.events = new List<Event>();
         }
 
+        public Book()
+        {
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Book book &&
@@ -50,6 +55,23 @@ namespace Bookstore.Objects
         public override string ToString()
         {
             return Id + ":" + Info;
+        }
+        
+        public string Serialization(ObjectIDGenerator idGen)
+        {
+            string data = "";
+            data += this.GetType().FullName + ",";
+            data += idGen.GetId(this, out bool firstTime).ToString() + ",";
+            data += this.Id.ToString() + ",";
+            data += this.info.ToString() + ",";
+
+            return data;
+        }
+
+        public void Deserialization(string[] data)
+        {
+            this._id = int.Parse(data[2]);
+            this.info = data[3];
         }
     }
 }

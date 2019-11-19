@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
@@ -26,8 +27,14 @@ namespace Serializer
 
             Console.WriteLine("Original repo and c1: " + CheckIfSame(repo.GetStorage(), c1));
             Console.WriteLine("Original repo and c2: " + CheckIfSame(repo.GetStorage(), c2));
-            Console.WriteLine("Original repo and c3: " + CheckIfSame(repo.GetStorage(), c3));
-            
+//            Console.WriteLine("Original repo and c3: " + CheckIfSame(repo.GetStorage(), c3));
+
+            string obj = repo.Storage.Books[0].Serialization(new ObjectIDGenerator());
+            char[] separator = {','};
+            Book book = new Book();
+            book.Deserialization(obj.Split(separator));
+            Console.WriteLine(book);
+
         }
 
         private static bool CheckIfSame(DataContext c1, DataContext c2)

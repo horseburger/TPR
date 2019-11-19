@@ -9,34 +9,13 @@ namespace Serializer
     {
         public object Deserialize(Stream serializationStream)
         {
-            if (serializationStream == null)
-            {
-                throw new ArgumentNullException(nameof(serializationStream));
-            }
-        
-            IFormatter formatter = new BinaryFormatter();
-            return formatter.Deserialize(serializationStream);
+            // todo 'implement deserialize' 
+            return null;
         }
 
         public void Serialize(Stream serializationStream, object graph)
         {
-            if (serializationStream == null)
-            {
-                throw new ArgumentNullException(nameof(serializationStream));
-            }
-
-            if (graph == null)
-            {
-                throw new ArgumentNullException(nameof(graph));
-            }
-
-            if (!serializationStream.CanWrite)
-            {
-                throw new ArgumentException("Stream can't write");
-            }
-        
-            IFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(serializationStream, graph);
+            //todo 'implement serialize''
         }
 
         public SerializationBinder Binder { get; set; }
