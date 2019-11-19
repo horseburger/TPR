@@ -71,6 +71,10 @@ namespace Serializer
                 status = new Status(book, 10 + i);
                 client = new Client("Kamil" + i.ToString(), "Glik");
                 purchase = new Purchase(client, status, DateTime.Now.AddDays(i), false);
+                context.Books.Add(book.Id, book);
+                context.Statuses.Add(status);
+                context.Clients.Add(client);
+                context.Events.Add(purchase);
             }
         }
     }

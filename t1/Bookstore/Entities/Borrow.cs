@@ -43,8 +43,8 @@ namespace Bookstore.Entities
             data += idGen.GetId(this, out bool firstTime) + ",";
             data += idGen.GetId(this.Who, out firstTime) + ",";
             data += idGen.GetId(this.StatusInfo, out firstTime) + ",";
-            data += this.Date.ToString("f") + ",";
-            data += this.ReturnDate.ToString("f") + ",";
+            data += this.Date.ToString("g") + ",";
+            data += this.ReturnDate.ToString("g") + ",";
 
             return data;
         }

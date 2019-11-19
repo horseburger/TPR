@@ -29,17 +29,18 @@ namespace Serializer
             {
                 _serializedData += book.Value.Serialization(idGen) + book.Key + separator + "\n";
             }
-
-            foreach (Event e in context.Events)
-            {
-                _serializedData += e.Serialization(idGen) + "\n";
-            }
-
+            
             foreach (Status s in context.Statuses)
             {
                 _serializedData += s.Serialization(idGen) + "\n";
             }
             
+            foreach (Event e in context.Events)
+            {
+                _serializedData += e.Serialization(idGen) + "\n";
+            }
+
+
             FileStream fs = new FileStream(filename, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(_serializedData);
