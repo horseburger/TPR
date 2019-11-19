@@ -35,6 +35,7 @@
     <Compile Include="JSONSerializationTest.cs" />
     <Compile Include="BinarySerializationTest.cs" />
     <Compile Include="FillerForTest.cs" />
+    <Compile Include="OwnSerializationTest .cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
