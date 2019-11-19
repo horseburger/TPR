@@ -67,6 +67,10 @@ namespace Bookstore.Entities
             data += idGen.GetId(this, out bool firstTime).ToString() + ",";
             data += this.Id.ToString() + ",";
             data += this.info + ",";
+            foreach (Event e in Events)
+            {
+                data += idGen.GetId(e, out firstTime) + ",";
+            }
 
             return data;
         }

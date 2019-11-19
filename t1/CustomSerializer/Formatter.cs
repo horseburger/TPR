@@ -80,6 +80,8 @@ namespace CustomSerializer
                     type = "";
                     Console.WriteLine(e.Message);
                 }
+                
+                Dictionary<int, int> eventIds = new Dictionary<int, int>();
 
                 switch (type)
                 {
@@ -92,6 +94,10 @@ namespace CustomSerializer
                     case "Bookstore.Entities.Book":
                         Book b = new Book();
                         b.Deserialization(data, _dict);
+                        for (int i = 4; i < data.Length - 1; i++)
+                        {
+                            eventIds.Add(int.Parse(data[i]), int.Parse(data[1]));
+                        }
                         result.Books.Add(int.Parse(data[data.Length - 2]), b);
                         _dict.Add(int.Parse(data[1]), b);
                         break;
@@ -105,11 +111,29 @@ namespace CustomSerializer
                         Borrow bor = new Borrow();
                         bor.Deserialization(data, _dict);
                         result.Events.Add(bor);
+                        _dict.Add(int.Parse(data[1]), bor);
+                        foreach (KeyValuePair<int, int> i  in eventIds)
+                        {
+                            if(i.Key == int.Parse(data[1]))
+                            {
+                                Book book1 = (Book) _dict[i.Value];
+                                book1.Events.Add(bor);
+                            }
+                        }
                         break;
                     case "Bookstore.Entities.Purchase":
                         Purchase p = new Purchase();
                         p.Deserialization(data, _dict);
                         result.Events.Add(p);
+                        _dict.Add(int.Parse(data[1]), p);
+                        foreach (KeyValuePair<int, int> i in eventIds)
+                        {
+                            if (i.Key == int.Parse(data[1]))
+                            {
+                                Book book2 = (Book) _dict[i.Value];
+                                book2.Events.Add(p);
+                            }
+                        }
                         break;
                 }
             }
