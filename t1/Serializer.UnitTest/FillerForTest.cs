@@ -2,7 +2,7 @@
 using Bookstore;
 using Bookstore.Entities;
 
-namespace Serializer.UnitTest
+namespace CustomSerializer.UnitTest
 {
     public class FillerForTest : IDataFiller
     {

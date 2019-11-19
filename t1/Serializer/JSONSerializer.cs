@@ -3,7 +3,7 @@ using System.IO;
 using Bookstore;
 using Newtonsoft.Json;
 
-namespace Serializer
+namespace CustomSerializer
 {
     public partial class Serializer
     {

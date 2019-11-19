@@ -1,6 +1,6 @@
 using Bookstore;
 
-namespace Serializer
+namespace CustomSerializer
 {
     public interface ISerializer
     {

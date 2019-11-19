@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using Bookstore;
 using Bookstore.Entities;
+using CustomSerializer;
 
-namespace Serializer
+namespace Program
 {
     internal class Program
     {

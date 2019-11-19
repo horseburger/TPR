@@ -6,7 +6,7 @@ using Bookstore;
 using Bookstore.Entities;
 using NUnit.Framework;
 
-namespace Serializer.UnitTest
+namespace CustomSerializer.UnitTest
 {
     public class BinarySerializationTest
     {

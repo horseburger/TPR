@@ -8,7 +8,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace Serializer.UnitTest
+namespace CustomSerializer.UnitTest
 {
     public class JSONSerializationTest
     {

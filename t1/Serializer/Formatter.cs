@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Bookstore;
 using Bookstore.Entities;
 
-namespace Serializer
+namespace CustomSerializer
 {
     public partial class Serializer : ISerializer
     {
