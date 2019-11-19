@@ -44,8 +44,8 @@
       <Project>{4AD1A685-5E9B-45B1-8F3E-DE290C28181B}</Project>
       <Name>Bookstore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Serializer\CustomSerializer.csproj">
-      <Project>{4830CE72-6F9B-4B37-89D8-5CCBAAD5FEE1}</Project>
+    <ProjectReference Include="..\CustomSerializer\CustomSerializer.csproj">
+      <Project>{4830ce72-6f9b-4b37-89d8-5ccbaad5fee1}</Project>
       <Name>CustomSerializer</Name>
     </ProjectReference>
   </ItemGroup>

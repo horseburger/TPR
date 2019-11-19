@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Bookstore.Entities
 {
     [Serializable]
-    public class Client : ISerializable
+    public class Client : ICustomSerializable
     {
         private string name;
         private string surname;

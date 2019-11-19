@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore", "Bookstore\Book
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore.UnitTest", "Bookstore.UnitTest\Bookstore.UnitTest.csproj", "{2B76845A-3E2B-487F-8561-B3C1DC0889BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSerializer", "Serializer\CustomSerializer.csproj", "{4830CE72-6F9B-4B37-89D8-5CCBAAD5FEE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSerializer", "CustomSerializer\CustomSerializer.csproj", "{4830CE72-6F9B-4B37-89D8-5CCBAAD5FEE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serializer.UnitTest", "Serializer.UnitTest\Serializer.UnitTest.csproj", "{9D9527FF-2BC3-4692-A475-0EF8E03CAD54}"
 EndProject

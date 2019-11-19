@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Bookstore.Entities
 {
     [Serializable]
-    public class Status : ISerializable
+    public class Status : ICustomSerializable
     {
         private float price;
         private Book product;

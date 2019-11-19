@@ -12,7 +12,7 @@ namespace Program
             string filename = "file";
             DataRepository repo = new DataRepository(new CustomFiller());
             repo.Api.Fill(repo.GetStorage());
-            Serializer serializer = new Serializer();
+            ISerializer serializer = new Serializer();
             string json = serializer.SerializeItemJson(repo.GetStorage());
             Console.WriteLine(json);
             serializer.SerializeItemJson(filename + ".json", repo.GetStorage());
