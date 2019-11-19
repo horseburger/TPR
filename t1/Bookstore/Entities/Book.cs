@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace Bookstore.Entities
 {
     [Serializable]
-    public class Book : ISerializable
+    public class Book : ICustomSerializable
     {
         private int _id;
         private string info;

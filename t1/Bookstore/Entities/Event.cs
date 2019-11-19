@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Bookstore
 {
     [Serializable]
-    public abstract class Event : ISerializable
+    public abstract class Event : ICustomSerializable
     {
         private Client who;
         private Status statusInfo;
