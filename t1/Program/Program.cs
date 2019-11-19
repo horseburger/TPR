@@ -17,6 +17,8 @@ namespace Program
             Console.WriteLine(json);
             serializer.SerializeItemJson(filename + ".json", repo.GetStorage());
             serializer.SerializeItemBinary(filename + ".data", repo.GetStorage());
+            repo = new DataRepository(new CustomFiller2());
+            repo.Api.Fill(repo.GetStorage());
             serializer.Serialize(filename + ".custom", repo.GetStorage());
             DataContext c1 = serializer.DeserializeItemJson(json);
             DataContext c2 = serializer.DeserializeItemJsonFromFile(filename + ".json");
@@ -71,6 +73,29 @@ namespace Program
                 context.Statuses.Add(status);
                 context.Clients.Add(client);
                 context.Events.Add(purchase);
+            }
+        }
+    }
+
+    public class CustomFiller2 : IDataFiller
+    {
+        public void Fill(DataContext context)
+        {
+            Book book = new Book(0, "this is a book");
+            Status status = new Status(book, 39.99f);
+            Client client = new Client("Kamil", "Glik");
+            Client client2 = new Client("Ireneusz", "Jeleń");
+            Event purchase = new Purchase(client, status, DateTime.Now, false);
+            Event borrow = new Borrow(client2, status, DateTime.Now, DateTime.Now.AddMonths(1));
+            book.Events.Add(purchase);
+            book.Events.Add(borrow);
+            for (int i = 0; i < 10; i++)
+            {
+                context.Books.Add(i, book);
+                context.Clients.Add(client);
+                context.Events.Add(purchase);
+                context.Events.Add(borrow);
+                context.Statuses.Add(status);
             }
         }
     }

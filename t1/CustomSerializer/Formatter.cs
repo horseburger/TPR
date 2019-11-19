@@ -69,6 +69,7 @@ namespace CustomSerializer
         {
             DataContext result = new DataContext();
             string type = "";
+            Dictionary<int, int> eventIds = new Dictionary<int, int>();
             foreach (string[] data in this.DeserializedData)
             {
                 try
@@ -81,7 +82,6 @@ namespace CustomSerializer
                     Console.WriteLine(e.Message);
                 }
                 
-                Dictionary<int, int> eventIds = new Dictionary<int, int>();
 
                 switch (type)
                 {
@@ -89,29 +89,48 @@ namespace CustomSerializer
                         Client c = new Client();
                         c.Deserialization(data, _dict);
                         result.Clients.Add(c);
-                        _dict.Add(int.Parse(data[1]), c);
+                        if (!_dict.ContainsKey(int.Parse(data[1])))
+                        {
+                            _dict.Add(int.Parse(data[1]), c);
+                        }
+
                         break;
                     case "Bookstore.Entities.Book":
                         Book b = new Book();
                         b.Deserialization(data, _dict);
                         for (int i = 4; i < data.Length - 1; i++)
                         {
-                            eventIds.Add(int.Parse(data[i]), int.Parse(data[1]));
+                            if (!eventIds.ContainsKey(b.Id))
+                            {
+                                eventIds.Add(int.Parse(data[i]), int.Parse(data[1]));
+                            }
                         }
                         result.Books.Add(int.Parse(data[data.Length - 2]), b);
-                        _dict.Add(int.Parse(data[1]), b);
+                        if (!_dict.ContainsKey(int.Parse(data[1])))
+                        {
+                            _dict.Add(int.Parse(data[1]), b);
+                        }
+
                         break;
                     case "Bookstore.Entities.Status":
                         Status s = new Status();
                         s.Deserialization(data, _dict);
                         result.Statuses.Add(s);
-                        _dict.Add(int.Parse(data[1]), s);
+                        if (!_dict.ContainsKey(int.Parse(data[1])))
+                        {
+                            _dict.Add(int.Parse(data[1]), s);
+                        }
+
                         break;
                     case "Bookstore.Entities.Borrow":
                         Borrow bor = new Borrow();
                         bor.Deserialization(data, _dict);
                         result.Events.Add(bor);
-                        _dict.Add(int.Parse(data[1]), bor);
+                        if (!_dict.ContainsKey(int.Parse(data[1])))
+                        {
+                            _dict.Add(int.Parse(data[1]), bor);
+                        }
+
                         foreach (KeyValuePair<int, int> i  in eventIds)
                         {
                             if(i.Key == int.Parse(data[1]))
@@ -125,7 +144,11 @@ namespace CustomSerializer
                         Purchase p = new Purchase();
                         p.Deserialization(data, _dict);
                         result.Events.Add(p);
-                        _dict.Add(int.Parse(data[1]), p);
+                        if (!_dict.ContainsKey(int.Parse(data[1])))
+                        {
+                            _dict.Add(int.Parse(data[1]), p);
+                        }
+
                         foreach (KeyValuePair<int, int> i in eventIds)
                         {
                             if (i.Key == int.Parse(data[1]))
