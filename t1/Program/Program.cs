@@ -17,8 +17,6 @@ namespace Program
             Console.WriteLine(json);
             serializer.SerializeItemJson(filename + ".json", repo.GetStorage());
             serializer.SerializeItemBinary(filename + ".data", repo.GetStorage());
-            repo = new DataRepository(new CustomFiller2());
-            repo.Api.Fill(repo.GetStorage());
             serializer.Serialize(filename + ".custom", repo.GetStorage());
             DataContext c1 = serializer.DeserializeItemJson(json);
             DataContext c2 = serializer.DeserializeItemJsonFromFile(filename + ".json");
@@ -93,6 +91,7 @@ namespace Program
             {
                 context.Books.Add(i, book);
                 context.Clients.Add(client);
+                context.Clients.Add(client2);
                 context.Events.Add(purchase);
                 context.Events.Add(borrow);
                 context.Statuses.Add(status);

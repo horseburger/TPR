@@ -11,7 +11,7 @@ namespace Bookstore.Entities
         private int _id;
         private string info;
 
-        private List<Event> events;
+        private List<Event> events = new List<Event>();
 
         public List<Event> Events
         {
@@ -33,7 +33,6 @@ namespace Bookstore.Entities
         {
             this.info = info;
             this._id = id;
-            this.events = new List<Event>();
         }
 
         public Book()

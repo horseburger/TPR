@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace Bookstore.Entities
@@ -45,7 +46,7 @@ namespace Bookstore.Entities
             data += idGen.GetId(this, out bool firstTime) + ",";
             data += idGen.GetId(this.Who, out firstTime) + ",";
             data += idGen.GetId(this.StatusInfo, out firstTime) + ",";
-            data += this.Date.ToString("g") + ",";
+            data += this.Date.ToString("O") + ",";
             data += this.Method_of_payment.ToString() + ",";
 
             return data;
@@ -55,7 +56,7 @@ namespace Bookstore.Entities
         {
             this.Who = (Client) objDict[int.Parse(data[2])];
             this.StatusInfo = (Status) objDict[int.Parse(data[3])];
-            this.Date = DateTime.Parse(data[4]);
+            this.Date = DateTime.Parse(data[4], null, DateTimeStyles.RoundtripKind);
             this.Method_of_payment = bool.Parse(data[5]);
         }
     }
