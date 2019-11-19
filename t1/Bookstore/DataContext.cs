@@ -8,7 +8,7 @@ using Bookstore.Objects;
 namespace Bookstore
 {
     [Serializable]
-    public class DataContext : ISerializable
+    public class DataContext : System.Runtime.Serialization.ISerializable
     {
         public List<Client> Clients { get; set; }
         public Dictionary<int, Book> Books { get; set;  }

@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Bookstore.Objects
 {
     [Serializable]
-    public class Purchase : Event
+    public class Purchase : Event, ISerializable
     {
         private bool _method_of_payment;
 
@@ -35,6 +37,26 @@ namespace Bookstore.Objects
         public override string ToString()
         {
             return base.ToString() + ":" + Method_of_payment;
+        }
+
+        public string Serialization(ObjectIDGenerator idGen)
+        {
+            string data = "";
+            data += idGen.GetId(this, out bool firstTime) + ",";
+            data += idGen.GetId(this.Who, out firstTime) + ",";
+            data += idGen.GetId(this.StatusInfo, out firstTime) + ",";
+            data += this.Date.ToString("f") + ",";
+            data += this.Method_of_payment.ToString() + ",";
+
+            return data;
+        }
+
+        public void Deserialization(string[] data, Dictionary<int, object> objDict)
+        {
+            this.Who = (Client) objDict[int.Parse(data[2])];
+            this.StatusInfo = (Status) objDict[int.Parse(data[3])];
+            this.Date = DateTime.Parse(data[4]);
+            this.Method_of_payment = bool.Parse(data[5]);
         }
     }
 }

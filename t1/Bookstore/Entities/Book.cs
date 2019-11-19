@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace Bookstore.Objects
 {
     [Serializable]
-    public class Book : ISerializer
+    public class Book : ISerializable
     {
         private int _id;
         private string info;
@@ -68,7 +68,7 @@ namespace Bookstore.Objects
             return data;
         }
 
-        public void Deserialization(string[] data)
+        public void Deserialization(string[] data, Dictionary<int, Object> objDict)
         {
             this._id = int.Parse(data[2]);
             this.info = data[3];

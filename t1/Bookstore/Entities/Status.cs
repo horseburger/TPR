@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Bookstore.Objects
 {
     [Serializable]
-    public class Status
+    public class Status : ISerializable
     {
         private float price;
         private Book product;
@@ -53,6 +54,23 @@ namespace Bookstore.Objects
         public override string ToString()
         {
             return Price + ":" + Product + ":" + NumberInStock;
+        }
+
+        public string Serialization(ObjectIDGenerator idGen)
+        {
+            string data = idGen.GetId(this, out bool firstTime) + ",";
+            data += Price.ToString() + ",";
+            data += idGen.GetId(this.Product, out firstTime) + ",";
+            data += this.NumberInStock.ToString() + ",";
+
+            return data;
+        }
+
+        public void Deserialization(string[] data, Dictionary<int, object> objDict)
+        {
+            this.Price = float.Parse(data[2]);
+            this.Product = (Book) objDict[int.Parse(data[3])];
+            this.NumberInStock = int.Parse(data[4]);
         }
     }
 

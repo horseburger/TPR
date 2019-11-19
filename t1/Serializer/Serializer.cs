@@ -13,14 +13,16 @@ namespace Serializer
         public void SerializeItemBinary(string filename, DataContext item)
         {
             FileStream file = new FileStream(filename, FileMode.Create);
-            Serialize(file, item);
+            IFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(file, item);
             file.Close();
         }
 
         public DataContext DeserializeItemBinary(string filename)
         {
             FileStream s = new FileStream(filename, FileMode.Open);
-            return (DataContext) Deserialize(s);
+            IFormatter formatter = new BinaryFormatter();
+            return (DataContext) formatter.Deserialize(s);
         }
     }
 }

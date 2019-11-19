@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Bookstore
 {
     [Serializable]
-    public class Event : ISerializer
+    public abstract class Event
     {
         private Client who;
         private Status statusInfo;
@@ -50,15 +50,6 @@ namespace Bookstore
         {
             return Who + ":" + StatusInfo + Date;
         }
-
-        public string Serialization(ObjectIDGenerator id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Deserialization(string[] data)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

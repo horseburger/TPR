@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Bookstore.Objects
 {
     [Serializable]
-    public class Client
+    public class Client : ISerializable
     {
         private string name;
         private string surname;
@@ -37,6 +38,22 @@ namespace Bookstore.Objects
         public override string ToString()
         {
             return Name + ":" + Surname;
+        }
+
+        public string Serialization(ObjectIDGenerator idGen)
+        {
+            string data = "";
+            data += idGen.GetId(this, out bool firstTime) + ",";
+            data += this.Name + ",";
+            data += this.Surname + ",";
+
+            return data;
+        }
+
+        public void Deserialization(string[] data, Dictionary<int, object> objDict)
+        {
+            this.Name = data[2];
+            this.Surname = data[3];
         }
     }
 }
