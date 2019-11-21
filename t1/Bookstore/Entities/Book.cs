@@ -62,13 +62,13 @@ namespace Bookstore.Entities
         public string Serialization(ObjectIDGenerator idGen)
         {
             string data = "";
-            data += this.GetType().FullName + ",";
-            data += idGen.GetId(this, out bool firstTime).ToString() + ",";
-            data += this.Id.ToString() + ",";
-            data += this.info + ",";
+            data += this.GetType().FullName + ";";
+            data += idGen.GetId(this, out bool firstTime).ToString() + ";";
+            data += this.Id.ToString() + ";";
+            data += this.info + ";";
             foreach (Event e in Events)
             {
-                data += idGen.GetId(e, out firstTime) + ",";
+                data += idGen.GetId(e, out firstTime) + ";";
             }
 
             return data;

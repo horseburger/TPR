@@ -14,7 +14,7 @@ namespace CustomSerializer
         private Dictionary<int, Object> _dict { get; set; }
         private string _serializedData { get; set; }
         public List<string[]> DeserializedData { get; set; }
-        private char separator = ',';
+        private char separator = ';';
         
         public void Serialize(string filename, DataContext context)
         {

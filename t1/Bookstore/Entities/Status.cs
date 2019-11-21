@@ -54,11 +54,11 @@ namespace Bookstore.Entities
 
         public string Serialization(ObjectIDGenerator idGen)
         {
-            string data = this.GetType().FullName + ",";
-            data += idGen.GetId(this, out bool firstTime) + ",";
-            data += Price.ToString() + ",";
-            data += idGen.GetId(this.Product, out firstTime) + ",";
-            data += this.NumberInStock.ToString() + ",";
+            string data = this.GetType().FullName + ";";
+            data += idGen.GetId(this, out bool firstTime) + ";";
+            data += Price.ToString(format: "F") + ";";
+            data += idGen.GetId(this.Product, out firstTime) + ";";
+            data += this.NumberInStock.ToString() + ";";
 
             return data;
         }

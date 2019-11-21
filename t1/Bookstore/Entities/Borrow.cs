@@ -40,12 +40,12 @@ namespace Bookstore.Entities
 
         override public string Serialization(ObjectIDGenerator idGen)
         {
-            string data = this.GetType().FullName + ",";
-            data += idGen.GetId(this, out bool firstTime) + ",";
-            data += idGen.GetId(this.Who, out firstTime) + ",";
-            data += idGen.GetId(this.StatusInfo, out firstTime) + ",";
-            data += this.Date.ToString("O") + ",";
-            data += this.ReturnDate.ToString("O") + ",";
+            string data = this.GetType().FullName + ";";
+            data += idGen.GetId(this, out bool firstTime) + ";";
+            data += idGen.GetId(this.Who, out firstTime) + ";";
+            data += idGen.GetId(this.StatusInfo, out firstTime) + ";";
+            data += this.Date.ToString("O") + ";";
+            data += this.ReturnDate.ToString("O") + ";";
 
             return data;
         }
