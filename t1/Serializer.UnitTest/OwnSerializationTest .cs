@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Bookstore;
 using NUnit.Framework;
@@ -7,42 +8,44 @@ namespace CustomSerializer.UnitTest
 {
     public class OwnSerializationTest
     {
-        private DataContext data;
-        private DataRepository repo;
         private Serializer serializer;
         const string filename = "OwnTest.json";
+        private ClassA A;
+        private ClassB B;
+        private ClassC C;
 
-//        [SetUp]
-//        public void Setup()
-//        {
-//            serializer = new Serializer();
-//            data = new DataContext();
-//            repo = new DataRepository(new FillerForTest());
-//            repo.Api.Fill(data);
-//            if (!File.Exists(filename))
-//            {
-//                File.Create(filename).Dispose();
-//            }
-//        }
-//
-//        [Test]
-//        public void SerializeAndDeserializeOwn()
-//        {
-//            //Serialize
-//            serializer.Serialize(filename, data);
-//            FileInfo info = new FileInfo(filename);
-//            Assert.IsTrue(info.Exists);
-//            Assert.IsTrue(info.Length >= 100, $"File length: {info.Length}");
-//
-//            //Deserialize
-//            DataContext dataFromOwnSerializer = serializer.Deserialize(filename);
-//            for(int i = 0; i < data.Events.Count; i++)
-//            {
-//                Console.WriteLine(i + ": " + data.Events[i] + " : " + dataFromOwnSerializer.Events[i]);
-//            }
-//            Assert.IsTrue(dataFromOwnSerializer.Equals(data));
-//
-//
-//        }
+        [SetUp]
+        public void Setup()
+        {
+            A = new ClassA(DateTime.Now, 0.99f, "Class A", null);
+            B = new ClassB(DateTime.Now, 1.20f, "Class B", null);
+            C = new ClassC(DateTime.Now, 9.99f, "Class C", null);
+            A.ClassBProp = B;
+            B.ClassCProp = C;
+            C.ClassAProp = A;
+            serializer = new Serializer();
+            if (!File.Exists(filename))
+            {
+                File.Create(filename).Dispose();
+            }
+        }
+
+        [Test]
+        public void ClassASerialAndDeserial()
+        {
+            serializer.Serialize(new FileStream(filename + "A", FileMode.Create), A);
+
+            ClassA newA = (ClassA) serializer.Deserialize(new FileStream(filename + "A", FileMode.Open));
+            Assert.IsTrue(newA.ClassBProp.ClassCProp.ClassAProp == newA);
+        }
+
+        [Test]
+        public void ClassBSerialAndDeserial()
+        {
+            serializer.Serialize(new FileStream(filename + "B", FileMode.Create), B);
+
+            ClassB newB = (ClassB) serializer.Deserialize(new FileStream(filename + "B", FileMode.Open));
+            Assert.IsTrue(newB.ClassCProp.ClassAProp.ClassBProp == newB);
+        }
     }
 }
