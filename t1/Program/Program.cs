@@ -18,7 +18,6 @@ namespace Program
             Console.WriteLine(json);
             serializer.SerializeItemJson(filename + ".json", repo.GetStorage());
             serializer.SerializeItemBinary(filename + ".data", repo.GetStorage());
-            serializer.Serialize(new FileStream(filename + ".custom", FileMode.Create), repo.Storage);
             DataContext c1 = serializer.DeserializeItemJson(json);
             DataContext c2 = serializer.DeserializeItemJsonFromFile(filename + ".json");
             DataContext c3 = serializer.DeserializeItemBinary(filename + ".data");

@@ -33,6 +33,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassA.cs" />
+    <Compile Include="ClassB.cs" />
+    <Compile Include="ClassC.cs" />
     <Compile Include="JSONSerializationTest.cs" />
     <Compile Include="BinarySerializationTest.cs" />
     <Compile Include="FillerForTest.cs" />
