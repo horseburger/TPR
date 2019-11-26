@@ -4,8 +4,6 @@ namespace CustomSerializer
 {
     public interface ISerializer
     {
-        void Serialize(string filename, DataContext context);
-        DataContext Deserialize(string filename);
         void SerializeItemBinary(string filename, DataContext item);
         DataContext DeserializeItemBinary(string filename);
         void SerializeItemJson(string filename, DataContext context);

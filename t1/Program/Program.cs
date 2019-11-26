@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Bookstore;
 using Bookstore.Entities;
 using CustomSerializer;
@@ -12,24 +13,20 @@ namespace Program
             string filename = "file";
             DataRepository repo = new DataRepository(new CustomFiller());
             repo.Api.Fill(repo.GetStorage());
-            ISerializer serializer = new Serializer();
+            Serializer serializer = new Serializer();
             string json = serializer.SerializeItemJson(repo.GetStorage());
             Console.WriteLine(json);
             serializer.SerializeItemJson(filename + ".json", repo.GetStorage());
             serializer.SerializeItemBinary(filename + ".data", repo.GetStorage());
-            serializer.Serialize(filename + ".custom", repo.GetStorage());
+            serializer.Serialize(new FileStream(filename + ".custom", FileMode.Create), repo.Storage);
             DataContext c1 = serializer.DeserializeItemJson(json);
             DataContext c2 = serializer.DeserializeItemJsonFromFile(filename + ".json");
             DataContext c3 = serializer.DeserializeItemBinary(filename + ".data");
-            DataContext c4 = serializer.Deserialize(filename + ".custom");
 
 
             Console.WriteLine("Original repo and c1: " + CheckIfSame(repo.GetStorage(), c1));
             Console.WriteLine("Original repo and c2: " + CheckIfSame(repo.GetStorage(), c2));
             Console.WriteLine("Original repo and c3: " + CheckIfSame(repo.GetStorage(), c3));
-            Console.WriteLine("Original repo and c4: " + CheckIfSame(repo.GetStorage(), c4));
-
-
         }
 
         private static bool CheckIfSame(DataContext c1, DataContext c2)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using Bookstore;
 using Newtonsoft.Json;
 
@@ -15,8 +16,8 @@ namespace CustomSerializer
                 TypeNameHandling = TypeNameHandling.Auto,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             };
-            this._dict = new Dictionary<int, object>();
-            this.DeserializedData = new List<string[]>();
+            Binder = new CustomBinder();
+            Context = new StreamingContext();
         }
 
         public void SerializeItemJson(string filename, DataContext context)

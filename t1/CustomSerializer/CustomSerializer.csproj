@@ -42,6 +42,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="CustomBinder.cs" />
         <Compile Include="Formatter.cs" />
         <Compile Include="ISerializer.cs" />
         <Compile Include="JSONSerializer.cs" />

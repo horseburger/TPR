@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Bookstore;
@@ -8,160 +10,213 @@ using Bookstore.Entities;
 
 namespace CustomSerializer
 {
-    public partial class Serializer : ISerializer
+    public partial class Serializer : Formatter, ISerializer
     {
-
-        private Dictionary<int, Object> _dict { get; set; }
-        private string _serializedData { get; set; }
-        public List<string[]> DeserializedData { get; set; }
-        private char separator = ';';
-        
-        public void Serialize(string filename, DataContext context)
+        protected override void WriteValueType(object obj, string name, Type memberType)
         {
-            ObjectIDGenerator idGen = new ObjectIDGenerator();
-            _serializedData = "";
-            foreach(Client c in context.Clients)
-            {
-                _serializedData += c.Serialization(idGen) + "\n";
-            }
-
-            foreach (KeyValuePair<int, Book> book in context.Books)
-            {
-                _serializedData += book.Value.Serialization(idGen) + book.Key + separator + "\n";
-            }
-            
-            foreach (Status s in context.Statuses)
-            {
-                _serializedData += s.Serialization(idGen) + "\n";
-            }
-            
-            foreach (Event e in context.Events)
-            {
-                _serializedData += e.Serialization(idGen) + "\n";
-            }
-
-
-            FileStream fs = new FileStream(filename, FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            sw.WriteLine(_serializedData);
-            sw.Close();
-            fs.Close();
-
+            throw new NotImplementedException();
         }
 
-        public DataContext Deserialize(string filename)
-        {
-            FileStream fs = new FileStream(filename, FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
-            char[] sep = {separator};
-            string line;
-            while ((line = sr.ReadLine()) != null)
-            {
-                DeserializedData.Add(line.Split(sep));
-            }
-            fs.Close();
-            sr.Close();
+        public override SerializationBinder Binder { get; set; }
+        public override StreamingContext Context { get; set; }
+        public override ISurrogateSelector SurrogateSelector { get; set; }
 
-            return ConstructObjects();
-        }
+        private string SerializedData = "";
+        private List<string> StreamWriteData = new List<string>();
+        private List<string> StreamReadData = new List<string>();
+        private Dictionary<string, object> _dict = new Dictionary<string, object>();
 
-        private DataContext ConstructObjects()
+        public override object Deserialize(Stream serializationStream)
         {
-            DataContext result = new DataContext();
-            string type = "";
-            Dictionary<int, int> eventIds = new Dictionary<int, int>();
-            foreach (string[] data in this.DeserializedData)
+            ReadStream(serializationStream);
+            foreach (string row in StreamReadData)
             {
-                try
-                {
-                    type = data[0];
-                }
-                catch (IndexOutOfRangeException e)
-                {
-                    type = "";
-                    Console.WriteLine(e.Message);
-                }
+                string[] split = row.Split(';');
+                Type objType = Binder.BindToType(split[0], split[1]);
+                SerializationInfo info = new SerializationInfo(objType, new FormatterConverter());
                 
-
-                switch (type)
-                {
-                    case "Bookstore.Entities.Client":
-                        Client c = new Client();
-                        c.Deserialization(data, _dict);
-                        result.Clients.Add(c);
-                        if (!_dict.ContainsKey(int.Parse(data[1])))
-                        {
-                            _dict.Add(int.Parse(data[1]), c);
-                        }
-
-                        break;
-                    case "Bookstore.Entities.Book":
-                        Book b = new Book();
-                        b.Deserialization(data, _dict);
-                        for (int i = 4; i < data.Length - 1; i++)
-                        {
-                            if (!eventIds.ContainsKey(b.Id))
-                            {
-                                eventIds.Add(int.Parse(data[i]), int.Parse(data[1]));
-                            }
-                        }
-                        result.Books.Add(int.Parse(data[data.Length - 2]), b);
-                        if (!_dict.ContainsKey(int.Parse(data[1])))
-                        {
-                            _dict.Add(int.Parse(data[1]), b);
-                        }
-
-                        break;
-                    case "Bookstore.Entities.Status":
-                        Status s = new Status();
-                        s.Deserialization(data, _dict);
-                        result.Statuses.Add(s);
-                        if (!_dict.ContainsKey(int.Parse(data[1])))
-                        {
-                            _dict.Add(int.Parse(data[1]), s);
-                        }
-
-                        break;
-                    case "Bookstore.Entities.Borrow":
-                        Borrow bor = new Borrow();
-                        bor.Deserialization(data, _dict);
-                        result.Events.Add(bor);
-                        if (!_dict.ContainsKey(int.Parse(data[1])))
-                        {
-                            _dict.Add(int.Parse(data[1]), bor);
-                        }
-
-                        foreach (KeyValuePair<int, int> i  in eventIds)
-                        {
-                            if(i.Key == int.Parse(data[1]))
-                            {
-                                Book book1 = (Book) _dict[i.Value];
-                                book1.Events.Add(bor);
-                            }
-                        }
-                        break;
-                    case "Bookstore.Entities.Purchase":
-                        Purchase p = new Purchase();
-                        p.Deserialization(data, _dict);
-                        result.Events.Add(p);
-                        if (!_dict.ContainsKey(int.Parse(data[1])))
-                        {
-                            _dict.Add(int.Parse(data[1]), p);
-                        }
-
-                        foreach (KeyValuePair<int, int> i in eventIds)
-                        {
-                            if (i.Key == int.Parse(data[1]))
-                            {
-                                Book book2 = (Book) _dict[i.Value];
-                                book2.Events.Add(p);
-                            }
-                        }
-                        break;
-                }
             }
 
-            return result;
+            return null;
+        }
+
+        public override void Serialize(Stream serializationStream, object graph)
+        {
+            if (graph is ISerializable data)
+            {
+                SerializationInfo serInfo = new SerializationInfo(graph.GetType(), new FormatterConverter());
+                Binder.BindToName(graph.GetType(), out string assemblyName, out string typeName);
+                SerializedData += assemblyName + ";" + typeName + ";" + this.m_idGenerator.GetId(graph, out bool firstTime);
+                data.GetObjectData(serInfo, Context);
+
+                foreach (SerializationEntry item in serInfo)
+                {
+                    WriteMember(item.Name, item.Value);
+                }
+
+                while (m_objectQueue.Count != 0)
+                {
+                    this.Serialize(null, this.m_objectQueue.Dequeue());
+                }
+
+                WriteStream(serializationStream);
+            }
+            else
+            {
+                throw new ArgumentException("Graph is not an ISerializable");
+            }
+            
+        }
+
+        private void WriteStream(Stream stream)
+        {
+            if (stream != null)
+            {
+                StreamWriter sw = new StreamWriter(stream);
+                foreach (string s in StreamWriteData)
+                {
+                    sw.Write(s);
+                }
+                sw.Close();
+            }
+        }
+
+        private void ReadStream(Stream stream)
+        {
+            if (stream != null)
+            {
+                StreamReader sr = new StreamReader(stream);
+                String s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    StreamReadData.Add(s);
+                }
+            }
+            ConstructReference();
+        }
+
+        private void ConstructReference()
+        {
+            foreach (string s in StreamReadData)
+            {
+                String[] split = s.Split(';');
+                _dict.Add(split[2], FormatterServices.GetSafeUninitializedObject(Binder.BindToType(split[0], split[1])));
+            }
+        }
+
+        private void SaveToStream()
+        {
+            StreamWriteData.Add(SerializedData + "\n");
+            SerializedData = "";
+        }
+        
+        protected override void WriteObjectRef(object obj, string name, Type memberType)
+        {
+            if (memberType.Equals(typeof(String)))
+            {
+                SerializedData += ";" + obj.GetType() + "=" + name + "=\"" + (String) obj + "\"";
+            }
+            else
+            {
+                WriteObject(obj, name, memberType);
+            }
+        }
+
+        protected void WriteObject(object obj, string name, Type type)
+        {
+            if (obj != null)
+            {
+                SerializedData += ";" + obj.GetType() + "=" + name + "=" +
+                                  this.m_idGenerator.GetId(obj, out bool firstTime).ToString();
+                if (firstTime)
+                {
+                    this.m_objectQueue.Enqueue(obj);
+                }
+            }
+            else
+            {
+                SerializedData += ";" + "null" + "=" + name + "=-1";
+            }
+        }
+
+        protected override void WriteDateTime(DateTime val, string name)
+        {
+            SerializedData += ";" + val.GetType() + "=" + name + "=" + val.ToUniversalTime().ToString("f");
+        }
+        
+        protected override void WriteArray(object obj, string name, Type memberType)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteBoolean(bool val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteByte(byte val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteChar(char val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteDecimal(decimal val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteDouble(double val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteInt16(short val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteInt32(int val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteInt64(long val, string name)
+        {
+            throw new NotImplementedException();
+        }
+        
+        protected override void WriteSByte(sbyte val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteSingle(float val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteTimeSpan(TimeSpan val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteUInt16(ushort val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteUInt32(uint val, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void WriteUInt64(ulong val, string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }
