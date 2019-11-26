@@ -44,6 +44,7 @@
     <ItemGroup>
         <Compile Include="CustomBinder.cs" />
         <Compile Include="Formatter.cs" />
+        <Compile Include="FormatterAdapter.cs" />
         <Compile Include="ISerializer.cs" />
         <Compile Include="JSONSerializer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

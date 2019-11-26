@@ -57,6 +57,7 @@ namespace CustomSerializer
                     WriteMember(item.Name, item.Value);
                 }
 
+                SaveToStream();
                 while (m_objectQueue.Count != 0)
                 {
                     this.Serialize(null, this.m_objectQueue.Dequeue());
@@ -77,7 +78,7 @@ namespace CustomSerializer
             {
                 string[] data = split[i].Split('=');
                 Type type = Binder.BindToType(split[0], data[0]);
-                if (type != null)
+                if (type == null)
                 {
                     if (!data[0].Equals("null"))
                     {
@@ -109,7 +110,7 @@ namespace CustomSerializer
                     info.AddValue(name, Single.Parse(val));
                     break;
                 case "System.DateTime":
-                    info.AddValue(name, DateTime.Parse(val));
+                    info.AddValue(name, DateTime.Parse(val, null, System.Globalization.DateTimeStyles.AssumeLocal));
                     break;
             }
         }
@@ -187,7 +188,7 @@ namespace CustomSerializer
 
         protected override void WriteDateTime(DateTime val, string name)
         {
-            _serializedData += ";" + val.GetType() + "=" + name + "=" + val.ToUniversalTime().ToString("f");
+            _serializedData += ";" + val.GetType() + "=" + name + "=" + val.ToUniversalTime().ToString("O");
         }
         
         protected override void WriteSingle(float val, string name)
@@ -195,75 +196,6 @@ namespace CustomSerializer
             _serializedData += ";" + val.GetType() + "=" + name + "=" +
                               val.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
         }
-        
-        protected override void WriteArray(object obj, string name, Type memberType)
-        {
-            throw new NotImplementedException();
-        }
 
-        protected override void WriteBoolean(bool val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteByte(byte val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteChar(char val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteDecimal(decimal val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteDouble(double val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteInt16(short val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteInt32(int val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteInt64(long val, string name)
-        {
-            throw new NotImplementedException();
-        }
-        
-        protected override void WriteSByte(sbyte val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteTimeSpan(TimeSpan val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteUInt16(ushort val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteUInt32(uint val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteUInt64(ulong val, string name)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
