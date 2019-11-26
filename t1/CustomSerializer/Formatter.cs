@@ -21,7 +21,7 @@ namespace CustomSerializer
         public override StreamingContext Context { get; set; }
         public override ISurrogateSelector SurrogateSelector { get; set; }
 
-        private string SerializedData = "";
+        private string _serializedData = "";
         private List<string> StreamWriteData = new List<string>();
         private List<string> StreamReadData = new List<string>();
         private Dictionary<string, object> _dict = new Dictionary<string, object>();
@@ -33,11 +33,14 @@ namespace CustomSerializer
             {
                 string[] split = row.Split(';');
                 Type objType = Binder.BindToType(split[0], split[1]);
-                SerializationInfo info = new SerializationInfo(objType, new FormatterConverter());
-                
+                SerializationInfo info = new SerializationInfo(objType ?? throw new NullReferenceException("objType is null"), new FormatterConverter());
+                GetSerializationInfo(info, split);
+                Type[] constructorTypes = {info.GetType(), Context.GetType()};
+                object[] constructorParams = {info, Context};
+                _dict[split[2]].GetType().GetConstructor(constructorTypes).Invoke(_dict[split[2]], constructorParams);
             }
 
-            return null;
+            return _dict["1"];
         }
 
         public override void Serialize(Stream serializationStream, object graph)
@@ -46,7 +49,7 @@ namespace CustomSerializer
             {
                 SerializationInfo serInfo = new SerializationInfo(graph.GetType(), new FormatterConverter());
                 Binder.BindToName(graph.GetType(), out string assemblyName, out string typeName);
-                SerializedData += assemblyName + ";" + typeName + ";" + this.m_idGenerator.GetId(graph, out bool firstTime);
+                _serializedData += assemblyName + ";" + typeName + ";" + this.m_idGenerator.GetId(graph, out bool firstTime);
                 data.GetObjectData(serInfo, Context);
 
                 foreach (SerializationEntry item in serInfo)
@@ -66,6 +69,49 @@ namespace CustomSerializer
                 throw new ArgumentException("Graph is not an ISerializable");
             }
             
+        }
+
+        private void GetSerializationInfo(SerializationInfo info, string[] split)
+        {
+            for (int i = 3; i < split.Length; i++)
+            {
+                string[] data = split[i].Split('=');
+                Type type = Binder.BindToType(split[0], data[0]);
+                if (type != null)
+                {
+                    if (!data[0].Equals("null"))
+                    {
+                        SaveToSerializationInfo(info, Type.GetType(data[0]), data[1], data[2]);
+                    }
+                    else
+                    {
+                        info.AddValue(data[1], null);
+                    }
+                }
+                else
+                {
+                    if (!data[2].Equals("-1"))
+                    {
+                        info.AddValue(data[1], _dict[data[2]], type);
+                    }
+                }
+            }
+        }
+
+        private void SaveToSerializationInfo(SerializationInfo info, Type type, string name, string val)
+        {
+            switch (type.ToString())
+            {
+                case "System.String":
+                    info.AddValue(name, val);
+                    break;
+                case "System.Single":
+                    info.AddValue(name, Single.Parse(val));
+                    break;
+                case "System.DateTime":
+                    info.AddValue(name, DateTime.Parse(val));
+                    break;
+            }
         }
 
         private void WriteStream(Stream stream)
@@ -106,15 +152,15 @@ namespace CustomSerializer
 
         private void SaveToStream()
         {
-            StreamWriteData.Add(SerializedData + "\n");
-            SerializedData = "";
+            StreamWriteData.Add(_serializedData + "\n");
+            _serializedData = "";
         }
         
         protected override void WriteObjectRef(object obj, string name, Type memberType)
         {
             if (memberType.Equals(typeof(String)))
             {
-                SerializedData += ";" + obj.GetType() + "=" + name + "=\"" + (String) obj + "\"";
+                _serializedData += ";" + obj.GetType() + "=" + name + "=\"" + (String) obj + "\"";
             }
             else
             {
@@ -126,7 +172,7 @@ namespace CustomSerializer
         {
             if (obj != null)
             {
-                SerializedData += ";" + obj.GetType() + "=" + name + "=" +
+                _serializedData += ";" + obj.GetType() + "=" + name + "=" +
                                   this.m_idGenerator.GetId(obj, out bool firstTime).ToString();
                 if (firstTime)
                 {
@@ -135,13 +181,19 @@ namespace CustomSerializer
             }
             else
             {
-                SerializedData += ";" + "null" + "=" + name + "=-1";
+                _serializedData += ";" + "null" + "=" + name + "=-1";
             }
         }
 
         protected override void WriteDateTime(DateTime val, string name)
         {
-            SerializedData += ";" + val.GetType() + "=" + name + "=" + val.ToUniversalTime().ToString("f");
+            _serializedData += ";" + val.GetType() + "=" + name + "=" + val.ToUniversalTime().ToString("f");
+        }
+        
+        protected override void WriteSingle(float val, string name)
+        {
+            _serializedData += ";" + val.GetType() + "=" + name + "=" +
+                              val.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
         }
         
         protected override void WriteArray(object obj, string name, Type memberType)
@@ -190,11 +242,6 @@ namespace CustomSerializer
         }
         
         protected override void WriteSByte(sbyte val, string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void WriteSingle(float val, string name)
         {
             throw new NotImplementedException();
         }
