@@ -4,7 +4,11 @@ namespace CustomSerializer
 {
     public partial class Serializer
     {
-                
+        protected override void WriteValueType(object obj, string name, Type memberType)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void WriteArray(object obj, string name, Type memberType)
         {
             throw new NotImplementedException();

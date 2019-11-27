@@ -12,11 +12,6 @@ namespace CustomSerializer
 {
     public partial class Serializer : Formatter, ISerializer
     {
-        protected override void WriteValueType(object obj, string name, Type memberType)
-        {
-            throw new NotImplementedException();
-        }
-
         public override SerializationBinder Binder { get; set; }
         public override StreamingContext Context { get; set; }
         public override ISurrogateSelector SurrogateSelector { get; set; }
