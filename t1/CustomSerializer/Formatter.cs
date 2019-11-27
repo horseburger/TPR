@@ -104,7 +104,7 @@ namespace CustomSerializer
             switch (type.ToString())
             {
                 case "System.String":
-                    info.AddValue(name, val);
+                    info.AddValue(name, val.Trim('"'));
                     break;
                 case "System.Single":
                     info.AddValue(name, Single.Parse(val));
