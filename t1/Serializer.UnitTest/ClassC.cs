@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace CustomSerializer.UnitTest
@@ -34,13 +35,27 @@ namespace CustomSerializer.UnitTest
             info.AddValue("ClassAProp", ClassAProp, typeof(ClassA));
         }
 
+        public string toString()
+        {
+            return "" + Date.ToShortDateString() + Float + String + "";
+        }
+
         public override bool Equals(object obj)
         {
             return obj is ClassC c &&
-                   Date.Equals(c.Date) &&
-                   Float.Equals(c.Float) &&
-                   String.Equals(c.String) &&
-                   ClassAProp == c.ClassAProp;
+                   Date == c.Date &&
+                   Float == c.Float &&
+                   String == c.String;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -339614575;
+            hashCode = hashCode * -1521134295 + Date.GetHashCode();
+            hashCode = hashCode * -1521134295 + Float.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(String);
+            
+            return hashCode;
         }
     }
 }

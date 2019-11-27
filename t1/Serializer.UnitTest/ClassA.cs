@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace CustomSerializer.UnitTest
@@ -19,15 +20,7 @@ namespace CustomSerializer.UnitTest
             ClassBProp = classBProp;
         }
 
-        public override bool Equals(object obj)
-        {
-            return obj is ClassA a &&
-                   Date.Equals(a.Date) &&
-                   Float.Equals(a.Float) &&
-                   String.Equals(a.String) &&
-                   ClassBProp == a.ClassBProp;
 
-        }
 
         public ClassA(SerializationInfo info, StreamingContext context)
         {
@@ -43,6 +36,30 @@ namespace CustomSerializer.UnitTest
             info.AddValue("FloatProp", Float);
             info.AddValue("StringProp", String);
             info.AddValue("ClassBProp", ClassBProp, typeof(ClassB));
+        }
+
+        public string toString()
+        {
+            return "" + Date.ToShortDateString() + Float + String + ClassBProp.toString() + "";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ClassA a &&
+                   Date == a.Date &&
+                   Float == a.Float &&
+                   String == a.String &&
+                   EqualityComparer<ClassB>.Default.Equals(ClassBProp, a.ClassBProp);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -644236024;
+            hashCode = hashCode * -1521134295 + Date.GetHashCode();
+            hashCode = hashCode * -1521134295 + Float.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(String);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ClassB>.Default.GetHashCode(ClassBProp);
+            return hashCode;
         }
     }
 }
