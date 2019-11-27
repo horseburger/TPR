@@ -9,7 +9,7 @@ namespace CustomSerializer.UnitTest
     public class OwnSerializationTest
     {
         private Serializer serializer;
-        const string filename = "OwnTest.json";
+        const string filename = "OwnTest";
         private ClassA A;
         private ClassB B;
         private ClassC C;
@@ -17,7 +17,7 @@ namespace CustomSerializer.UnitTest
         [SetUp]
         public void Setup()
         {
-            A = new ClassA(DateTime.Now, 0.99f, "Class A", null);
+            A = new ClassA(DateTime.Now, 0.99f, "Class\" A", null);
             B = new ClassB(DateTime.Now, 1.20f, "Class B", null);
             C = new ClassC(DateTime.Now, 9.99f, "Class C", null);
             A.ClassBProp = B;
@@ -36,6 +36,7 @@ namespace CustomSerializer.UnitTest
             serializer.Serialize(new FileStream(filename + "A", FileMode.Create), A);
 
             ClassA newA = (ClassA) serializer.Deserialize(new FileStream(filename + "A", FileMode.Open));
+            Assert.IsTrue(newA.Equals(A));
             Assert.IsTrue(newA.ClassBProp.ClassCProp.ClassAProp == newA);
         }
 
