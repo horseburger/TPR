@@ -44,9 +44,17 @@ namespace CustomSerializer.UnitTest
         public void ClassBSerialAndDeserial()
         {
             serializer.Serialize(new FileStream(filename + "B", FileMode.Create), B);
-
             ClassB newB = (ClassB) serializer.Deserialize(new FileStream(filename + "B", FileMode.Open));
+            Assert.IsTrue(newB.Equals(B));
             Assert.IsTrue(newB.ClassCProp.ClassAProp.ClassBProp == newB);
+        }
+        [Test]
+        public void ClassCSerialAndDeserial()
+        {
+            serializer.Serialize(new FileStream(filename + "C", FileMode.Create), C);
+            ClassC newC = (ClassC)serializer.Deserialize(new FileStream(filename + "C", FileMode.Open));
+            Assert.IsTrue(newC.Equals(C));
+            Assert.IsTrue(newC.ClassAProp.ClassBProp.ClassCProp == newC);
         }
     }
 }
