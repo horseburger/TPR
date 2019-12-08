@@ -86,7 +86,7 @@ namespace LINQProgram
             ProductionDataContext productionDataContext = new ProductionDataContext();
             return (int)(
                 from product in productionDataContext.Product
-                where product.ProductSubcategory.ProductCategory.Name.Equals(category)
+                where product.ProductSubcategory.ProductCategory.Name.Equals(category.Name)
                 select product.StandardCost
                 ).ToList().Sum();
         }

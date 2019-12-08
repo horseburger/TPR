@@ -44,5 +44,16 @@ namespace LINQ.Properties {
                 return ((string)(this["AdventureWorks2014ConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-KUFM7MS\\SQLEXPRESS;Initial Catalog=AdventureWorks2014;Integra" +
+            "ted Security=True")]
+        public string AdventureWorks2014ConnectionString2 {
+            get {
+                return ((string)(this["AdventureWorks2014ConnectionString2"]));
+            }
+        }
     }
 }
