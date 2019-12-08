@@ -11,7 +11,7 @@ namespace Tests
 {
 
     [TestClass]
-    class ExtensionMethodsTest
+    public class ExtensionMethodsTest
     {
         [TestMethod]
         public void GetProductsWithoutCategory()
@@ -20,7 +20,10 @@ namespace Tests
             List<Product> products = productionDataContext.GetTable<Product>().ToList();
             List<Product> ImperativeResult = products.ImperativeGetProductsWithoutCategory();
             List<Product> DeclarativeResult = products.DeclarativeGetProductsWithoutCategory();
-            Assert.AreEqual(ImperativeResult, DeclarativeResult);
+            Assert.AreEqual(ImperativeResult.Count, DeclarativeResult.Count);
+            Assert.AreEqual(ImperativeResult.Count, 209);
         }
+
     }
+
 }
