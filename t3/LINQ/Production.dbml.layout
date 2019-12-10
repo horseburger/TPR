@@ -282,7 +282,7 @@
         <classShapeMoniker Id="06c80219-5c65-4ced-9460-b263a6f3d186" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14.25 : 9.845400390625); (14.5416691666667 : 9.845400390625 : JumpStart); (14.7083358333333 : 9.845400390625 : JumpEnd); (15 : 9.845400390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(14.25 : 9.845400390625); (15 : 9.845400390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ProductionDataContext/WorkOrder/WorkOrder_WorkOrderRouting" />
       <nodes>
         <classShapeMoniker Id="06c80219-5c65-4ced-9460-b263a6f3d186" />
@@ -342,10 +342,10 @@
         <classShapeMoniker Id="9ac53572-f5f0-4536-b3fc-fd9ed82fed06" />
       </nodes>
     </associationConnector>
-    <classShape Id="dc5c7798-c3c5-4b8c-9257-51dcd3f294b4" absoluteBounds="3.25, 5, 2, 2.5401025390625">
+    <classShape Id="e4cbd14c-4da6-42af-b46c-9f8b5dd9ba31" absoluteBounds="6.5, 3.625, 2, 2.5401025390625">
       <DataClassMoniker Name="/ProductionDataContext/TransactionHistoryArchive" />
       <nestedChildShapes>
-        <elementListCompartment Id="528dcaf4-c4b0-44bf-bb0f-faf5ee1adda3" absoluteBounds="3.265, 5.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2dbff2c0-3b5d-450f-b8af-40c2f0cc97bd" absoluteBounds="6.515, 4.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

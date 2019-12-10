@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LINQ;
+using System.Data.Linq.SqlClient;
 
 namespace LINQProgram
 {
@@ -19,7 +21,7 @@ namespace LINQProgram
         {
             return (
                 from product in products
-                where product.Name.Equals(name)
+                where product.Name.Contains(name)
                 select product
                 ).ToList();
         }
@@ -28,7 +30,7 @@ namespace LINQProgram
         {
             return (int)(
                 from product in products
-                where product.ProductSubcategory.ProductCategory.Name.Equals(category.Name)
+                where product.ProductSubcategory != null && product.ProductSubcategory.ProductCategory.Name.Contains(category.Name)
                 select product.StandardCost).ToList().Sum();
         }
 
@@ -36,7 +38,7 @@ namespace LINQProgram
         {
             return (
                 from product in products
-                where product.ProductSubcategory.ProductCategory.Name.Equals(category)
+                where product.ProductSubcategory != null && product.ProductSubcategory.ProductCategory.Name.Contains(category)
                 select product).Take(n).ToList();
         }
     }

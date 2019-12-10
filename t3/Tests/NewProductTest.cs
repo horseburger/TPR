@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LINQProgram;
 using System.Collections.Generic;
+using LINQ;
 
 namespace Tests
 {
@@ -19,13 +20,16 @@ namespace Tests
         [TestMethod]
         public void GetStandardCostFromCategory()
         {
-            NewProductContext context = new NewProductContext(new ProductionDataContext());
-            ProductCategory category = new ProductCategory();
-            category.Name = "Components";
-            int result = context.GetStandardCostFromCategory(category);
-            Assert.AreEqual(result, 35930);
+            using (ProductionDataContext pContext = new ProductionDataContext())
+            {
+                NewProductContext context = new NewProductContext(pContext);
+                ProductCategory category = new ProductCategory();
+                category.Name = "Components";
+                int result = context.GetStandardCostFromCategory(category);
+                Assert.AreEqual(result, 35930);
+            }
         }
-        
+
         [TestMethod]
         public void GetNProductsByCateogry()
         {
