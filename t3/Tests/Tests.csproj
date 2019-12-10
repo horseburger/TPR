@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtensionMethodsTest.cs" />
+    <Compile Include="NewProductTest.cs" />
     <Compile Include="OperationsMethodTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

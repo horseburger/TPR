@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LINQ
+namespace LINQProgram
 {
-    class NewProductContext
+    public class NewProductContext
     {
         public List<NewProduct> products { get; private set; }
 

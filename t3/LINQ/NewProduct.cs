@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LINQ
+namespace LINQProgram
 {
-    class NewProduct : Product
+    public class NewProduct : Product
     {
         public string diff { get; set; }
 

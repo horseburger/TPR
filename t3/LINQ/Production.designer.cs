@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LINQ
+namespace LINQProgram
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
