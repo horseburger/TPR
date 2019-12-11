@@ -16,39 +16,43 @@ namespace Tests
         [TestMethod]
         public void GetProductsWithoutCategory()
         {
-            ProductionDataContext productionDataContext = new ProductionDataContext();
-            List<Product> products = productionDataContext.GetTable<Product>().ToList();
-            List<Product> ImperativeResult = products.ImperativeGetProductsWithoutCategory();
-            List<Product> DeclarativeResult = products.DeclarativeGetProductsWithoutCategory();
-            Assert.AreEqual(ImperativeResult.Count, DeclarativeResult.Count);
-            Assert.AreEqual(ImperativeResult.Count, 209);
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<Product> products = productionDataContext.GetTable<Product>().ToList();
+                List<Product> ImperativeResult = products.ImperativeGetProductsWithoutCategory();
+                List<Product> DeclarativeResult = products.DeclarativeGetProductsWithoutCategory();
+                Assert.AreEqual(ImperativeResult.Count, DeclarativeResult.Count);
+                Assert.AreEqual(ImperativeResult.Count, 209);
+            }
         }
 
         [TestMethod]
         public void GetProductsPagination()
         {
-            ProductionDataContext productionDataContext = new ProductionDataContext();
-            List<Product> products = productionDataContext.GetTable<Product>().ToList();
-            List<Product> ImperativeResult = products.ImperativeGetProductsPagination(2, 5);
-            List<Product> DeclarativeResult = products.DeclarativeGetProductsPagination(2, 5);
-            Assert.AreEqual(ImperativeResult.Count, DeclarativeResult.Count);
-            Assert.AreEqual(ImperativeResult.Count, 5);
-            Assert.IsTrue(products.Contains(DeclarativeResult[0]));
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<Product> products = productionDataContext.GetTable<Product>().ToList();
+                List<Product> ImperativeResult = products.ImperativeGetProductsPagination(2, 5);
+                List<Product> DeclarativeResult = products.DeclarativeGetProductsPagination(2, 5);
+                Assert.AreEqual(ImperativeResult.Count, DeclarativeResult.Count);
+                Assert.AreEqual(ImperativeResult.Count, 5);
+                Assert.IsTrue(products.Contains(DeclarativeResult[0]));
+            }
         }
 
         [TestMethod]
         public void GetProductAndVendor()
         {
-            ProductionDataContext productionDataContext = new ProductionDataContext();
-            List<Product> products = productionDataContext.GetTable<Product>().ToList();
-            List<ProductVendor> vendors = productionDataContext.GetTable<ProductVendor>().ToList();
-            string result = products.DeclarativeGetProductAndVendor(vendors);
-            string result2 = products.ImperativeGetProductAndVendor(vendors);
-            Assert.AreEqual(result, result2);
-            Assert.AreEqual(result.Length, 17058);
-            Assert.IsTrue(result.Contains("Hex Nut 14-Norstan Bike Hut"));
+            using(ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<Product> products = productionDataContext.GetTable<Product>().ToList();
+                List<ProductVendor> vendors = productionDataContext.GetTable<ProductVendor>().ToList();
+                string result = products.DeclarativeGetProductAndVendor(vendors);
+                string result2 = products.ImperativeGetProductAndVendor(vendors);
+                Assert.AreEqual(result, result2);
+                Assert.AreEqual(result.Length, 17058);
+                Assert.IsTrue(result.Contains("Hex Nut 14-Norstan Bike Hut"));
+            }
         }
-
     }
-
 }

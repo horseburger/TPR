@@ -12,9 +12,12 @@ namespace Tests
         [TestMethod]
         public void GetProductsByName()
         {
-            NewProductContext context = new NewProductContext(new ProductionDataContext());
-            List<NewProduct> result = context.GetProductsByName("Crankarm");
-            Assert.AreEqual(result.Count, 3);
+            using (ProductionDataContext pContext = new ProductionDataContext())
+            {
+                NewProductContext context = new NewProductContext(pContext);
+                List<NewProduct> result = context.GetProductsByName("Crankarm");
+                Assert.AreEqual(result.Count, 3);
+            }
         }
 
         [TestMethod]
@@ -33,9 +36,12 @@ namespace Tests
         [TestMethod]
         public void GetNProductsByCateogry()
         {
-            NewProductContext context = new NewProductContext(new ProductionDataContext());
-            List<NewProduct> result = context.GetNProductsByCategory("Components", 2);
-            Assert.AreEqual(result.Count, 2);
+            using (ProductionDataContext pContext = new ProductionDataContext())
+            {
+                NewProductContext context = new NewProductContext(p);
+                List<NewProduct> result = context.GetNProductsByCategory("Components", 2);
+                Assert.AreEqual(result.Count, 2);
+            }
         }
     }
 }
