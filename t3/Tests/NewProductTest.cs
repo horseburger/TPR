@@ -38,7 +38,7 @@ namespace Tests
         {
             using (ProductionDataContext pContext = new ProductionDataContext())
             {
-                NewProductContext context = new NewProductContext(p);
+                NewProductContext context = new NewProductContext(pContext);
                 List<NewProduct> result = context.GetNProductsByCategory("Components", 2);
                 Assert.AreEqual(result.Count, 2);
             }
