@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "LINQ\Database.c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseTests", "Tests\DataBaseTests.csproj", "{B5C9F76C-8388-4E65-A45B-BEC6356DBE07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{1B1A4069-7B92-408C-86F2-CE7C7AD809FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTest", "ServiceUnitTest\ServiceUnitTest.csproj", "{81174222-C7CD-4C04-930C-9E2E85D7269D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B5C9F76C-8388-4E65-A45B-BEC6356DBE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5C9F76C-8388-4E65-A45B-BEC6356DBE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5C9F76C-8388-4E65-A45B-BEC6356DBE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B1A4069-7B92-408C-86F2-CE7C7AD809FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B1A4069-7B92-408C-86F2-CE7C7AD809FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B1A4069-7B92-408C-86F2-CE7C7AD809FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B1A4069-7B92-408C-86F2-CE7C7AD809FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81174222-C7CD-4C04-930C-9E2E85D7269D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81174222-C7CD-4C04-930C-9E2E85D7269D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81174222-C7CD-4C04-930C-9E2E85D7269D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81174222-C7CD-4C04-930C-9E2E85D7269D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
