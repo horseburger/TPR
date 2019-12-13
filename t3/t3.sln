@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQProgram", "LINQ\LINQProgram.csproj", "{11563092-F1A7-4DE6-AA69-CE54DF6D9F08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "LINQ\Database.csproj", "{11563092-F1A7-4DE6-AA69-CE54DF6D9F08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B5C9F76C-8388-4E65-A45B-BEC6356DBE07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseTests", "Tests\DataBaseTests.csproj", "{B5C9F76C-8388-4E65-A45B-BEC6356DBE07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
