@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTest", "ServiceU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-View", "WPF\WPF-View.csproj", "{1BCA3D51-6F1D-4FD8-BA79-6C39F2F8149D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-ViewModel", "WPF-ViewModel\WPF-ViewModel.csproj", "{834F7C50-78B6-4B4A-A9AD-89F3561C4015}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1BCA3D51-6F1D-4FD8-BA79-6C39F2F8149D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BCA3D51-6F1D-4FD8-BA79-6C39F2F8149D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BCA3D51-6F1D-4FD8-BA79-6C39F2F8149D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{834F7C50-78B6-4B4A-A9AD-89F3561C4015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{834F7C50-78B6-4B4A-A9AD-89F3561C4015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{834F7C50-78B6-4B4A-A9AD-89F3561C4015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{834F7C50-78B6-4B4A-A9AD-89F3561C4015}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

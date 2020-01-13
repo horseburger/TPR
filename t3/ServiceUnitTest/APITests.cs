@@ -1,9 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Service;
-using LINQ;
-using LINQProgram;
-using System.Data.Linq;
+using System.Collections;
 
 namespace ServiceUnitTest
 {
@@ -13,7 +10,8 @@ namespace ServiceUnitTest
         [TestMethod]
         public void UpdateProductTest()
         {
-            
+            API api = new API();
+            Assert.IsTrue(api.GetAllProducts().Count != 0);
         }
     }
 }

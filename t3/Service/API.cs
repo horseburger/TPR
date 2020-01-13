@@ -36,6 +36,13 @@ namespace Service
                 select p).Single();
         }
 
+        public List<Product> GetAllProducts()
+        {
+            return (
+                from p in Storage.Product
+                select p).ToList();
+        }
+
         public void AddProduct(Product p)
         {
             Task.Run(() =>

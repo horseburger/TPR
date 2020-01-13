@@ -10,7 +10,7 @@
         <Button Content="Add Product" HorizontalAlignment="Left" Margin="661,35,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddProduct}"/>
         <Button Content="Delete Product" HorizontalAlignment="Left" Margin="661,59,0,0" VerticalAlignment="Top" Width="75" Command="{Binding DeleteProduct}"/>
         <Button Content="Update Product" HorizontalAlignment="Left" Margin="661,83,0,0" VerticalAlignment="Top" Width="75" Command="{Binding UpdateProduct}"/>
-        <ListView HorizontalAlignment="Left" Height="330" Margin="21,35,0,0" VerticalAlignment="Top" Width="564" ItemsSource="{Binding Products}" SelectedItem="{Binding Product}">
+        <ListView HorizontalAlignment="Left" Height="330" Margin="21,35,0,0" VerticalAlignment="Top" Width="564" ItemsSource="{Binding Path=Products}" SelectedItem="{Binding Product}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -21,7 +21,6 @@
             </ListView.ItemTemplate>
         </ListView>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="21,12,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Center" Height="23" Margin="146,12,208.6,0" TextWrapping="Wrap" Text="Product Name" VerticalAlignment="Top" Width="439" TextChanged="TextBox_TextChanged"/>
-
+        <TextBox HorizontalAlignment="Center" Height="23" Margin="146,12,208.6,0" TextWrapping="Wrap" Text="Product Name" VerticalAlignment="Top" Width="439"/>
     </Grid>
 </Window>
