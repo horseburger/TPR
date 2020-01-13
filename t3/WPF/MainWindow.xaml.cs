@@ -24,5 +24,25 @@ namespace WPF
         {
             InitializeComponent();
         }
+
+        private void AddButton(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GetButton(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateButton(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

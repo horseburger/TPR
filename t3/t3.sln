@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTest", "ServiceUnitTest\ServiceUnitTest.csproj", "{81174222-C7CD-4C04-930C-9E2E85D7269D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "WPF\WPF.csproj", "{1BCA3D51-6F1D-4FD8-BA79-6C39F2F8149D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-View", "WPF\WPF-View.csproj", "{1BCA3D51-6F1D-4FD8-BA79-6C39F2F8149D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
