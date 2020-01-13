@@ -13,8 +13,7 @@ namespace ServiceUnitTest
         [TestMethod]
         public void UpdateProductTest()
         {
-            API api = new API();
-            Assert.IsTrue(api.GetCount() != 0);
+            
         }
     }
 }
