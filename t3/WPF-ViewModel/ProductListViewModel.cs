@@ -14,8 +14,8 @@ namespace WPF_ViewModel
 
         private API api = new API();
 
-        private IEnumerable<Product> products;
-        public IEnumerable<Product> Products
+        private List<Product> products;
+        public List<Product> Products
         {
             get
             {
@@ -25,6 +25,20 @@ namespace WPF_ViewModel
             {
                 this.products = value;
                 this.OnPropertyChanged("Products");
+            }
+        }
+
+        private Product selected;
+        public Product Selected
+        {
+            get
+            {
+                return this.selected;
+            }
+            set
+            {
+                this.selected = value;
+                this.OnPropertyChanged("Selected");
             }
         }
         public ProductListViewModel()

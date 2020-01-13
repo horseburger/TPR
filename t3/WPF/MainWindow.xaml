@@ -6,21 +6,42 @@
         xmlns:local="clr-namespace:WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Add Product" HorizontalAlignment="Left" Margin="661,35,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddProduct}"/>
-        <Button Content="Delete Product" HorizontalAlignment="Left" Margin="661,59,0,0" VerticalAlignment="Top" Width="75" Command="{Binding DeleteProduct}"/>
-        <Button Content="Update Product" HorizontalAlignment="Left" Margin="661,83,0,0" VerticalAlignment="Top" Width="75" Command="{Binding UpdateProduct}"/>
-        <ListView HorizontalAlignment="Left" Height="330" Margin="21,35,0,0" VerticalAlignment="Top" Width="564" ItemsSource="{Binding Path=Products}" SelectedItem="{Binding Product}">
+    <Grid Margin="4,6,4,4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="5,0,0,0" Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <TextBlock Text="ID" Width="75"/>
+            <TextBlock Text="Product Name" Width="250"/>
+        </StackPanel>
+        <ListView x:Name="productsList" ItemsSource="{Binding Products}" SelectedItem="{Binding Selected}" Grid.Column="0" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ProductID}" Width="120"/>
-                        <TextBlock Text="{Binding Name}" Width="439"/>
+                        <TextBlock Text="{Binding ProductID}" Width="75"/>
+                        <TextBlock Text="{Binding Name}" Width="250"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="21,12,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Center" Height="23" Margin="146,12,208.6,0" TextWrapping="Wrap" Text="Product Name" VerticalAlignment="Top" Width="439"/>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5,-5,0,5">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="0,5,0,0"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                </Style>
+                <Style x:Key="deleted_entry" TargetType="MenuItem">
+                    <Setter Property="Background" Value="Red"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="Add Product" Command="{Binding AddProduct}"/>
+            <Button Content="Update Product" Command="{Binding UpdateProduct}"/>
+            <Button Content="Delete Product" Command="{Binding DeleteProduct}"/>
+        </StackPanel>
     </Grid>
 </Window>
