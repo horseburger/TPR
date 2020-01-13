@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AdventureWorks2014" Class="ProductionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-NPHGOTS\MSSQL;Initial Catalog=AdventureWorks2014;Integrated Security=True" SettingsObjectName="LINQ.Properties.Settings" SettingsPropertyName="AdventureWorks2014ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-MMOOIAF\SQLEXPRESS;Initial Catalog=AdventureWorks2014;Integrated Security=True" SettingsObjectName="LINQ.Properties.Settings" SettingsPropertyName="AdventureWorks2014ConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="Production.BillOfMaterials" Member="BillOfMaterials">
     <Type Name="BillOfMaterials">
       <Column Name="BillOfMaterialsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -314,7 +314,7 @@
       <Association Name="Location_WorkOrderRouting" Member="WorkOrderRouting" ThisKey="LocationID" OtherKey="LocationID" Type="WorkOrderRouting" />
     </Type>
   </Table>
-  <Table Name="Production.TransactionHistoryArchive" Member="TransactionHistoryArchive">
+  <Table Name="Production.TransactionHistoryArchive" Member="TransactionHistoryArchives">
     <Type Name="TransactionHistoryArchive">
       <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
