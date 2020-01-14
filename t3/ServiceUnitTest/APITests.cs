@@ -11,7 +11,7 @@ namespace ServiceUnitTest
         public void UpdateProductTest()
         {
             API api = new API();
-            Assert.IsTrue(api.GetAllProducts().Count != 0);
+            var x = api.GetColours();
         }
     }
 }

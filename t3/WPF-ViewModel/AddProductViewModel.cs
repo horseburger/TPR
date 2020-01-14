@@ -83,6 +83,7 @@ namespace WPF_ViewModel
             this.SellStartDate = p.SellStartDate;
             this.SellEndDate = p.SellEndDate;
 
+
         }
     }
 }

@@ -96,7 +96,14 @@ namespace Service
 
         public List<string> GetColours()
         {
-            throw new NotImplementedException();
+            List<string> res = new List<string>();
+            List<Product> products = this.Storage.Product.GroupBy(p => p.Color).Select(g => g.First()).ToList();
+            foreach(Product p in products)
+            {
+                res.Add(p.Color);
+            }
+
+            return res;
         }
 
         public List<string> GetSizes()

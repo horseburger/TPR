@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF"
         xmlns:validators="clr-namespace:WPF.Validators"
         mc:Ignorable="d"
-        Title="AddProudctView" Height="640" Width="480">
+        Title="AddProudctView" Height="640" Width="650">
     <Grid Margin="4,6,4,4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -39,7 +39,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Content="Product name: "/>
-        <TextBox Grid.Column="1" Grid.Row="0" Name="ProductName" >
+        <TextBox Grid.Column="1" Grid.Row="0" Name="ProductName">
             <TextBox.Text>
                 <Binding Path="ProductName" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -101,5 +101,57 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+
+        <Label Grid.Row="8" Content="List price: "/>
+        <TextBox Grid.Row="8" Grid.Column="1" Name="ListPrice">
+            <TextBox.Text>
+                <Binding Path="ListPrice" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateFloatNumberPositiveZero ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="9" Content="Size: "/>
+        <ComboBox Grid.Row="9" Grid.Column="1" Name="Size" ItemsSource="{Binding Sizes}" SelectedItem="{Binding Size}" SelectedIndex="0"/>
+
+        <Label Grid.Row="10" Content="Size unit measure code: "/>
+        <ComboBox Grid.Row="10" Grid.Column="1" ItemsSource="{Binding SizesUnits}" SelectedItem="{Binding SizeUnitMeasureCode}" SelectedIndex="0"/>
+
+        <Label Grid.Row="11" Content="Weight unit measure code: "/>
+        <ComboBox Grid.Row="11" Grid.Column="1" ItemsSource="{Binding WeightUnits}" SelectedItem="{Binding WeightUnitMeasureCode}" SelectedIndex="0"/>
+
+        <Label Grid.Row="12" Content="Weight: "/>
+        <TextBox Grid.Row="12" Grid.Column="1" Name="Weight" >
+            <TextBox.Text>
+                <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateFloatPositive ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="13" Content="Days to manufacture: "/>
+        <TextBox Grid.Row="13" Grid.Column="1" Name="DaysToManufacture">
+            <TextBox.Text>
+                <Binding Path="DaysToManufacture" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateIntPositive ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="14" Content="Product line: "/>
+        <ComboBox Grid.Row="14" Grid.Column="1" ItemsSource="{Binding ProductLines}" SelectedItem="{Binding ProductLine}" SelectedIndex="0"/>
+
+        <Label Grid.Row="15" Content="Class"/>
+        <ComboBox Grid.Row="15" Grid.Column="1" ItemsSource="{Binding Classes}" SelectedItem="{Binding Class}" SelectedIndex="0"/>
+
+        <Label Grid.Row="16" Content="Style"/>
+        <ComboBox Grid.Row="16" Grid.Column="1" ItemsSource="{Binding Styles}" SelectedItem="{Binding Style}" SelectedIndex="0"/>
+
     </Grid>
 </Window>
