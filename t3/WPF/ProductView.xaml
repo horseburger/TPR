@@ -89,6 +89,17 @@
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
-        </TextBox
+        </TextBox>
+
+        <Label Grid.Row="7" Content="Standard cost: "/>
+        <TextBox Grid.Row="7" Grid.Column="1" Name="StandardCost">
+            <TextBox.Text>
+                <Binding Path="StandardCost" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateFloatNumberPositiveZero ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
     </Grid>
 </Window>

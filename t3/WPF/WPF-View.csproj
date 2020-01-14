@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="DepInj\AddProductWindow.cs" />
     <Compile Include="DepInj\AddProductWindowResolver.cs" />
+    <Compile Include="Validators\ValidateFloatNumberPositiveZero.cs" />
     <Compile Include="Validators\ValidateIntPositive.cs" />
     <Compile Include="Validators\ValidateProductName.cs" />
     <Compile Include="Validators\ValidateProductNumber.cs" />
