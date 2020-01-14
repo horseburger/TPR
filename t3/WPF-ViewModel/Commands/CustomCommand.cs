@@ -1,15 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using LINQ;
 
 namespace WPF_ViewModel.Commands
 {
-    public class AddCurrentProduct : ICommand
+    public class CustomCommand : ICommand
     {
+        public event EventHandler CanExecuteChanged;
 
+        private Action command;
         private ProductListViewModel vm;
-        public AddCurrentProduct(Product product, ProductListViewModel vm)
+        public CustomCommand(Action command, ProductListViewModel vm)
         {
+            this.command = command;
             this.vm = vm;
             this.vm.PropertyChanged += (s, e) =>
             {
@@ -19,7 +25,6 @@ namespace WPF_ViewModel.Commands
                 }
             };
         }
-        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
@@ -28,7 +33,7 @@ namespace WPF_ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            this.vm.AddProductImplementation();
+            this.command();
         }
     }
 }

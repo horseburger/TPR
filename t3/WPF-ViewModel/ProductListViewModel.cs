@@ -48,7 +48,9 @@ namespace WPF_ViewModel
         public ProductListViewModel()
         {
             this.GetAllProducts();
-            this.addCurrentProduct = new AddCurrentProduct(this.selected, this);
+            this.AddProduct = new CustomCommand(AddProductImplementation, this);
+            this.UpdateProduct = new CustomCommand(UpdateProductImplementation, this);
+            this.DeleteProduct = new CustomCommand(DeleteProductImplementation, this);
         }
 
         private void GetAllProducts()
@@ -67,23 +69,35 @@ namespace WPF_ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private AddCurrentProduct addCurrentProduct;
-        public AddCurrentProduct AddProduct
-        {
-            get
-            {
-                return this.addCurrentProduct;
-            }
-        }
+        public CustomCommand AddProduct { get; set; }
+        public CustomCommand UpdateProduct { get; set; }
+        public CustomCommand DeleteProduct { get; set; }
 
         public Action Close { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void AddProductImplementation()
         {
             AddProductViewModel vm = new AddProductViewModel(new API());
+            ExecuteCommand(vm);
+        }
+
+        public void UpdateProductImplementation()
+        {
+            AddProductViewModel vm = new AddProductViewModel(this.selected, new API());
+            ExecuteCommand(vm);
+        }
+
+        public void DeleteProductImplementation()
+        {
+            this.api.RemoveProduct(this.selected);
+        }
+
+        private void ExecuteCommand(AddProductViewModel vm)
+        {
             INewWindow window = WindowGetter.GetWindow();
-            window.setViewModel(vm);
+            window.SetViewModel(vm);
             window.Show();
         }
+
     }
 }
