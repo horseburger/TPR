@@ -41,6 +41,7 @@ namespace WPF_ViewModel
                 this.OnPropertyChanged("Selected");
             }
         }
+
         public ProductListViewModel()
         {
             this.GetAllProducts();
@@ -61,5 +62,10 @@ namespace WPF_ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void AddProduct()
+        {
+            this.api.AddProduct(this.selected);
+        }
     }
 }
