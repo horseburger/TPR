@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
         xmlns:validators="clr-namespace:WPF.Validators"
+        xmlns:filler="clr-namespace:WPF.Filler"
         mc:Ignorable="d"
         Title="AddProudctView" Height="640" Width="650">
     <Grid Margin="4,6,4,4">
@@ -153,5 +154,57 @@
         <Label Grid.Row="16" Content="Style"/>
         <ComboBox Grid.Row="16" Grid.Column="1" ItemsSource="{Binding Styles}" SelectedItem="{Binding Style}" SelectedIndex="0"/>
 
+        <Label Grid.Row="17" Content="Product subcategory ID: "/>
+        <ComboBox Grid.Row="17" Grid.Column="1" ItemsSource="{Binding ProductSubCategories}" SelectedItem="{Binding ProductSubcategoryID}" SelectedIndex="0"/>
+
+        <Label Grid.Row="18" Content="Model ID: "/>
+        <ComboBox Grid.Row="18" Grid.Column="1" ItemsSource="{Binding ModelIds}" SelectedItem="{Binding ModelId}" SelectedIndex="0"/>
+
+        <Label Grid.Row="19" Content="Start date: "/>
+        <DatePicker Grid.Column="1" Grid.Row="19" SelectedDate="{Binding SellStartDate}"/>
+
+        <Label Grid.Row="20" Content="End date: "/>
+        <DatePicker Grid.Column="1" Grid.Row="20" SelectedDate="{Binding SellEndDate}"/>
+
+        <StackPanel Grid.Row="22" Orientation="Horizontal">
+            <Button Content="Confirm" Command="{Binding ConfirmData}" Height="23" Width="140" Margin="0,0,0,-1">
+                <Button.Resources>
+                    <filler:EmptyFiller x:Key="emptyFiller"/>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ElementName=ProductName, Path=Text, Converter={StaticResource emptyFiller}}" Value="True" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ProductName}" Value="True"/>
+
+                                    <Condition Binding="{Binding ElementName=ProductNumber, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ProductNumber}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=SafetyStockLevel, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=SafetyStockLevel}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=StandardCost, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=StandardCost}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=ReorderPoint, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ReorderPoint}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=ListPrice, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ListPrice}" Value="False"/>
+
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Weight}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=DaysToManufacture, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=DaysToManufacture}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
