@@ -9,7 +9,7 @@ namespace WPF_ViewModel.Interfaces
     public interface INewWindow
     {
         void Show();
-        void setViewModel(IViewModel vm);
+        void SetViewModel(IViewModel vm);
     }
 
     public delegate void VoidHandler();

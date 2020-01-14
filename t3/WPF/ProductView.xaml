@@ -4,9 +4,207 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
+        xmlns:validators="clr-namespace:WPF.Validators"
+        xmlns:filler="clr-namespace:WPF.Filler"
         mc:Ignorable="d"
-        Title="AddProudctView" Height="450" Width="800">
-    <Grid>
-        <TextBlock Text="what"/>
+        Title="AddProudctView" Height="640" Width="650">
+    <Grid Margin="4,6,4,4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Product name: "/>
+        <TextBox Grid.Column="1" Grid.Row="0" Name="ProductName">
+            <TextBox.Text>
+                <Binding Path="ProductName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateProductName ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="1" Content="Product number: "/>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="ProductNumber">
+            <TextBox.Text>
+                <Binding Path="ProductNumber" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateProductNumber ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="2" Content="Make flag: "/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Flags}" SelectedItem="{Binding MakeFlag}" SelectedIndex="0"/>
+
+        <Label Grid.Row="3" Content="Finished Goods Flag: "/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Flags}" SelectedItem="{Binding FinishedGoodFlag}" SelectedIndex="0"/>
+
+        <Label Grid.Row="4" Content="Color: "/>
+        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Colors}" SelectedItem="{Binding Color}" SelectedIndex="0"/>
+
+        <Label Grid.Row="5" Content="Safety stock level: "/>
+        <TextBox Grid.Column="1" Grid.Row="5" Name="SafetyStockLevel">
+            <TextBox.Text>
+                <Binding Path="SafetyStockLevel" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateIntPositive ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="6" Content="Reorder point: "/>
+        <TextBox Grid.Row="6" Grid.Column="1" Name="ReorderPoint">
+            <TextBox.Text>
+                <Binding Path="ReorderPoint" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateIntPositive ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="7" Content="Standard cost: "/>
+        <TextBox Grid.Row="7" Grid.Column="1" Name="StandardCost">
+            <TextBox.Text>
+                <Binding Path="StandardCost" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateFloatNumberPositiveZero ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="8" Content="List price: "/>
+        <TextBox Grid.Row="8" Grid.Column="1" Name="ListPrice">
+            <TextBox.Text>
+                <Binding Path="ListPrice" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateFloatNumberPositiveZero ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="9" Content="Size: "/>
+        <ComboBox Grid.Row="9" Grid.Column="1" Name="Size" ItemsSource="{Binding Sizes}" SelectedItem="{Binding Size}" SelectedIndex="0"/>
+
+        <Label Grid.Row="10" Content="Size unit measure code: "/>
+        <ComboBox Grid.Row="10" Grid.Column="1" ItemsSource="{Binding SizesUnits}" SelectedItem="{Binding SizeUnitMeasureCode}" SelectedIndex="0"/>
+
+        <Label Grid.Row="11" Content="Weight unit measure code: "/>
+        <ComboBox Grid.Row="11" Grid.Column="1" ItemsSource="{Binding WeightUnits}" SelectedItem="{Binding WeightUnitMeasureCode}" SelectedIndex="0"/>
+
+        <Label Grid.Row="12" Content="Weight: "/>
+        <TextBox Grid.Row="12" Grid.Column="1" Name="Weight" >
+            <TextBox.Text>
+                <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateFloatPositive ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="13" Content="Days to manufacture: "/>
+        <TextBox Grid.Row="13" Grid.Column="1" Name="DaysToManufacture">
+            <TextBox.Text>
+                <Binding Path="DaysToManufacture" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateIntPositive ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="14" Content="Product line: "/>
+        <ComboBox Grid.Row="14" Grid.Column="1" ItemsSource="{Binding ProductLines}" SelectedItem="{Binding ProductLine}" SelectedIndex="0"/>
+
+        <Label Grid.Row="15" Content="Class"/>
+        <ComboBox Grid.Row="15" Grid.Column="1" ItemsSource="{Binding Classes}" SelectedItem="{Binding Class}" SelectedIndex="0"/>
+
+        <Label Grid.Row="16" Content="Style"/>
+        <ComboBox Grid.Row="16" Grid.Column="1" ItemsSource="{Binding Styles}" SelectedItem="{Binding Style}" SelectedIndex="0"/>
+
+        <Label Grid.Row="17" Content="Product subcategory ID: "/>
+        <ComboBox Grid.Row="17" Grid.Column="1" ItemsSource="{Binding ProductSubCategories}" SelectedItem="{Binding ProductSubcategoryID}" SelectedIndex="0"/>
+
+        <Label Grid.Row="18" Content="Model ID: "/>
+        <ComboBox Grid.Row="18" Grid.Column="1" ItemsSource="{Binding ModelIds}" SelectedItem="{Binding ModelId}" SelectedIndex="0"/>
+
+        <Label Grid.Row="19" Content="Start date: "/>
+        <DatePicker Grid.Column="1" Grid.Row="19" SelectedDate="{Binding SellStartDate}"/>
+
+        <Label Grid.Row="20" Content="End date: "/>
+        <DatePicker Grid.Column="1" Grid.Row="20" SelectedDate="{Binding SellEndDate}"/>
+
+        <StackPanel Grid.Row="22" Orientation="Horizontal">
+            <Button Content="Confirm" Command="{Binding ConfirmData}" Height="23" Width="140" Margin="0,0,0,-1">
+                <Button.Resources>
+                    <filler:EmptyFiller x:Key="emptyFiller"/>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ElementName=ProductName, Path=Text, Converter={StaticResource emptyFiller}}" Value="True" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ProductName}" Value="True"/>
+
+                                    <Condition Binding="{Binding ElementName=ProductNumber, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ProductNumber}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=SafetyStockLevel, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=SafetyStockLevel}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=StandardCost, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=StandardCost}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=ReorderPoint, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ReorderPoint}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=ListPrice, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ListPrice}" Value="False"/>
+
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Weight}" Value="False"/>
+
+                                    <Condition Binding="{Binding ElementName=DaysToManufacture, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=DaysToManufacture}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

@@ -19,7 +19,7 @@ namespace WPF.DepInj
             _v.Show();
         }
 
-        public void setViewModel(IViewModel vm)
+        public void SetViewModel(IViewModel vm)
         {
             this._v.DataContext = vm;
             vm.Close = () =>

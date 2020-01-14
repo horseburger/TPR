@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+
+namespace WPF.Validators
+{
+    public class ValidateFloatPositive : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            bool flag;
+            if (value == null)
+            {
+                return new ValidationResult(false, "Value can't be null");
+            }
+            else
+            {
+                flag = decimal.TryParse((string)value, out decimal d);
+                if (!flag)
+                {
+                    return new ValidationResult(false, "Value must be a number");
+                }
+                if (d <= 0)
+                {
+                    return new ValidationResult(false, "Value must be larger than 0");
+                }
+            }
+
+            return ValidationResult.ValidResult;
+        }
+    }
+}

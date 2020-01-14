@@ -55,6 +55,7 @@ namespace WPF_ViewModel
         public AddProductViewModel(IAPI api)
         {
             this.api = api;
+            fillLists();
         }
 
         public AddProductViewModel(Product p, IAPI api)
@@ -83,6 +84,23 @@ namespace WPF_ViewModel
             this.SellStartDate = p.SellStartDate;
             this.SellEndDate = p.SellEndDate;
 
+            fillLists();
+        }
+
+        private void fillLists()
+        {
+            this.Colors = this.api.GetColours();
+            this.Flags = new List<bool>();
+            Flags.Add(false);
+            Flags.Add(true);
+            this.Sizes = this.api.GetSizes();
+            this.SizesUnits = this.api.GetSizeUnits();
+            this.WeightUnits = this.api.GetWeightUnits();
+            this.ProductLines = this.api.GetLines();
+            this.Classes = this.api.GetClasses();
+            this.Styles = this.api.GetStyles();
+            this.ProductSubCategories = this.api.GetSubcategories();
+            this.ModelIds = this.api.GetModels();
         }
     }
 }
