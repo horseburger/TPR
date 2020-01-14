@@ -4,9 +4,91 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
+        xmlns:validators="clr-namespace:WPF.Validators"
         mc:Ignorable="d"
-        Title="AddProudctView" Height="450" Width="800">
-    <Grid>
-        <TextBlock Text="what"/>
+        Title="AddProudctView" Height="640" Width="480">
+    <Grid Margin="4,6,4,4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Product name: "/>
+        <TextBox Grid.Column="1" Grid.Row="0" Name="ProductName" >
+            <TextBox.Text>
+                <Binding Path="ProductName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateProductName ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="1" Content="Product number: "/>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="ProductNumber">
+            <TextBox.Text>
+                <Binding Path="ProductNumber" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateProductNumber ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="2" Content="Make flag: "/>
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Flags}" SelectedItem="{Binding MakeFlag}" SelectedIndex="0"/>
+
+        <Label Grid.Row="3" Content="Finished Goods Flag: "/>
+        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Flags}" SelectedItem="{Binding FinishedGoodFlag}" SelectedIndex="0"/>
+
+        <Label Grid.Row="4" Content="Color: "/>
+        <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Colors}" SelectedItem="{Binding Color}" SelectedIndex="0"/>
+
+        <Label Grid.Row="5" Content="Safety stock level: "/>
+        <TextBox Grid.Column="1" Grid.Row="5" Name="SafetyStockLevel">
+            <TextBox.Text>
+                <Binding Path="SafetyStockLevel" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateIntPositive ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Grid.Row="6" Content="Reorder point: "/>
+        <TextBox Grid.Row="6" Grid.Column="1" Name="ReorderPoint">
+            <TextBox.Text>
+                <Binding Path="ReorderPoint" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:ValidateIntPositive ValidationStep="RawProposedValue"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox
     </Grid>
 </Window>

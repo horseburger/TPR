@@ -80,7 +80,7 @@ namespace WPF_ViewModel
 
         public void AddProductImplementation()
         {
-            AddProductViewModel vm = new AddProductViewModel();
+            AddProductViewModel vm = new AddProductViewModel(new API());
             INewWindow window = WindowGetter.GetWindow();
             window.setViewModel(vm);
             window.Show();

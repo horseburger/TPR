@@ -57,6 +57,9 @@
     </ApplicationDefinition>
     <Compile Include="DepInj\AddProductWindow.cs" />
     <Compile Include="DepInj\AddProductWindowResolver.cs" />
+    <Compile Include="Validators\ValidateIntPositive.cs" />
+    <Compile Include="Validators\ValidateProductName.cs" />
+    <Compile Include="Validators\ValidateProductNumber.cs" />
     <Page Include="ProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
