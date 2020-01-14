@@ -111,7 +111,7 @@ namespace Service
             using(ProductionDataContext productionDataContext = new ProductionDataContext())
             {
                 List<string> response = new List<string>();
-                productionDataContext.Product.GroupBy(x => x.Size).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                productionDataContext.Product.GroupBy(x => x.Size).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Size));
                 return response;
             }
         }
@@ -121,7 +121,7 @@ namespace Service
             using (ProductionDataContext productionDataContext = new ProductionDataContext())
             {
                 List<string> response = new List<string>();
-                productionDataContext.Product.GroupBy(x => x.WeightUnitMeasureCode).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                productionDataContext.Product.GroupBy(x => x.WeightUnitMeasureCode).Select(g => g.First()).ToList().ForEach(x => response.Add(x.WeightUnitMeasureCode));
                 return response;
             }
         }
@@ -131,7 +131,7 @@ namespace Service
             using (ProductionDataContext productionDataContext = new ProductionDataContext())
             {
                 List<string> response = new List<string>();
-                productionDataContext.Product.GroupBy(x => x.ProductLine).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                productionDataContext.Product.GroupBy(x => x.ProductLine).Select(g => g.First()).ToList().ForEach(x => response.Add(x.ProductLine));
                 return response;
             }
         }
@@ -141,7 +141,7 @@ namespace Service
             using (ProductionDataContext productionDataContext = new ProductionDataContext())
             {
                 List<string> response = new List<string>();
-                productionDataContext.Product.GroupBy(x => x.Class).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                productionDataContext.Product.GroupBy(x => x.Class).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Class));
                 return response;
             }
         }
@@ -151,7 +151,7 @@ namespace Service
             using (ProductionDataContext productionDataContext = new ProductionDataContext())
             {
                 List<string> response = new List<string>();
-                productionDataContext.Product.GroupBy(x => x.Style).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                productionDataContext.Product.GroupBy(x => x.Style).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Style));
                 return response;
             }
         }
@@ -161,7 +161,7 @@ namespace Service
             using (ProductionDataContext productionDataContext = new ProductionDataContext())
             {
                 List<string> response = new List<string>();
-                productionDataContext.Product.GroupBy(x => x.ProductSubcategory).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                productionDataContext.Product.GroupBy(x => x.ProductSubcategory).Select(g => g.First()).ToList().ForEach(x => response.Add(x.ProductSubcategoryID == null ? null : x.ProductSubcategoryID.ToString()));
                 return response;
             }
         }
@@ -171,7 +171,7 @@ namespace Service
             using (ProductionDataContext productionDataContext = new ProductionDataContext())
             {
                 List<string> response = new List<string>();
-                productionDataContext.Product.GroupBy(x => x.ProductModelID).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                productionDataContext.Product.GroupBy(x => x.ProductModelID).Select(g => g.First()).ToList().ForEach(x => response.Add(x.ProductModelID.ToString()));
                 return response;
             }
         }
@@ -181,7 +181,7 @@ namespace Service
             using (ProductionDataContext productionDataContext = new ProductionDataContext())
             {
                 List<string> response = new List<string>();
-                productionDataContext.Product.GroupBy(x => x.SizeUnitMeasureCode).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                productionDataContext.Product.GroupBy(x => x.SizeUnitMeasureCode).Select(g => g.First()).ToList().ForEach(x => response.Add(x.SizeUnitMeasureCode));
                 return response;
             }
         }
