@@ -55,7 +55,7 @@ namespace WPF_ViewModel
         public AddProductViewModel(IAPI api)
         {
             this.api = api;
-            //fillLists();
+            fillLists();
         }
 
         public AddProductViewModel(Product p, IAPI api)
