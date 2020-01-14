@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Service;
 using LINQ;
 using System.ComponentModel;
+using WPF_ViewModel.Commands;
 
 namespace WPF_ViewModel
 {
@@ -45,6 +46,7 @@ namespace WPF_ViewModel
         public ProductListViewModel()
         {
             this.GetAllProducts();
+            this.addCurrentProduct = new AddCurrentProduct(this);
         }
 
         private void GetAllProducts()
@@ -63,7 +65,16 @@ namespace WPF_ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void AddProduct()
+        private AddCurrentProduct addCurrentProduct;
+        public AddCurrentProduct AddProduct
+        {
+            get
+            {
+                return this.addCurrentProduct;
+            }
+        }
+
+        public void AddProductImplementation()
         {
             this.api.AddProduct(this.selected);
         }
