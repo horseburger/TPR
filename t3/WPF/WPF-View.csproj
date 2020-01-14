@@ -57,7 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="DepInj\AddProductWindow.cs" />
     <Compile Include="DepInj\AddProductWindowResolver.cs" />
-    <Page Include="AddProudctView.xaml">
+    <Page Include="ProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -65,8 +65,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddProudctView.xaml.cs">
-      <DependentUpon>AddProudctView.xaml</DependentUpon>
+    <Compile Include="ProductView.xaml.cs">
+      <DependentUpon>ProductView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using LINQ;
-using System.Data.Linq;
 
 namespace Service
 {
-    public class API
+    public class API : IAPI
     {
         public ProductionDataContext Storage { get; private set; }
-        public delegate void VoidHandler();
         public event VoidHandler CollectionChanged;
 
         public API()
@@ -97,5 +94,69 @@ namespace Service
            });
         }
 
+        public List<string> GetColours()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetSizes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetWeightUnits()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetLines()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetClasses()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetStyles()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetSubcategories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetModels()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetSizeUnits()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetSubcategoryIDByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetModelIDByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetSubcategoryNameByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetModelNameByID(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

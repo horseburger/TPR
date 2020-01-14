@@ -49,12 +49,40 @@ namespace WPF_ViewModel
 
 
         // API
-        private API api;
+        private IAPI api;
 
 
-        public AddProductViewModel()
+        public AddProductViewModel(IAPI api)
         {
-            this.api = new API();
+            this.api = api;
+        }
+
+        public AddProductViewModel(Product p, IAPI api)
+        {
+            this.api = api;
+            this._productID = p.ProductID;
+            this.ProductName = p.Name;
+            this.ProductNumber = p.ProductNumber;
+            this.MakeFlag = p.MakeFlag;
+            this.FinishedGoodsFlag = p.FinishedGoodsFlag;
+            this.Color = p.Color;
+            this.SafetyStockLevel = p.SafetyStockLevel;
+            this.ReorderPoint = p.ReorderPoint;
+            this.StandardCost = p.StandardCost;
+            ListPrice = p.ListPrice;
+            Size = p.Size;
+            SizeUnitMeasureCode = p.SizeUnitMeasureCode;
+            WeightUnitMeasureCode = p.WeightUnitMeasureCode;
+            Weight = p.Weight;
+            DaysToManufacture = p.DaysToManufacture;
+            ProductLine = p.ProductLine;
+            Class = p.Class;
+            Style = p.Style;
+            ProductSubcategoryID = p.ProductSubcategoryID.HasValue ? api.GetSubcategoryNameByID(p.ProductSubcategoryID ?? 0) : null;
+            ModelId = p.ProductModelID.HasValue ? api.GetModelNameByID(p.ProductModelID ?? 0) : null;
+            this.SellStartDate = p.SellStartDate;
+            this.SellEndDate = p.SellEndDate;
+
         }
     }
 }
