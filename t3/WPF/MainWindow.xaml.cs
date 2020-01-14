@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using WPF.Resolvers;
 using WPF_ViewModel;
 
 namespace WPF
@@ -17,6 +19,12 @@ namespace WPF
             {
                 this.DataContext = this.viewModel;
             };
+        }
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            this.viewModel.WindowGetter = new AddProductWindowResolver();
         }
 
     }

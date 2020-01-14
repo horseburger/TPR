@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using LINQ;
 
 namespace WPF_ViewModel.Commands
 {
@@ -7,7 +8,7 @@ namespace WPF_ViewModel.Commands
     {
 
         private ProductListViewModel vm;
-        public AddCurrentProduct(ProductListViewModel vm)
+        public AddCurrentProduct(Product product, ProductListViewModel vm)
         {
             this.vm = vm;
             this.vm.PropertyChanged += (s, e) =>

@@ -108,7 +108,7 @@ namespace LINQ
     #endregion
 		
 		public ProductionDataContext() : 
-				base(global::LINQ.Properties.Settings.Default.AdventureWorks2014ConnectionString3, mappingSource)
+				base(global::LINQ.Properties.Settings.Default.AdventureWorks2014ConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -905,7 +905,7 @@ namespace LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diagram", DbType="Xml", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Diagram", DbType="Xml", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Xml.Linq.XElement Diagram
 		{
 			get
@@ -3173,7 +3173,7 @@ namespace LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CatalogDescription", DbType="Xml", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CatalogDescription", DbType="Xml", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Xml.Linq.XElement CatalogDescription
 		{
 			get
@@ -3193,7 +3193,7 @@ namespace LINQ
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructions", DbType="Xml", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructions", DbType="Xml", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Xml.Linq.XElement Instructions
 		{
 			get

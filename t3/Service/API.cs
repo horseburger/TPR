@@ -96,5 +96,6 @@ namespace Service
                CollectionChanged?.Invoke();
            });
         }
+
     }
 }

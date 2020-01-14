@@ -7,13 +7,15 @@ using Service;
 using LINQ;
 using System.ComponentModel;
 using WPF_ViewModel.Commands;
+using WPF_ViewModel.Interfaces;
 
 namespace WPF_ViewModel
 {
-    public class ProductListViewModel : INotifyPropertyChanged
+    public class ProductListViewModel : INotifyPropertyChanged, IViewModel
     {
 
         private API api = new API();
+        public IGetWindow WindowGetter { get; set; }
 
         private List<Product> products;
         public List<Product> Products
@@ -46,7 +48,7 @@ namespace WPF_ViewModel
         public ProductListViewModel()
         {
             this.GetAllProducts();
-            this.addCurrentProduct = new AddCurrentProduct(this);
+            this.addCurrentProduct = new AddCurrentProduct(this.selected, this);
         }
 
         private void GetAllProducts()
@@ -74,9 +76,14 @@ namespace WPF_ViewModel
             }
         }
 
+        public Action Close { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public void AddProductImplementation()
         {
-            this.api.AddProduct(this.selected);
+            AddProductViewModel vm = new AddProductViewModel();
+            INewWindow window = WindowGetter.GetWindow();
+            window.setViewModel(vm);
+            window.Show();
         }
     }
 }

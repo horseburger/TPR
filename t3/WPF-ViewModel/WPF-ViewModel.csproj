@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddProductViewModel.cs" />
     <Compile Include="Commands\AddCurrentProduct.cs" />
+    <Compile Include="Interfaces\IGetWindow.cs" />
+    <Compile Include="Interfaces\INewWindow.cs" />
+    <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="ProductListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
