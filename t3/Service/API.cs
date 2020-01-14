@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LINQ;
+using System.Collections.Generic;
+using System.Data.Linq;
 
 namespace Service
 {
@@ -96,57 +98,122 @@ namespace Service
 
         public List<string> GetColours()
         {
-            throw new NotImplementedException();
+            using(ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.Color).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public List<string> GetSizes()
         {
-            throw new NotImplementedException();
+            using(ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.Size).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public List<string> GetWeightUnits()
         {
-            throw new NotImplementedException();
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.WeightUnitMeasureCode).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public List<string> GetLines()
         {
-            throw new NotImplementedException();
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.ProductLine).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public List<string> GetClasses()
         {
-            throw new NotImplementedException();
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.Class).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public List<string> GetStyles()
         {
-            throw new NotImplementedException();
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.Style).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public List<string> GetSubcategories()
         {
-            throw new NotImplementedException();
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.ProductSubcategory).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public List<string> GetModels()
         {
-            throw new NotImplementedException();
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.ProductModelID).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public List<string> GetSizeUnits()
         {
-            throw new NotImplementedException();
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                List<string> response = new List<string>();
+                productionDataContext.Product.GroupBy(x => x.SizeUnitMeasureCode).Select(g => g.First()).ToList().ForEach(x => response.Add(x.Color));
+                return response;
+            }
         }
 
         public int GetSubcategoryIDByName(string name)
         {
-            throw new NotImplementedException();
+            if (name == null)
+            {
+                return 0;
+            }
+            using (ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                Table<Product> products = productionDataContext.GetTable<Product>();
+                return (from product in products
+                        where product.ProductSubcategory.Name == name
+                        select product.ProductSubcategory.ProductSubcategoryID).First();
+            };
         }
 
         public int GetModelIDByName(string name)
         {
-            throw new NotImplementedException();
+            if(name == null)
+            {
+                return 0;
+            }
+             using(ProductionDataContext productionDataContext = new ProductionDataContext())
+            {
+                Table<Product> products = productionDataContext.GetTable<Product>();
+                return (from product in products
+                        where product.ProductModel.Name == name
+                        select product.ProductModel.ProductModelID).First();
+            };
         }
 
         public string GetSubcategoryNameByID(int id)
