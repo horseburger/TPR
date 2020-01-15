@@ -28,12 +28,14 @@ namespace WPFLogicTest
         public void Delete()
         {
             API API = new API();
+            ProductListViewModel productListViewModel = new ProductListViewModel(API);
             Product product = new Product();
-            AddProductViewModel productViewModel = new AddProductViewModel(product, API);
-            productViewModel.ProductName = "test";
-            productViewModel.AddProductImplementationWithoutClose();
+            product.Name = "test";
+            productListViewModel.Selected = product;
+            API.AddProduct(product);
+            Assert.IsNotNull(productListViewModel.Selected);
             Assert.IsNotNull(API.NewProduct);
-            productViewModel.DeleteProductImplementationWithoutClose();
+            productListViewModel.DeleteProductImplementation();
             Assert.IsNull(API.NewProduct);
 
 
