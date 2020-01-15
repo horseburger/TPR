@@ -50,7 +50,9 @@
     <Reference Include="System.Data.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APITests.cs" />
+    <Compile Include="API.cs" />
+    <Compile Include="OperationWindow.cs" />
+    <Compile Include="Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +66,10 @@
     <ProjectReference Include="..\Service\Service.csproj">
       <Project>{1b1a4069-7b92-408c-86f2-ce7c7ad809fb}</Project>
       <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF-ViewModel\WPF-ViewModel.csproj">
+      <Project>{834F7C50-78B6-4B4A-A9AD-89F3561C4015}</Project>
+      <Name>WPF-ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

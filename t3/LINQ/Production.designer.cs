@@ -108,7 +108,7 @@ namespace LINQ
     #endregion
 		
 		public ProductionDataContext() : 
-				base(global::LINQ.Properties.Settings.Default.AdventureWorks2014ConnectionString2, mappingSource)
+				base(global::LINQ.Properties.Settings.Default.AdventureWorks2014ConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}

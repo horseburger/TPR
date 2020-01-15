@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AdventureWorks2014" Class="ProductionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-KUFM7MS\SQLEXPRESS;Initial Catalog=AdventureWorks2014;Integrated Security=True" SettingsObjectName="LINQ.Properties.Settings" SettingsPropertyName="AdventureWorks2014ConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-MMOOIAF\SQLEXPRESS;Initial Catalog=AdventureWorks2014;Integrated Security=True" SettingsObjectName="LINQ.Properties.Settings" SettingsPropertyName="AdventureWorks2014ConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="Production.BillOfMaterials" Member="BillOfMaterials">
     <Type Name="BillOfMaterials">
       <Column Name="BillOfMaterialsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

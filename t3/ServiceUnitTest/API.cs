@@ -12,7 +12,6 @@ namespace WPFLogicTest
     {
         public event VoidHandler CollectionChanged;
         public Product NewProduct { get; set; }
-        public int DeletedProduct { get; set; }
 
         public void AddProduct(Product p)
         {
@@ -101,12 +100,12 @@ namespace WPFLogicTest
 
         public void RemoveProduct(Product p)
         {
-            NewProduct = p;
+            NewProduct = null;
         }
 
         public void UpdateProduct(int id, Product product)
         {
-            NewProduct = null;
+            NewProduct = product;
         }
     }
 }

@@ -107,18 +107,53 @@ namespace WPF_ViewModel
             this.ModelIds = this.api.GetModels();
         }
 
-        private void AddProductImplementation()
+        public void AddProductImplementation()
         {
             Product p = MakeProduct();
-            this.api.AddProduct(p);
+            if(p != null && p.Name.Length > 0)
+            {
+                this.api.AddProduct(p);
+            }
             Close();
         }
 
-        private void UpdateProductImplementation()
+        public void AddProductImplementationWithoutClose()
         {
             Product p = MakeProduct();
-            this.api.UpdateProduct(p.ProductID, p);
+            if (p != null && p.Name.Length > 0)
+            {
+                this.api.AddProduct(p);
+            }
+        }
+
+        public void UpdateProductImplementation()
+        {
+            Product p = MakeProduct();
+            if (p != null && p.Name.Length > 0)
+            {
+                this.api.UpdateProduct(p.ProductID, p);
+            }
             Close();
+        }
+        public void UpdateProductImplementationWithoutClose()
+        {
+            Product p = MakeProduct();
+            if (p != null && p.Name.Length > 0)
+            {
+                this.api.UpdateProduct(p.ProductID, p);
+            }
+        }
+
+        public void DeleteProductImplementation()
+        {
+            Product p = MakeProduct();
+            this.api.RemoveProduct(p);
+            Close();
+        }
+        public void DeleteProductImplementationWithoutClose()
+        {
+            Product p = MakeProduct();
+            this.api.RemoveProduct(p);
         }
 
         private Product MakeProduct()
