@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using LINQ;
 using Service;
+using WPF_ViewModel.Commands;
 using WPF_ViewModel.Interfaces;
 
 namespace WPF_ViewModel
@@ -47,6 +48,7 @@ namespace WPF_ViewModel
         public List<string> ProductSubCategories { get; set; }
         public List<string> ModelIds { get; set; }
 
+        public CustomCommand Confirm { get; set; }
 
         // API
         private IAPI api;
@@ -55,6 +57,7 @@ namespace WPF_ViewModel
         public AddProductViewModel(IAPI api)
         {
             this.api = api;
+            Confirm = new CustomCommand(AddProductImplementation);
             fillLists();
         }
 
@@ -85,6 +88,7 @@ namespace WPF_ViewModel
             this.SellEndDate = p.SellEndDate;
 
             fillLists();
+            Confirm = new CustomCommand(UpdateProductImplementation);
         }
 
         private void fillLists()
@@ -101,6 +105,52 @@ namespace WPF_ViewModel
             this.Styles = this.api.GetStyles();
             this.ProductSubCategories = this.api.GetSubcategories();
             this.ModelIds = this.api.GetModels();
+        }
+
+        private void AddProductImplementation()
+        {
+            Product p = MakeProduct();
+            this.api.AddProduct(p);
+            Close();
+        }
+
+        private void UpdateProductImplementation()
+        {
+            Product p = MakeProduct();
+            this.api.UpdateProduct(p.ProductID, p);
+            Close();
+        }
+
+        private Product MakeProduct()
+        {
+            Product product = new Product();
+            product.rowguid = new Guid();
+            product.Name = this.ProductName;
+            product.ProductNumber = this.ProductNumber;
+            product.MakeFlag = this.MakeFlag;
+            product.FinishedGoodsFlag = this.FinishedGoodsFlag;
+            product.Color = this.Color;
+            product.SafetyStockLevel = this.SafetyStockLevel;
+            product.ReorderPoint = this.ReorderPoint;
+            product.StandardCost = this.StandardCost;
+            product.ListPrice = this.ListPrice;
+            product.Size = this.Size;
+            product.SizeUnitMeasureCode = this.SizeUnitMeasureCode;
+            product.WeightUnitMeasureCode = this.WeightUnitMeasureCode;
+            product.Weight = this.Weight;
+            product.DaysToManufacture = this.DaysToManufacture;
+            product.ProductLine = this.ProductLine;
+            product.Class = this.Class;
+            product.Style = this.Style;
+            product.ProductSubcategoryID = (this.ProductSubcategoryID != null && this.ProductSubcategoryID.Length > 0) ?
+                api.GetSubcategoryIDByName(this.ProductSubcategoryID) : (int?)null;
+            product.ProductModelID = (this.ModelId != null && this.ModelId.Length > 0) ?
+                api.GetModelIDByName(this.ModelId) : (int?)null;
+            product.SellStartDate = this.SellStartDate;
+            product.SellEndDate = this.SellEndDate;
+            product.ModifiedDate = DateTime.Today;
+            product.ProductID = _productID;
+            return product;
         }
     }
 }

@@ -167,44 +167,7 @@
         <DatePicker Grid.Column="1" Grid.Row="20" SelectedDate="{Binding SellEndDate}"/>
 
         <StackPanel Grid.Row="22" Orientation="Horizontal">
-            <Button Content="Confirm" Command="{Binding ConfirmData}" Height="23" Width="140" Margin="0,0,0,-1">
-                <Button.Resources>
-                    <filler:EmptyFiller x:Key="emptyFiller"/>
-                </Button.Resources>
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="IsEnabled" Value="False"/>
-                        <Style.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding ElementName=ProductName, Path=Text, Converter={StaticResource emptyFiller}}" Value="True" />
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ProductName}" Value="True"/>
-
-                                    <Condition Binding="{Binding ElementName=ProductNumber, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ProductNumber}" Value="False"/>
-
-                                    <Condition Binding="{Binding ElementName=SafetyStockLevel, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=SafetyStockLevel}" Value="False"/>
-
-                                    <Condition Binding="{Binding ElementName=StandardCost, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=StandardCost}" Value="False"/>
-
-                                    <Condition Binding="{Binding ElementName=ReorderPoint, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ReorderPoint}" Value="False"/>
-
-                                    <Condition Binding="{Binding ElementName=ListPrice, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=ListPrice}" Value="False"/>
-
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Weight}" Value="False"/>
-
-                                    <Condition Binding="{Binding ElementName=DaysToManufacture, Path=Text, Converter={StaticResource emptyFiller}}" Value="True"/>
-                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=DaysToManufacture}" Value="False"/>
-                                </MultiDataTrigger.Conditions>
-                            </MultiDataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+            <Button Command="{Binding Confirm}" Content="Confirm"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LINQ;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,8 +27,17 @@ namespace WPF_ViewModel.Commands
             };
         }
 
+        public CustomCommand(Action command)
+        {
+            this.command = command;
+        }
+
         public bool CanExecute(object parameter)
         {
+            if (this.vm == null)
+            {
+                return true;
+            }
             return this.vm.Selected != null;
         }
 

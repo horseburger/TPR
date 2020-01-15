@@ -119,17 +119,7 @@ namespace Service
 
         public List<Product> GetAllProducts()
         {
-            return GetAllProducts();
-        }
-
-        Product IAPI.GetProductById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        List<Product> IAPI.GetAllProducts()
-        {
-            throw new System.NotImplementedException();
+            return Operations.GetAllProducts();
         }
     }
 }
