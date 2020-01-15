@@ -14,7 +14,7 @@ namespace WPF_ViewModel
     public class ProductListViewModel : INotifyPropertyChanged, IViewModel
     {
 
-        private API api = new API();
+        public IAPI api;
         public IGetWindow WindowGetter { get; set; }
 
         private List<Product> products;
@@ -45,8 +45,9 @@ namespace WPF_ViewModel
             }
         }
 
-        public ProductListViewModel()
+        public ProductListViewModel(IAPI api)
         {
+            this.api = api;
             this.GetAllProducts();
             this.AddProduct = new CustomCommand(AddProductImplementation, this);
             this.UpdateProduct = new CustomCommand(UpdateProductImplementation, this);

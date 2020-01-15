@@ -8,7 +8,7 @@ using WPF_ViewModel.Interfaces;
 
 namespace WPF.Resolvers
 {
-    class AddProductWindowResolver : IGetWindow
+    public class AddProductWindowResolver : IGetWindow
     {
         public INewWindow GetWindow()
         {

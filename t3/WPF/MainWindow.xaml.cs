@@ -2,6 +2,7 @@
 using System.Windows;
 using WPF.Resolvers;
 using WPF_ViewModel;
+using Service;
 
 namespace WPF
 {
@@ -11,7 +12,7 @@ namespace WPF
     public partial class MainWindow : Window
     {
 
-        private ProductListViewModel viewModel = new ProductListViewModel();
+        private ProductListViewModel viewModel = new ProductListViewModel(new API());
         public MainWindow()
         {
             InitializeComponent();

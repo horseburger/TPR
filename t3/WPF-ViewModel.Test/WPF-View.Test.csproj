@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModelTest.cs" />
+    <Compile Include="ViewTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +67,10 @@
     <ProjectReference Include="..\WPF-ViewModel\WPF-ViewModel.csproj">
       <Project>{834f7c50-78b6-4b4a-a9ad-89f3561c4015}</Project>
       <Name>WPF-ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF\WPF-View.csproj">
+      <Project>{1bca3d51-6f1d-4fd8-ba79-6c39f2f8149d}</Project>
+      <Name>WPF-View</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

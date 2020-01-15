@@ -110,6 +110,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{1B1A4069-7B92-408C-86F2-CE7C7AD809FB}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WPF-ViewModel\WPF-ViewModel.csproj">
       <Project>{834f7c50-78b6-4b4a-a9ad-89f3561c4015}</Project>
       <Name>WPF-ViewModel</Name>

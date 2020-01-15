@@ -7,7 +7,7 @@ using WPF_ViewModel.Interfaces;
 
 namespace WPF.DepInj
 {
-    class AddProductWindow : INewWindow
+    public class AddProductWindow : INewWindow
     {
 
         private AddProudctView _v;
