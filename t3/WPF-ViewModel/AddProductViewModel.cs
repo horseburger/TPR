@@ -144,18 +144,6 @@ namespace WPF_ViewModel
             }
         }
 
-        public void DeleteProductImplementation()
-        {
-            Product p = MakeProduct();
-            this.api.RemoveProduct(p);
-            Close();
-        }
-        public void DeleteProductImplementationWithoutClose()
-        {
-            Product p = MakeProduct();
-            this.api.RemoveProduct(p);
-        }
-
         private Product MakeProduct()
         {
             Product product = new Product();
